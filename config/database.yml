@@ -13,6 +13,7 @@ development:
 test:
   <<: *default
   database: work_test
+  password: REMOVED
   host: db
 
 production:
