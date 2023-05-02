@@ -1,0 +1,10 @@
+{
+  "name": "work",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:sugimite/californicus.git",
+  "license": "MIT",
+  "dependencies": {
+    "@hotwired/turbo-rails": "^7.3.0"
+  }
+}

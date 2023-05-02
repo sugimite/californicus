@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      TZ: UTC
+      PGTZ: UTC
+      POSTGRES_USER: californicus
+      POSTGRES_PASSWORD: californicus888
+    volumes:
+      - "postgresql_data:/var/lib/postgresql/data"
+  rails:
+    build: .
+    command: /bin/bash -c "rm -f tmp/pids/server.pid; bin/rails server -p 3000 -b 0.0.0.0"
+    tty: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/work
+
+volumes:
+  postgresql_data:
