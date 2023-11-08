@@ -13,8 +13,11 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN groupadd -g 1000 rails && \
-    useradd -u 1000 -g 1000 -m rails
+ARG UID=1000
+ARG GID=1000
+
+RUN groupadd -g $GID rails && \
+    useradd -u $UID -g $GID -m rails
 
 COPY --chown=rails:rails . /work
 
