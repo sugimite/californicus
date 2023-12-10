@@ -5,12 +5,18 @@ ruby "3.2.2"
 
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
+
+gem "rails-i18n"
+gem "kaminari"
+gem "date_validator"
+gem "valid_email2"
+gem "nokogiri"
+
 gem "jbuilder"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem "sprockets-rails"
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "turbo-rails"
 
 group :development, :test do
@@ -25,4 +31,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 end
