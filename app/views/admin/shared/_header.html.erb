@@ -2,7 +2,7 @@
     <span class="logo-mark">学力増進研究会</span>
     <%=
         if current_administrator
-            link_to "ログアウト", :admin_session, method: :delete
+            link_to "ログアウト", :admin_session, data: { turbo_method: :delete }
         else
             link_to "ログイン", :admin_login
         end
