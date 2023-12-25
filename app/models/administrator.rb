@@ -6,4 +6,6 @@ class Administrator < ApplicationRecord
         self.password_digest = nil
     end
   end
+
+  validates :code, presence: true, uniqueness: true
 end

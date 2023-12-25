@@ -1,12 +1,8 @@
+codes = ["sugioka", "atarashi"]
+
+codes.each do |code|
 Administrator.create!(
-  [
-    {
-      code: "sugioka",
-      password: "sugioka888"
-    },
-    {
-      code: "atarashi",
-      password: "atarashi888"
-    }
-  ]
+  code: code,
+  password: "#{code}888"
 )
+end

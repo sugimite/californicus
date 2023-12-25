@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "admin" %>
-    <%= javascript_importmap_tags %>
+
+    <%= stylesheet_link_tag "application" %>
   </head>
 
   <body>
     <div id="wrapper">
-      <%= render "admin/shared/header" %>
+      <%= render "customer/shared/header" %>
       <div id="container">
         <%= yield %>
       </div>
