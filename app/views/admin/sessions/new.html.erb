@@ -6,11 +6,11 @@
   <%= form_with model: @form, url: :admin_session do |f| %>
     <div>
       <%= f.label :code, "ID" %>
-      <%= f.text_field :code %>
+      <%= f.text_field :code  %>
     </div>
     <div>
       <%= f.label :password, "パスワード" %>
-      <%= f.text_field :password %>
+      <%= f.password_field :password %>
     </div>
     <div>
       <%= f.submit "ログイン" %>
