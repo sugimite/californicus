@@ -9,7 +9,7 @@ class Admin::SessionsController < Admin::Base
   end
 
   def create
-    @form = Admin::LoginForm.new(params[:admin_login_form])
+    @form = Admin::LoginForm.new(login_form_params)
     if @form.code.present?
       administrator =
         Administrator.find_by(code: @form.code)
@@ -29,6 +29,10 @@ class Admin::SessionsController < Admin::Base
     session.delete(:administrator_id)
     flash.notice = "ログアウトしました。"
     redirect_to :admin_login
+  end
+
+  def login_form_params
+    params.require(:admin_login_form).permit(:code, :password)
   end
   
 end
