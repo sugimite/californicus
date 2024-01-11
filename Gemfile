@@ -13,7 +13,6 @@ gem "valid_email2"
 gem "nokogiri"
 gem "importmap-rails"
 gem "sassc-rails"
-gem "stimulus-rails"
 
 gem "jbuilder"
 gem "pg", "~> 1.1"

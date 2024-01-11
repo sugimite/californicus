@@ -11,7 +11,6 @@ class CreateCustomers < ActiveRecord::Migration[7.0]
       t.integer :forgetting_hw_count
       t.boolean :has_deposited_phone
 
-
       t.timestamps
     end
   end

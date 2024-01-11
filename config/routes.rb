@@ -8,6 +8,5 @@ Rails.application.routes.draw do
   namespace :customer do
     root "top#index"
     get "login" => "session#new", as: :login
-  end
-  
+  end  
 end
