@@ -3,7 +3,7 @@ class Admin::SessionsController < Admin::Base
     if current_administrator
       redirect_to :admin_root
     else
-      @form = flash.present? ? Admin::LoginForm.new(flash[:admin_params]) : Admin::LoginForm.new
+      @form = Admin::LoginForm.new
       render action: "new"
     end
   end
@@ -19,9 +19,8 @@ class Admin::SessionsController < Admin::Base
       flash.notice = "ログインしました。"
       redirect_to :admin_root
     else
-      flash.alert = "IDまたはパスワードが正しくありません。"
-      flash[:admin_params] = @form
-      redirect_to :admin_login
+      flash.now.alert = "IDまたはパスワードが正しくありません。"
+      render action: "new", status: :unprocessable_entity
     end
   end
 

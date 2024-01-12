@@ -6,6 +6,7 @@ class CreateAdministrators < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    
     add_index :administrators, :code, unique: true
   end
 end
