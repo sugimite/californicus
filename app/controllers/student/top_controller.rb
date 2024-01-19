@@ -1,4 +1,4 @@
-class Customer::TopController < Customer::Base
+class Student::TopController < Student::Base
   def index
     render action: "index"
   end

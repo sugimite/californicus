@@ -1,6 +1,6 @@
-class CreateCustomers < ActiveRecord::Migration[7.0]
+class CreateStudents < ActiveRecord::Migration[7.0]
   def change
-    create_table :customers do |t|
+    create_table :students do |t|
       t.string :family_name, null: false
       t.string :given_name, null: false
       t.date :birthday
