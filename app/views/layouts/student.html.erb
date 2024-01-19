@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Work</title>
+    <title><%= document_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +10,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="wrapper">
+      <%= render "student/shared/header" %>
+      <div id="container">
+        <%= yield %>
+      </div>
+      <%= render "shared/footer" %>
+    </div> 
   </body>
 </html>
