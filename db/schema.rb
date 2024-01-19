@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_20_073540) do
     t.index ["code"], name: "index_administrators_on_code", unique: true
   end
 
-  create_table "customers", force: :cascade do |t|
+  create_table "students", force: :cascade do |t|
     t.string "family_name", null: false
     t.string "given_name", null: false
     t.date "birthday"

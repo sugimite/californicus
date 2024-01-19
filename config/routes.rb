@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resource :session, only: [ :create, :destroy ]
   end
 
-  namespace :customer do
+  namespace :student do
     root "top#index"
     get "login" => "session#new", as: :login
   end  
