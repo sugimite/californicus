@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    root "top#index"
+    get "login" => "sessions#new", as: :login
+    resource :session, only: [ :create, :destroy ]
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :student do
+    root "top#index"
+    get "login" => "session#new", as: :login
+  end  
 end
