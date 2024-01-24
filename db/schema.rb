@@ -23,8 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_20_073540) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "family_name", null: false
-    t.string "given_name", null: false
+    t.string "name", null: false
+    t.string "name_kana", null: false
     t.date "birthday"
     t.string "email", null: false
     t.string "password_digest"
