@@ -4,7 +4,7 @@ class CreateStudents < ActiveRecord::Migration[7.0]
       t.string :name, null: false
       t.string :name_kana, null: false
       t.date :birthday
-      t.string :email, null: false
+      t.string :email
       t.string :password_digest
       t.date :registration_date, null: false
       t.date :cancellation_date
