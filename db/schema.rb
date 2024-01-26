@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_20_073540) do
     t.string "name", null: false
     t.string "name_kana", null: false
     t.date "birthday"
-    t.string "email", null: false
+    t.string "email"
     t.string "password_digest"
     t.date "registration_date", null: false
     t.date "cancellation_date"

@@ -10,9 +10,15 @@
   <%= f.text_field :name_kana, required: true %>
 </div>
 <div>
+  <%= f.label :birthday, "誕生日" %>
+  <%= f.date_field :birthday, required: true %>
+</div>
+<% if f.object.new_record? %>
+<div>
   <%= f.label :password, "初期パスワード", class: "required" %>
   <%= f.password_field :password, size: 32, required: true %>
 </div>
+<% end %>
 <div>
   <%= f.label :registration_date, "入会日", class: "required" %>
   <%= f.date_field :registration_date, required: true %>
