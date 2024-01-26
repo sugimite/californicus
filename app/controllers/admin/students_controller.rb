@@ -4,7 +4,7 @@ class Admin::StudentsController < Admin::Base
   end
 
   def show
-    @student = Studnet.find(params[:id])
+    @student = Student.find(params[:id])
     redirect_to [ :edit, :admin, :student ]
   end
 
@@ -26,4 +26,21 @@ class Admin::StudentsController < Admin::Base
     end
   end
 
+  def update
+    @student = Student.find(params[:id])
+    @student.assign_attributes(params[:student])
+    if @student.save
+      flash.notice = "生徒情報を更新しました。"
+      redirect_to :admin_students
+    else
+      render action: "edit"
+    end
   end
+
+  def destroy
+    student = Student.find(params[:id])
+    student.destroy!
+    flash.notice = "職員アカウントを削除しました。"
+    redirect_to :admin_students
+  end
+end

@@ -26,8 +26,8 @@
         <td><%= m.cancellation_date %></td>
         <td class="actions">
           <%= link_to "編集", [ :edit, :admin, m ] %> |
-          <%= link_to "削除", [:admin, m], method: :delete,
-            data: { confirm: "本当に削除しますか？" } %>
+          <%= link_to "削除", [ :admin, m ],
+            data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
         </td>
       </tr>
     <% end %>
