@@ -1,0 +1,46 @@
+class Admin::StudentsController < Admin::Base
+  def index
+    @students = Student.order(:name_kana)
+  end
+
+  def show
+    @student = Student.find(params[:id])
+    redirect_to [ :edit, :admin, :student ]
+  end
+
+  def new
+    @student = Student.new
+  end
+
+  def edit
+    @student = Student.find(params[:id])
+  end
+
+  def create
+    @student = Student.new(params[:student])
+    if @student.save
+      flash.notice = "生徒情報を登録しました。"
+      redirect_to :admin_students
+    else
+      render action: "new"
+    end
+  end
+
+  def update
+    @student = Student.find(params[:id])
+    @student.assign_attributes(params[:student])
+    if @student.save
+      flash.notice = "生徒情報を更新しました。"
+      redirect_to :admin_students
+    else
+      render action: "edit"
+    end
+  end
+
+  def destroy
+    student = Student.find(params[:id])
+    student.destroy!
+    flash.notice = "職員アカウントを削除しました。"
+    redirect_to :admin_students
+  end
+end
