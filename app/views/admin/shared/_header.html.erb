@@ -1,5 +1,5 @@
 <header>
-  <span class="logo-mark">学力増進研究会</span>
+  <%= link_to "学力増進研究会", :admin_root, class: "logo-mark" %>
   <%= content_tag(:span, flash.notice, class: "notice") if flash.notice %>
   <%= content_tag(:span, flash.alert, class: "alert") if flash.alert %>
   <%=

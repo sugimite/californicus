@@ -1,0 +1,40 @@
+<% @title = "生徒一覧" %>
+<h1><%= @title %>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "生徒登録", :new_admin_student %>
+  </div>
+
+  <table class="listing">
+    <tr>
+      <th>氏名</th>
+      <th>フリガナ</th>
+      <th>年齢</th>
+      <th>入会日</th>
+      <th>退会日</th>
+      <th>アクション</th>
+    </tr>
+    <% @students.each do |m| %>
+      <% age = Date.today.year - m.birthday.year %>
+      <% age -= 1 if m.birthday.month < 4 %>
+      <tr>
+        <td><%= m.name %></td>
+        <td><%= m.name_kana %></td>
+        <td><%= age %></td>
+        <td><%= m.registration_date %></td>
+        <td><%= m.cancellation_date %></td>
+        <td class="actions">
+          <%= link_to "編集", [ :edit, :admin, m ] %> |
+          <%= link_to "削除", [ :admin, m ],
+            data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="links">
+    <%= link_to "生徒登録", :new_admin_student %>
+  </div>
+</div>
+    
