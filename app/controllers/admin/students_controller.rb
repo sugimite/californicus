@@ -3,11 +3,6 @@ class Admin::StudentsController < Admin::Base
     @students = Student.order(:name_kana)
   end
 
-  def show
-    @student = Student.find(params[:id])
-    redirect_to [ :edit, :admin, :student ]
-  end
-
   def new
     @student = Student.new
   end
@@ -38,9 +33,7 @@ class Admin::StudentsController < Admin::Base
   end
 
   def destroy
-    student = Student.find(params[:id])
-    student.destroy!
-    flash.notice = "職員アカウントを削除しました。"
-    redirect_to :admin_students
+    student = Student.find(params[:id]).destroy!
+    redirect_to :admin_students, notice: "生徒情報を削除しました。"
   end
 end
