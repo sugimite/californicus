@@ -13,23 +13,27 @@ class Admin::StudentsController < Admin::Base
 
   def create
     @student = Student.new(students_params)
+
     if @student.save
       flash.notice = "生徒情報を登録しました。"
       redirect_to :admin_students
     else
-      render action: "new"
+      render action: "new", status: :unprocessable_entity
     end
+
   end
 
   def update
     @student = Student.find(params[:id])
     @student.assign_attributes(students_params)
+
     if @student.save
       flash.notice = "生徒情報を更新しました。"
       redirect_to :admin_students
     else
-      render action: "edit"
+      render action: "edit", status: :unprocessable_entity
     end
+
   end
 
   private def students_params
@@ -39,7 +43,7 @@ class Admin::StudentsController < Admin::Base
   end
 
   def destroy
-    student = Student.find(params[:id]).destroy!
+    Student.find(params[:id]).destroy!
     redirect_to :admin_students, notice: "生徒情報を削除しました。"
   end
 end
