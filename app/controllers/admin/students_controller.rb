@@ -12,7 +12,7 @@ class Admin::StudentsController < Admin::Base
   end
 
   def create
-    @student = Student.new(params[:student])
+    @student = Student.new(students_params)
     if @student.save
       flash.notice = "生徒情報を登録しました。"
       redirect_to :admin_students
@@ -23,13 +23,19 @@ class Admin::StudentsController < Admin::Base
 
   def update
     @student = Student.find(params[:id])
-    @student.assign_attributes(params[:student])
+    @student.assign_attributes(students_params)
     if @student.save
       flash.notice = "生徒情報を更新しました。"
       redirect_to :admin_students
     else
       render action: "edit"
     end
+  end
+
+  private def students_params
+    params.require(:student).permit(
+      :name, :name_kana, :password, :birthday, :registration_date, :cancellation_date
+    )
   end
 
   def destroy
