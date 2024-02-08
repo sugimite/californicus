@@ -16,4 +16,3 @@ module StringNormalizer
   end
 
 end
-  

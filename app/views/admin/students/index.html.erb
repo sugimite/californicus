@@ -11,22 +11,22 @@
       <th>氏名</th>
       <th>フリガナ</th>
       <th>年齢</th>
+      <th>メールアドレス</th>
       <th>入会日</th>
       <th>退会日</th>
       <th>アクション</th>
     </tr>
-    <% @students.each do |m| %>
-      <% age = Date.today.year - m.birthday.year %>
-      <% age -= 1 if m.birthday.month < 4 %>
+    <% @students.each do |student| %>
       <tr>
-        <td><%= m.name %></td>
-        <td><%= m.name_kana %></td>
-        <td><%= age %></td>
-        <td><%= m.registration_date %></td>
-        <td><%= m.cancellation_date %></td>
+        <td><%= student.name %></td>
+        <td><%= student.name_kana %></td>
+        <td><%= student.age %></td>
+        <td><%= student.email %></td>
+        <td><%= student.registration_date.strftime("%Y/%m/%d") %></td>
+        <td><%= student.cancellation_date&.strftime("%Y/%m/%d") %></td>
         <td class="actions">
-          <%= link_to "編集", [ :edit, :admin, m ] %> |
-          <%= link_to "削除", [ :admin, m ],
+          <%= link_to "編集", [ :edit, :admin, student ] %> |
+          <%= link_to "削除", [ :admin, student ],
             data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
         </td>
       </tr>

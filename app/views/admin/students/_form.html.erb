@@ -11,7 +11,11 @@
 </div>
 <div>
   <%= f.label :birthday, "誕生日" %>
-  <%= f.date_field :birthday, required: true %>
+  <%= f.date_field :birthday %>
+</div>
+<div>
+  <%= f.label :email, "メールアドレス", class: "required" %>
+  <%= f.text_field :email, required: true %>
 </div>
 <% if f.object.new_record? %>
 <div>
