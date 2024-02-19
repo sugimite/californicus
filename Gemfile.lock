@@ -239,9 +239,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    valid_email2 (5.1.1)
-      activemodel (>= 3.2)
-      mail (~> 2.5)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -282,7 +279,6 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   turbo-rails
-  valid_email2
   web-console
   webdrivers
 
