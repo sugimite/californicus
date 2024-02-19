@@ -1,15 +1,21 @@
-names = ["佐藤", "鈴木", "高橋", "田中"]
+students = [
+  {name: "佐藤 太郎", name_kana: "サトウ タロウ"},
+  {name: "鈴木 次郎", name_kana: "スズキ ジロウ"},
+  {name: "高橋 三郎", name_kana: "タカハシ サブロウ"},
+  {name: "田中 四郎", name_kana: "タナカ シロウ"}
+]
 
-names_kana = ["サトウ", "スズキ", "タカハシ", "タナカ"]
+students.each_with_index do |s, index|
+  birthday = [*12..18].sample.years.ago.to_date.advance(days: -[*1..365].sample).to_date
+  registration_date = (100 - index).days.ago.to_date
+  cancellation_date = index.zero? ? registration_date.advance(months: 1) : nil 
 
-4.times do |n|
   Student.create!(
-    name: names[n],
-    name_kana: names_kana[n],
-    birthday: "1990/04/04",
-    registration_date: (100 - n).days.ago.to_date,
-    cancellation_date: nil,
+    name: s[:name],
+    name_kana: s[:name_kana],
+    birthday: birthday,
+    registration_date: registration_date,
+    cancellation_date: cancellation_date,
     password: "password",
-    email: "test#{n}@example.com"
-  )
+    email: "test#{index + 1}@example.com" 
 end

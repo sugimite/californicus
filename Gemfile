@@ -9,7 +9,6 @@ gem "bootsnap", require: false
 gem "rails-i18n"
 gem "kaminari"
 gem "date_validator"
-gem "valid_email2"
 gem "nokogiri"
 gem "importmap-rails"
 gem "sassc-rails"
