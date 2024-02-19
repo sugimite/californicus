@@ -1,0 +1,12 @@
+<% @title = "生徒情報の編集" %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_with model: @student, url: [ :admin, @student ] do |f| %>
+    <%= render "form", f: f %>
+    <div class="buttons">
+      <%= f.submit "変更" %>
+      <%= link_to "キャンセル", :admin_students %>
+    </div>
+  <% end %>
+</div>

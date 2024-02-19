@@ -1,0 +1,33 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+<div>
+  <%= f.label :name, "氏名", class: "required" %>
+  <%= f.text_field :name, required: true %>
+</div>
+<div>
+  <%= f.label :name_kana, "氏名（カナ）", class: "required" %>
+  <%= f.text_field :name_kana, required: true %>
+</div>
+<div>
+  <%= f.label :birthday, "誕生日" %>
+  <%= f.date_field :birthday %>
+</div>
+<div>
+  <%= f.label :email, "メールアドレス", class: "required" %>
+  <%= f.text_field :email, required: true %>
+</div>
+<% if f.object.new_record? %>
+<div>
+  <%= f.label :password, "初期パスワード", class: "required" %>
+  <%= f.password_field :password, size: 32, required: true %>
+</div>
+<% end %>
+<div>
+  <%= f.label :registration_date, "入会日", class: "required" %>
+  <%= f.date_field :registration_date, required: true %>
+</div>
+<div>
+  <%= f.label :cancellation_date, "退会日"%>
+  <%= f.date_field :cancellation_date %>
+</div>
