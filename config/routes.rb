@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :student, path: "" do
     root "top#index"
-    get "login" => "session#new", as: :login
+    get "login" => "sessions#new", as: :login
+    resource :session, only: [ :create, :destroy ]
   end  
 end
