@@ -6,6 +6,5 @@ class Student::TopController < Student::Base
     else
       render action: "index"
     end
-    
   end
 end

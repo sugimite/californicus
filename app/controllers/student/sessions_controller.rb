@@ -1,20 +1,18 @@
 class Student::SessionsController < Student::Base
   def new
-
     if current_student
       redirect_to :student_root
     else
       @form = Student::LoginForm.new
       render action: "new"
     end
-    
   end
 
   def create
     @form = Student::LoginForm.new(login_form_params)
 
     if @form.email.present?
-      student= Student.find_by("LOWER(email) = ?", @form.email.downcase)
+      student= Student.find_by("LOWER(email) = ?", @form.email&.downcase)
     end
 
     if Student::Authenticator.new(student).authenticate(@form.password)
@@ -25,7 +23,6 @@ class Student::SessionsController < Student::Base
       flash.now.alert = "メールアドレスまたはパスワードが正しくありません。"
       render action: "new", status: :unprocessable_entity
     end
-
   end
 
   def destroy
@@ -37,5 +34,4 @@ class Student::SessionsController < Student::Base
   def login_form_params
     params.require(:student_login_form).permit(:email, :password)
   end
-
 end
