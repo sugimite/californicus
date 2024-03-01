@@ -10,7 +10,7 @@ class Student::SessionsController < Student::Base
 
   def create
     @form = Student::LoginForm.new(login_form_params)
-    student= Student.find_by("LOWER(email) = ?", @form.email&.downcase)
+    student = Student.find_by("LOWER(email) = ?", @form.email&.downcase)
 
     if Student::Authenticator.new(student).authenticate(@form.password)
       session[:student_id] = student.id
