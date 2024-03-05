@@ -1,0 +1,36 @@
+div#wrapper {
+  div#container {
+    div#login-form {
+      width: 400px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 20px;
+      border: solid 4px #666666;
+      background-color: #b9b9c4;
+
+      h1 {
+        background-color: transparent;
+        color: #0f0f0f;
+        font-size: large;
+        font-weight: bold;
+      }
+
+      form {
+        div {
+          padding: 10px;
+          label {
+            display: block;
+            padding: 6px 0;
+          }
+          input[type="text"], input[type="password"] {
+            padding: 6px ;
+            width: 350px;
+          }
+            input[type="submit"] {
+              padding: 6px 10px;
+            }
+          }
+         }
+      }
+    }
+  }
