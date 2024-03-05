@@ -1,2 +1,0 @@
-class Grade < ApplicationRecord
-end
