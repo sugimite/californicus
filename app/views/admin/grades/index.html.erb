@@ -1,0 +1,42 @@
+<%
+  if @student
+    name = @student.name
+    @title = "#{name}さんの成績"
+  else
+    @title = "生徒の成績"
+  end
+%>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+    <%= 
+      if @student
+        link_to "成績入力", [ :new_admin, :student, :grade ]
+      end
+    %>
+  </div>
+
+  <table class="listing">
+    <tr>
+      <% unless @student %><th>氏名</th><% end %>
+      <th>年度</th>
+      <th>テスト種別</th>
+      <th>科目</th>
+      <th>得点</th>
+      <th>修正</th>
+    </tr>
+    <%= render partial: "grade", collection: @grades %>
+    <% if @grades.empty? %>
+      <tr>
+        <%= content_tag(:td, "記録がありません",
+          colspan: @student ? 4 : 5, style: "text-align: center") %>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+  </div>
+</div>

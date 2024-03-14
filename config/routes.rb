@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root "top#index"
     get "login" => "sessions#new", as: :login
-    resources :students, except: [ :show ]
+    resources :students, except: [ :show ] do
+      resources :grades
+    end
+    resources :grades, only: [ :index, ]
     resource :session, only: [ :create, :destroy ]
   end
 
