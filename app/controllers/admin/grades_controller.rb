@@ -32,6 +32,15 @@ class Admin::GradesController < Admin::Base
   end
 
   def update
+    grade = Grade.find(params[:id])
+    grade.assign_attributes(grades_params)
+    
+    if grade.save
+      flash.notice = "修正を完了しました。"
+      redirect_to :admin_students
+    else
+      render action: "edit", status: :unprocessable_entity
+    end
 
   end
 

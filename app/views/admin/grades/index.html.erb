@@ -27,7 +27,7 @@
       <th>得点</th>
       <th>修正</th>
     </tr>
-    <%= render partial: "grade", collection: @grades %>
+    <%= render partial: "grade", collection: @grades, as: "grade" %>
     <% if @grades.empty? %>
       <tr>
         <%= content_tag(:td, "記録がありません",
