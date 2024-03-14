@@ -1,0 +1,19 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+<div>
+  <%= f.label :year, "年度", class: "required" %>
+  <%= f.text_field :year, required: true %>
+</div>
+<div>
+  <%= f.label :test_type, "テスト種別", class: "required" %>
+  <%= f.text_field :test_type, required: true %>
+</div>
+<div>
+  <%= f.label :subject_type, "教科", class: "required" %>
+  <%= f.text_field :subject_type, required: true %>
+</div>
+<div>
+  <%= f.label :score, "得点", class: "required" %>
+  <%= f.text_field :score, required: true %>
+</div>
