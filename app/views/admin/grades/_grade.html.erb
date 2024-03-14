@@ -8,5 +8,5 @@
   <td><%= grade.test_type %></td>
   <td><%= grade.subject_type %></td>
   <td><%= grade.score %></td>
-  <td><%= link_to( "修正", [ :admin_root ] ) %></td>
+  <td><%= link_to( "修正", edit_admin_student_grade_path(grade.student_id, grade.id)) %></td>
 </tr>
