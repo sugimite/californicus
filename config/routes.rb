@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :students, except: [ :show ] do
       resources :grades
     end
-    resources :grades, only: [ :index, ]
+    resources :grades, only: [ :index ]
     resource :session, only: [ :create, :destroy ]
   end
 
