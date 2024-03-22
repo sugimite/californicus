@@ -8,7 +8,6 @@
   <td><%= grade.score %></td>
   <td><%= link_to "修正", edit_admin_student_grade_path(grade.student_id, grade.id) %></td>
   <td>
-    <%= link_to "削除", admin_student_grade_path(grade.student_id, grade.id),
-      data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+    <%= link_to "削除", admin_student_grade_path(grade.student_id, grade.id), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
   </td>
 </tr>
