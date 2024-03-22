@@ -31,6 +31,7 @@
       </tr>
       <%= render partial: "grade", collection: @grades, as: "grade" %>
     <% end %>
+
     <tr>
       <th>年度</th>
       <th>種別</th>
@@ -38,6 +39,7 @@
         <th><%= subject_type %></th>
       <% end %>
     </tr>
+
     <% if @test_results %>
       <% @test_results.each do |(year, test_type), results|  %>
         <% results_by_subject_type = results.group_by(&:subject_type) %>
@@ -48,16 +50,17 @@
               <td rowspan="<%= max_subject_count %>"><%= year %></td>
               <td rowspan="<%= max_subject_count %>"><%= test_type %></td>
             <% end %>
+
             <% ["英語", "国語", "数学", "理科", "社会"].each do |subject_type| %>
               <% subject_results = results_by_subject_type[subject_type] || [] %>
               <td><%= subject_results[index]&.score %>
+
               <% if subject_results[index] %>
                 <%= link_to "修正",
                  edit_admin_student_grade_path(subject_results[index].student_id, subject_results[index].id) %>
                 <%= link_to "削除",
                  admin_student_grade_path(subject_results[index].student_id, subject_results[index].id), 
-                 data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
-                 
+                 data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %> 
               <% end %>
               </td>
             <% end %>
@@ -65,12 +68,13 @@
         <% end %>
       <% end %>
     <% end %>
+
     <% if @grades.empty? %>
       <tr>
-        <%= content_tag(:td, "記録がありません",
-          colspan: @student ? 4 : 5, style: "text-align: center") %>
+        <%= content_tag(:td, "記録がありません", colspan: @student ? 4 : 5, style: "text-align: center") %>
       </tr>
     <% end %>
+
   </table>
 
   <div class="links">
