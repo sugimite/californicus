@@ -51,7 +51,7 @@
               <td rowspan="<%= max_subject_count %>"><%= test_type %></td>
             <% end %>
 
-            <% ["英語", "国語", "数学", "理科", "社会"].each do |subject_type| %>
+            <% Grade::SUBJECT_TYPES.each do |subject_type| %>
               <% subject_results = results_by_subject_type[subject_type] || [] %>
               <td><%= subject_results[index]&.score %>
 
