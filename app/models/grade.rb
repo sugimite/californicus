@@ -11,4 +11,5 @@ class Grade < ApplicationRecord
   validates :subject_type, presence: true
   validates :subject_type, inclusion: {in: SUBJECT_TYPES, allow_blank: true}
   validates :test_type, presence: true
+  validates :test_type, inclusion: {in: %w[ 1学期中間 1学期期末 2学期中間 2学期期末 学年末 実力1 実力2 実力3 実力4 実力5], allow_blank: true}
 end

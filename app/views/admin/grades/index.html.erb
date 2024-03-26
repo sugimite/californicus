@@ -35,7 +35,7 @@
     <tr>
       <th>年度</th>
       <th>種別</th>
-      <% ["英語", "国語", "数学", "理科", "社会"].each do |subject_type| %>
+      <% Grade::SUBJECT_TYPES.each do |subject_type| %>
         <th><%= subject_type %></th>
       <% end %>
     </tr>
