@@ -29,7 +29,7 @@ class Admin::StudentsController < Admin::Base
       flash.notice = "生徒情報を更新しました。"
       redirect_to :admin_students
     else
-     
+      render action: "edit", status: :unprocessable_entity
     end
   end
 

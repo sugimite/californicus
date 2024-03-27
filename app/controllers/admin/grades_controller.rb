@@ -62,5 +62,4 @@ class Admin::GradesController < Admin::Base
       :student_id, :year, :test_type, :subject_type, :score 
     )
   end
-
 end
