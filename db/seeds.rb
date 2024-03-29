@@ -1,4 +1,4 @@
-table_names = %w(administrators students)
+table_names = %w[administrators students memos ]
 
 table_names.each do |table_name|
   path = Rails.root.join("db", "seeds", Rails.env, "#{table_name}.rb")
