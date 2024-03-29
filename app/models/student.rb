@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  has_many :memos, dependent: :destroy
+  
   include StringNormalizer
 
   before_validation do
