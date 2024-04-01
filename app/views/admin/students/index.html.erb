@@ -11,6 +11,7 @@
       <th>氏名</th>
       <th>フリガナ</th>
       <th>年齢</th>
+      <th>メモ</th>
       <th>メールアドレス</th>
       <th>入会日</th>
       <th>退会日</th>
@@ -21,6 +22,7 @@
         <td><%= student.name %></td>
         <td><%= student.name_kana %></td>
         <td><%= student.age %></td>
+        <td><%= student.memo %></td>
         <td><%= student.email %></td>
         <td><%= student.registration_date.strftime("%Y/%m/%d") %></td>
         <td><%= student.cancellation_date&.strftime("%Y/%m/%d") %></td>
