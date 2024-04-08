@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  has_many :grades, dependent: :destroy
+  
   include StringNormalizer
 
   before_validation do
