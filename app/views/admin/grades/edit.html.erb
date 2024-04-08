@@ -1,0 +1,18 @@
+<% name = @student&.name
+  @title = "#{name}さんの成績修正" %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+<% if @student && @grade %>
+  <%= form_with model: @grade, url: admin_student_grade_path(@student, @grade), method: :patch, authenticity_token: true do |f| %>
+    <%= render "form", f: f %>
+    <div class="buttons">
+      <%= f.submit "修正" %>
+      <%= link_to "キャンセル", :admin_students %>
+    </div>
+  <% end %>
+<% else %>
+  <p>学生または成績が見つかりませんでした。</p>
+<% end %>
+
+</div>
