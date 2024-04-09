@@ -1,0 +1,16 @@
+<% name = @student&.name
+  @title = "#{name}さんのメモ修正" %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+<% if @student && @memo %>
+  <%= form_with model: @memo, url: admin_student_memo_path(@student, @memo), method: :patch, authenticity_token: true do |f| %>
+    <%= render "form", f: f %>
+    <div class="buttons">
+      <%= f.submit "修正" %>
+      <%= link_to "キャンセル", :admin_students %>
+    </div>
+  <% end %>
+<% else %>
+  <p>学生またはメモが見つかりませんでした。</p>
+<% end %>

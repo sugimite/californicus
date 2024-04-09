@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_05_100712) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_05_130652) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_05_100712) do
     t.index ["student_id", "year"], name: "index_grades_on_student_id_and_year"
   end
 
+  create_table "memos", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.date "input_date", null: false
+    t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "administrator_id", null: false
+    t.index ["administrator_id"], name: "index_memos_on_administrator_id"
+    t.index ["input_date"], name: "index_memos_on_input_date"
+    t.index ["student_id", "input_date"], name: "index_memos_on_student_id_and_input_date"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name", null: false
     t.string "name_kana", null: false
@@ -47,5 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_05_100712) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "grades", "students"
+  add_foreign_key "grades", "student"
+  add_foreign_key "memos", "administrators"
+  add_foreign_key "memos", "students"
 end

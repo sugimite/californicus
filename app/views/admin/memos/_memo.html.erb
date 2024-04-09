@@ -1,0 +1,10 @@
+<tr>
+  <td><%= memo.input_date %></td>
+  <td><%= truncate(memo.content, length: 40) %>
+      <%= link_to "もっと読む", [:admin, @student, memo] %></td>
+  <td><%= memo.administrator.code %></td>
+  <td><%= link_to "編集", edit_admin_student_memo_path(memo.student_id, memo.id) %> |
+      <%= link_to "削除", admin_student_memo_path(memo.student_id, memo.id),
+          data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+  </td>
+</tr>

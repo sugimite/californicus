@@ -1,0 +1,18 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+<div>
+  <%= f.label :content, "内容", class: "required" %>
+  <%= f.text_area :content, rows: 5, required: true %>
+</div>
+<div>
+  <%= f.label :administrator_id, "管理者", class: "required" %>
+  <div class="radio-group">
+  <% Administrator.all.each do |admin| %>
+    <label class="radio-button">
+    <%= radio_button_tag "memo[administrator_id]", admin.id, admin.id == @default_administrator_id, required: true %>
+    <%= admin.code %>
+    </label>
+  <% end %>
+  </div>
+</div>
