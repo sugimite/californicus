@@ -1,4 +1,6 @@
 class Administrator < ApplicationRecord
+  has_many :memos, dependent: :destroy
+  
   def password=(raw_password)
     if raw_password.kind_of?(String)
       self.password_digest = BCrypt::Password.create(raw_password)
