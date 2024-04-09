@@ -1,0 +1,15 @@
+header {
+  span.notice, span.alert {
+    display: inline-block;
+    padding: 2px 6px;
+    margin: 0 10px;
+    font-size: 8px;
+    color: black;
+  }
+  span.notice {
+    background-color: green;
+  }
+  span.alert {
+    background-color: red;
+  }
+}

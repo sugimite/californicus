@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_05_130652) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "grades", "students"
+  add_foreign_key "grades", "student"
   add_foreign_key "memos", "administrators"
   add_foreign_key "memos", "students"
 end
