@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     root "top#index"
     get "login" => "sessions#new", as: :login
     resources :students, except: [ :show ] do
+      resources :memos
       resources :grades, except: [ :show ]
     end
     resources :grades, only: [ :index ]

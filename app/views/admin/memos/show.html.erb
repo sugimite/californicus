@@ -1,0 +1,31 @@
+<% name = @student.name
+   @title = "#{name}さんのメモ" %>
+
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "メモの編集", :admin_root %>
+  </div>
+
+  <table class="attributes">
+    <tr>
+      <th>作成日</th>
+      <td>
+        <%= @memo.input_date %>
+      </td>
+    </tr>
+    <tr>
+      <th>内容</th>
+      <td>
+        <%= @memo.content %>
+      </td>
+    </tr>
+    <tr>
+      <th>登録者</th>
+      <td>
+        <%= @memo.administrator.code %>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,5 +1,8 @@
 class Student < ApplicationRecord
+
+  has_many :memos, dependent: :destroy
   has_many :grades, dependent: :destroy
+
   
   include StringNormalizer
 

@@ -27,6 +27,14 @@ div.table-wrapper {
   table.listing {
     width: 100%;
     tr:nth-child(even) { background-color: #9c9696; }
-    tr:nth-child(odd) { background-color: #d8cfcf;}
+    tr:nth-child(odd) { background-color: #9c9696;;}
   }
+  td{
+    background-color:#ded7d7; 
+  }
+}
+
+textarea {
+  width: 100%; 
+  max-width: 500px; 
 }
