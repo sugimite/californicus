@@ -22,7 +22,7 @@
         <td><%= student.name %></td>
         <td><%= student.name_kana %></td>
         <td><%= student.age %></td>
-        <td><%= link_to "メモ", [ :admin, student, :memo ] %></td>
+        <td><%= link_to "メモ", [ :admin, student, :memos ] %></td>
         <td><%= student.email %></td>
         <td><%= student.registration_date.strftime("%Y/%m/%d") %></td>
         <td><%= student.cancellation_date&.strftime("%Y/%m/%d") %></td>

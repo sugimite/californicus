@@ -1,0 +1,32 @@
+<% name = @student.name
+   @title = "#{name}さんのメモ" %>
+ 
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+    <%= link_to "メモ入力", [ :new_admin, :student, :memo ] %>
+  </div>
+
+  <table class="listing">
+    <tr>
+      <th>作成日</th>
+      <th>内容</th>
+      <th>登録者</th>
+      <th>アクション</th>
+      <
+    </tr>
+    <%= render partial: "memo", collection: @memos %>
+    <% if @memos.empty? %>
+      <tr>
+        <%= content_tag(:td, "記録がありません",
+          colspan: @student ? 4  : 5, style: "text-align: center") %>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 class Memo < ApplicationRecord
-  belongs_to :student, class_name: "Student"
+  belongs_to :administrator
+  belongs_to :student
   
   validates :input_date, presence: true
   validates :content, presence: true
