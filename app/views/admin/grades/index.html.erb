@@ -26,12 +26,12 @@
         <th>テスト種別</th>
         <th>科目</th>
         <th>得点</th>
-        <th>修正</th>
-        <th>削除</th>
+        <th>アクション</th>
       </tr>
       <%= render partial: "grade", collection: @grades, as: "grade" %>
     <% end %>
 
+    <% if @student %>
     <tr>
       <th>年度</th>
       <th>種別</th>
@@ -56,8 +56,8 @@
               <td><%= subject_results[index]&.score %>
 
               <% if subject_results[index] %>
-                <%= link_to "修正",
-                 edit_admin_student_grade_path(subject_results[index].student_id, subject_results[index].id) %>
+                ｜<%= link_to "修正",
+                 edit_admin_student_grade_path(subject_results[index].student_id, subject_results[index].id) %>｜
                 <%= link_to "削除",
                  admin_student_grade_path(subject_results[index].student_id, subject_results[index].id), 
                  data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %> 
@@ -67,6 +67,7 @@
           </tr>
         <% end %>
       <% end %>
+    <% end %>
     <% end %>
 
     <% if @grades.empty? %>

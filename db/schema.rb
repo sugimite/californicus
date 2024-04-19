@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_05_130652) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_09_124301) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,22 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_05_130652) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_administrators_on_code", unique: true
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "administrator_id", null: false
+    t.date "attended_date", null: false
+    t.datetime "in_at", null: false
+    t.datetime "out_at"
+    t.string "staying_time"
+    t.boolean "is_with_no_phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["administrator_id"], name: "index_attendances_on_new_administrator_id"
+    t.index ["attended_date"], name: "index_attendances_on_attended_date"
+    t.index ["in_at"], name: "index_attendances_on_in_at"
+    t.index ["student_id"], name: "index_attendances_on_new_student_id"
   end
 
   create_table "grades", force: :cascade do |t|
@@ -34,12 +50,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_05_130652) do
   end
 
   create_table "memos", force: :cascade do |t|
+    t.bigint "administrator_id", null: false
     t.bigint "student_id", null: false
     t.date "input_date", null: false
-    t.string "content", null: false
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "administrator_id", null: false
     t.index ["administrator_id"], name: "index_memos_on_administrator_id"
     t.index ["input_date"], name: "index_memos_on_input_date"
     t.index ["student_id", "input_date"], name: "index_memos_on_student_id_and_input_date"
@@ -59,7 +75,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_05_130652) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "grades", "student"
+  add_foreign_key "attendances", "administrators"
+  add_foreign_key "attendances", "students"
+  add_foreign_key "grades", "students"
   add_foreign_key "memos", "administrators"
   add_foreign_key "memos", "students"
 end

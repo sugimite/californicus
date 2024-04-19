@@ -1,0 +1,30 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+<div>
+  <%= f.label :attended_date, "日付", class: "required" %>
+  <%= f.date_field :attended_date, required: true %>
+</div>
+<div>
+  <%= f.label :in_at, "入室時間", class: "required" %>
+  <%= f.time_select :in_at, { required: true }, ampm: false %>
+</div>
+<div>
+  <%= f.label :out_at, "退室時間" %>
+  <%= f.time_select :out_at, { ampm: false, selected: @default_out_at } %>
+</div>
+<div>
+  <%= f.label :is_with_no_phone, "スマホ預かり" %>
+  <%= f.check_box :is_with_no_phone %>
+</div>
+<div>
+  <%= f.label :administrator_id, "管理者", class: "required" %>
+  <div class="radio-group">
+  <% Administrator.all.each do |admin| %>
+    <label class="radio-button">
+    <%= radio_button_tag "attendance[administrator_id]", admin.id, admin.id == @default_administrator_id, required: true %>
+    <%= admin.code %>
+    </label>
+  <% end %>
+  </div>
+</div>

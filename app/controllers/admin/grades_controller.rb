@@ -43,7 +43,7 @@ class Admin::GradesController < Admin::Base
     
     if grade.save
       flash.notice = "修正を完了しました。"
-      redirect_to :admin_students
+      redirect_to :admin_grades
     else
       render action: "edit", status: :unprocessable_entity
     end
