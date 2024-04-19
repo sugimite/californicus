@@ -12,6 +12,7 @@
       <th>フリガナ</th>
       <th>年齢</th>
       <th>メモ</th>
+      <th>出席</th>
       <th>成績</th>
       <th>メールアドレス</th>
       <th>入会日</th>
@@ -24,6 +25,12 @@
         <td><%= student.name_kana %></td>
         <td><%= student.age %></td>
         <td><%= link_to "メモ", [ :admin, student, :memos ] %></td>
+        <td>
+          <label class="switch">
+            <input type="checkbox" id="attendance_<%= @student&.id %>" class="attendance-toggle" data-student-id="<%= @student&.id %>" <%= @student&.attendance ? 'checked' : '' %>>
+            <span class="slider round"></span>
+          </label>
+        </td>
         <td><%= link_to "成績", [ :admin, student, :grades ] %> 
         <td><%= student.email %></td>
         <td><%= student.registration_date.strftime("%Y/%m/%d") %></td>

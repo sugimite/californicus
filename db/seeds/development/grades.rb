@@ -1,6 +1,6 @@
 students = Student.all
 subject_types = Grade::SUBJECT_TYPES
-test_types Grade::TEST_TYPES
+test_types = Grade::TEST_TYPES
 years = [*(Time.current.year - 2)..Time.current.year].reverse
 
 150.times do |n|

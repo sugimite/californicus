@@ -1,0 +1,14 @@
+<% name = @student&.name
+  @title = "#{name}さんの出席入力" %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <% @default_out_at = nil %>
+  <%= form_with model: @attendance, url: [ :admin, @student, :attendances ] do |f| %>
+    <%= render "form", f: f %>
+    <div class="buttons">
+      <%= f.submit "登録" %>
+      <%= link_to "キャンセル", :admin_students %>
+    </div>
+  <% end %>
+</div>

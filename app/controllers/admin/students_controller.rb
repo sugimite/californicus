@@ -38,6 +38,12 @@ class Admin::StudentsController < Admin::Base
     redirect_to :admin_students, notice: "生徒情報を削除しました。"
   end
 
+  def toggle_attendance
+    @student = Student.find(params[:id])
+    @student.toggle!(:attendance)
+    render json: { status: :ok }
+  end
+
   private def students_params
     params.require(:student).permit(
       :name, :name_kana, :email, :password, :birthday, :registration_date, :cancellation_date

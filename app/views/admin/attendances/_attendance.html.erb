@@ -1,0 +1,15 @@
+<tr>
+  <% unless @student %>
+  <td>
+    <%= link_to( attendance.student.name, [ :admin, attendance.student, :attendances ]) %>
+  </td>
+  <% end %>
+  <td><%= attendance.attended_date %></td>
+  <td><%= attendance.in_at.strftime("%H:%M:%S") %></td>
+  <td><%= attendance.out_at&.strftime("%H:%M:%S")  %></td>
+  <td><%= attendance.staying_time %></td>
+  <td><%= attendance.is_with_no_phone %></th>
+  <td><%= link_to "修正", edit_admin_student_attendance_path(attendance.student_id, attendance.id) %>　　|　　
+      <%= link_to "削除", admin_student_attendance_path(attendance.student_id, attendance.id), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+  </td>
+</tr>

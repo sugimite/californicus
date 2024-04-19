@@ -5,8 +5,13 @@ Rails.application.routes.draw do
     resources :students, except: [ :show ] do
       resources :memos
       resources :grades, except: [ :show ]
+      resources :attendances, except: [ :show ]
+      member do 
+        patch "toggle_attendance"
+      end
     end
     resources :grades, only: [ :index ]
+    resources :attendances, only: [ :index ]
     resource :session, only: [ :create, :destroy ]
   end
 
