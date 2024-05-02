@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :grades, except: [ :show ]
       resources :attendances, except: [ :show ]
       member do 
-        patch "toggle_attendance"
+        patch "toggle_attendance", to: "students#toggle_attendance"
       end
     end
     resources :grades, only: [ :index ]

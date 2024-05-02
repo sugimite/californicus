@@ -3,7 +3,6 @@
 <h1><%= @title %></h1>
 
 <div id="generic-form">
-  <% @default_out_at = nil %>
   <%= form_with model: @attendance, url: [ :admin, @student, :attendances ] do |f| %>
     <%= render "form", f: f %>
     <div class="buttons">
