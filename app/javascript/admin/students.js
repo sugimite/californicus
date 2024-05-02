@@ -25,3 +25,4 @@ document.addEventListener('turbo:load', function() {
     });
   });
 });
+console.log("JStest");

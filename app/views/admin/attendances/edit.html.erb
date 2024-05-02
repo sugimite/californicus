@@ -4,7 +4,6 @@
 
 <div id="generic-form">
 <% if @student && @attendance %>
-  <% @default_out_at = @attendance.out_at.presence || Time.current %>
   <%= form_with model: @attendance, url: admin_student_attendance_path(@student, @attendance), method: :patch, authenticity_token: true do |f| %>
     <%= render "form", f: f %>
     <div class="buttons">
@@ -15,5 +14,4 @@
 <% else %>
   <p>学生または出席記録が見つかりませんでした。</p>
 <% end %>
-
 </div>

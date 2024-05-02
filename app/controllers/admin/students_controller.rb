@@ -40,8 +40,12 @@ class Admin::StudentsController < Admin::Base
 
   def toggle_attendance
     @student = Student.find(params[:id])
-    @student.toggle!(:attendance)
-    render json: { status: :ok }
+    attendance = params[:attendance] == "true"
+    @student.update(attendance: attendance)
+    
+    respond_to do |format|
+      format.json { render json: { status: :ok } }
+    end
   end
 
   private def students_params
