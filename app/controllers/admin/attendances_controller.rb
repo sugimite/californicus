@@ -49,7 +49,7 @@ class Admin::AttendancesController < Admin::Base
   def destroy
     attendance = Attendance.find(params[:id])
     attendance.destroy!
-    flash.notice = "メモを削除しました。"
+    flash.notice = "出欠を削除しました。"
     redirect_to :admin_attendances
   end
 

@@ -38,14 +38,21 @@ class Admin::StudentsController < Admin::Base
     redirect_to :admin_students, notice: "生徒情報を削除しました。"
   end
 
-  def toggle_attendance
-    @student = Student.find(params[:id])
-    attendance = params[:attendance] == "true"
-    @student.update(attendance: attendance)
-    
-    respond_to do |format|
-      format.json { render json: { status: :ok } }
-    end
+  def leaving_seat
+    Student.find(params[:id]).attendances.find_by!(out_at: nil).update!(out_at: Time.current)
+    flash.notice = "離席しました。"
+    redirect_to :admin_students
+  end
+
+  def taking_seat
+    @attendance = Student.find(params[:id]).attendances.new(
+      attended_date: Date.today,
+      in_at: Time.current,
+      out_at: nil,
+      administrator_id: current_administrator.id
+      )
+    flash.notice = "出席しました。" if @attendance.save
+    redirect_to :admin_students
   end
 
   private def students_params

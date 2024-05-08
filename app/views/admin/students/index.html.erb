@@ -1,4 +1,4 @@
-<h1><%= @title %>
+<h1><%= @title %></h1>
 
 <div class="table-wrapper">
   <div class="links">
@@ -25,12 +25,15 @@
         <td><%= student.age %></td>
         <td><%= link_to "メモ", [ :admin, student, :memos ] %></td>
         <td>
-        <label class="switch">
-          <% attendance = student.attendances.last %>
-          <% toggle_checked = attendance.present? && attendance.in_at.present? && (attendance.in_at < Time.now) && (attendance.in_at == attendance.out_at || attendance.out_at.nil?) %>
-          <input type="checkbox" id="attendance_<%= student.id %>" class="attendance-toggle" data-student-id="<%= student.id %>" <%= toggle_checked ? 'checked' : '' %>>
-          <span class="slider round"></span>
-        </label>        
+          <label class="switch">
+            <% attendance_checked = student.attendances.where(out_at: nil).exists? %>
+            <% if attendance_checked %>
+              <%= link_to "着席中", [:leaving_seat, :admin, student], class: attendance_checked ? 'link active' : 'link inactive' %>
+            <% else %>
+              <%= link_to "着席する", [:taking_seat, :admin, student], class: attendance_checked ? 'link active' : 'link inactive' %>
+            <% end %>
+            <input type="checkbox" id="attendance_<%= student.id %>" data-student-id="<%= student.id %>" <%= attendance_checked ? 'checked' : '' %>>
+          </label>        
         </td>
         <td><%= link_to "成績", [ :admin, student, :grades ] %> 
         <td><%= student.email %></td>

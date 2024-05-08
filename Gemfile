@@ -13,7 +13,6 @@ gem "nokogiri"
 gem "importmap-rails"
 gem "sassc-rails"
 gem "faker"
-gem "hotwire-rails"
 
 gem "jbuilder"
 gem "pg", "~> 1.1"
