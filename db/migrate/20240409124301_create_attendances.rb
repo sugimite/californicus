@@ -12,13 +12,5 @@ class CreateAttendances < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    remove_index :attendances, :student_id if index_exists?(:attendances, :student_id)
-    add_index :attendances, :student_id, name: "index_attendances_on_new_student_id"
-    
-    remove_index :attendances, :administrator_id if index_exists?(:attendances, :administrator_id)
-    add_index :attendances, :administrator_id, name: "index_attendances_on_new_administrator_id"
-
-    add_index :attendances, :attended_date, name: "index_attendances_on_attended_date"
-    add_index :attendances, :in_at, name: "index_attendances_on_in_at"
   end
 end
