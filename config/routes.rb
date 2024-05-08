@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       resources :grades, except: [ :show ]
       resources :attendances, except: [ :show ]
       member do 
-        get "leaving_seat"
-        get "taking_seat"
+        patch "leaving_seat"
+        post "taking_seat"
       end
     end
     resources :grades, only: [ :index ]

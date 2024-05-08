@@ -28,9 +28,9 @@
           <label class="switch">
             <% attendance_checked = student.attendances.where(out_at: nil).exists? %>
             <% if attendance_checked %>
-              <%= link_to "着席中", [:leaving_seat, :admin, student], class: attendance_checked ? 'link active' : 'link inactive' %>
+              <%= link_to "着席中", [:leaving_seat, :admin, student],  data: { "turbo-method": :patch }, class: attendance_checked ? 'link active' : 'link inactive' %>
             <% else %>
-              <%= link_to "着席する", [:taking_seat, :admin, student], class: attendance_checked ? 'link active' : 'link inactive' %>
+              <%= link_to "着席する", [:taking_seat, :admin, student], data: { "turbo-method": :post }, class: attendance_checked ? 'link active' : 'link inactive' %>
             <% end %>
             <input type="checkbox" id="attendance_<%= student.id %>" data-student-id="<%= student.id %>" <%= attendance_checked ? 'checked' : '' %>>
           </label>        
