@@ -2,8 +2,17 @@ class Attendance < ApplicationRecord
   belongs_to :administrator
   belongs_to :student
 
-  before_save :caliculate_staying_time
   before_validation :set_out_at_to_nil_if_same_as_in_at
+
+  validates :administrator_id, presence: true
+  validates :student_id,  presence: true
+  validates :attended_date, presence: true
+  validates :in_at, presence: true
+
+  validate :out_at_should_be_later_than_in_at
+  validate :only_one_student_must_present_at_time
+
+  before_save :caliculate_staying_time
 
   private 
   def caliculate_staying_time
@@ -19,19 +28,16 @@ class Attendance < ApplicationRecord
     self.out_at = nil if in_at == out_at
   end
 
-  validate :out_at_should_be_later_than_in_at
-
-  private
-
   def out_at_should_be_later_than_in_at
     if out_at && in_at && out_at <= in_at
       errors.add(:out_at, "離席時間は出席時間よりも遅くなければなりません")
     end
   end
-  
 
-  validates :administrator_id, presence: true
-  validates :student_id,  presence: true
-  validates :attended_date, presence: true
-  validates :in_at, presence: true
+  def only_one_student_must_present_at_time
+    if student.attendances.exists?(out_at: nil) && new_record?
+      errors.add(:base, "同じ生徒に対する出席レコードは一つだけ許可されています。")
+    end
+  end
+
 end
