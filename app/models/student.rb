@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: students
+#
+#  id                  :bigint           not null, primary key
+#  name                :string           not null
+#  name_kana           :string           not null
+#  birthday            :date
+#  email               :string           not null
+#  password_digest     :string
+#  registration_date   :date             not null
+#  cancellation_date   :date
+#  forgetting_hw_count :integer
+#  has_deposited_phone :boolean
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
 class Student < ApplicationRecord
 
   has_many :memos, dependent: :destroy

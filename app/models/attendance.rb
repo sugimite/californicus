@@ -1,3 +1,30 @@
+# == Schema Information
+#
+# Table name: attendances
+#
+#  id               :bigint           not null, primary key
+#  student_id       :bigint           not null
+#  administrator_id :bigint           not null
+#  attended_date    :date             not null
+#  in_at            :datetime         not null
+#  out_at           :datetime
+#  staying_time     :string
+#  is_with_no_phone :boolean
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+# Indexes
+#
+#  index_attendances_on_attended_date         (attended_date)
+#  index_attendances_on_in_at                 (in_at)
+#  index_attendances_on_new_administrator_id  (administrator_id)
+#  index_attendances_on_new_student_id        (student_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (administrator_id => administrators.id)
+#  fk_rails_...  (student_id => students.id)
+#
 class Attendance < ApplicationRecord
   belongs_to :administrator
   belongs_to :student
