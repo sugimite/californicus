@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: administrators
+#
+#  id              :bigint           not null, primary key
+#  password_digest :string
+#  code            :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_administrators_on_code  (code) UNIQUE
+#
 class Administrator < ApplicationRecord
   has_many :memos, dependent: :destroy
   has_many :attendances, dependent: :destroy
