@@ -1,6 +1,6 @@
 class Admin::StudentsController < Admin::Base
   def index
-    @students = Student.order(:name_kana)
+    @students = Student.order(:name_kana).where(cancellation_date: nil)
   end
 
   def new

@@ -27,7 +27,9 @@
   <%= f.label :registration_date, "入会日", class: "required" %>
   <%= f.date_field :registration_date, required: true %>
 </div>
-<div>
-  <%= f.label :cancellation_date, "退会日"%>
-  <%= f.date_field :cancellation_date %>
-</div>
+<% if @student.persisted? %>
+  <div>
+    <%= f.label :cancellation_date, "退会日"%>
+    <%= f.date_field :cancellation_date %>
+  </div>
+<% end %>

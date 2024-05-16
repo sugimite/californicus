@@ -15,7 +15,6 @@
       <th>成績</th>
       <th>メールアドレス</th>
       <th>入会日</th>
-      <th>退会日</th>
       <th>アクション</th>
     </tr>
     <% @students.each do |student| %>
@@ -32,13 +31,11 @@
             <% else %>
               <%= link_to "着席する", [:taking_seat, :admin, student], data: { "turbo-method": :post }, class: attendance_checked ? 'link active' : 'link inactive' %>
             <% end %>
-            <input type="checkbox" id="attendance_<%= student.id %>" data-student-id="<%= student.id %>" <%= attendance_checked ? 'checked' : '' %>>
           </label>        
         </td>
         <td><%= link_to "成績", [ :admin, student, :grades ] %> 
         <td><%= student.email %></td>
         <td><%= student.registration_date.strftime("%Y/%m/%d") %></td>
-        <td><%= student.cancellation_date&.strftime("%Y/%m/%d") %></td>
         <td class="actions">
           <%= link_to "編集", [ :edit, :admin, student ] %> |
           <%= link_to "削除", [ :admin, student ],
