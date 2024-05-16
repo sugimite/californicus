@@ -11,14 +11,12 @@ class Admin::MemosController < Admin::Base
 
   def new 
     @student = Student.find(params[:student_id])
-    @memo = Memo.new
-    @default_administrator_id = Administrator.first.id 
+    @memo = current_administrator.memos.new
   end
 
   def edit
     @student = Student.find(params[:student_id])
     @memo = Memo.find(params[:id])
-    @default_administrator_id = @memo.administrator_id
   end
 
   def create

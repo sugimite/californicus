@@ -10,7 +10,7 @@
   <div class="radio-group">
   <% Administrator.all.each do |admin| %>
     <label class="radio-button">
-    <%= radio_button_tag "memo[administrator_id]", admin.id, admin.id == @default_administrator_id, required: true %>
+    <%= radio_button_tag "memo[administrator_id]", admin.id, admin == @memo.administrator, required: true %>
     <%= admin.code %>
     </label>
   <% end %>
