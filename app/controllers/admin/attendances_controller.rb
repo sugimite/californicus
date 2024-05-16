@@ -10,14 +10,12 @@ class Admin::AttendancesController < Admin::Base
 
   def new
     @student = Student.find(params[:student_id])
-    @attendance = Attendance.new
-    @default_administrator_id = Administrator.first.id
+    @attendance = current_administrator.attendances.new
   end
 
   def edit
     @student = Student.find(params[:student_id])
     @attendance = Attendance.find(params[:id])
-    @default_administrator_id = @attendance.administrator_id
   end
 
   def create
