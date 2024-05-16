@@ -4,7 +4,7 @@ class Admin::AttendancesController < Admin::Base
       @student = Student.find(params[:student_id])
       @attendances = @student.attendances.order(attended_date: :desc)
     else
-      @attendances = Attendance.order(attended_date: :desc)
+      @attendances = Attendance.order(attended_date: :desc).includes(:student)
     end
   end 
 

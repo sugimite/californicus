@@ -1,7 +1,7 @@
 class Admin::MemosController < Admin::Base
   def index
     @student = Student.find(params[:student_id])
-    @memos = @student.memos.order(input_date: :desc)
+    @memos = @student.memos.order(input_date: :desc).includes(:administrator)
   end
 
   def show

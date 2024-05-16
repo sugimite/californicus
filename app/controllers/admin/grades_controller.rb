@@ -5,7 +5,7 @@ class Admin::GradesController < Admin::Base
       @grades = @student.grades.order(year: :desc)
       @test_results = @grades&.group_by { |result| [result.year, result.test_type] }
     else
-      @grades = Grade.order(year: :desc)
+      @grades = Grade.order(year: :desc).includes(:student)
     end
   end
 
