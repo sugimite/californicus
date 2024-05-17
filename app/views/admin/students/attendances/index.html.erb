@@ -1,19 +1,16 @@
-<% @title = "出席記録" %>
+<% name = @student.name
+    @title = "#{name}さんの出席記録"
+%>
 <h1><%= @title %></h1>
 
 <div class="table-wrapper">
   <div class="links">
     <%= link_to "生徒一覧", :admin_students %>
-    <%= 
-      if @student
-        link_to "出席入力", [ :new_admin, :student, :attendance ]
-      end
-    %>
+    <%= link_to "出席入力", [ :new_admin, :student, :attendance ] %>
   </div>
 
   <table class="listing">
     <tr>
-      <th>氏名</th>
       <th>日付</th>
       <th>入室時間</th>
       <th>退室時間</th>

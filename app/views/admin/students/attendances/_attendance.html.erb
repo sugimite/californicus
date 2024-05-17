@@ -1,7 +1,4 @@
 <tr>
-  <td>
-    <%= link_to( attendance.student.name, [ :admin, attendance.student, :attendances ]) %>
-  </td>
   <td><%= attendance.attended_date %></td>
   <td><%= attendance.in_at.strftime("%H:%M:%S") %></td>
   <td><%= attendance.out_at&.strftime("%H:%M:%S")  %></td>
