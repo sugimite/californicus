@@ -3,12 +3,14 @@ Rails.application.routes.draw do
     root "top#index"
     get "login" => "sessions#new", as: :login
     resources :students, except: [ :show ] do
-      resources :memos
-      resources :grades, except: [ :show ]
-      resources :attendances, except: [ :show ]
-      member do 
-        patch "leaving_seat"
-        post "taking_seat"
+      scope module: :students do
+        resources :memos
+        resources :grades, except: [ :show ]
+        resources :attendances, except: [ :show ]
+        member do 
+          patch "leaving_seat"
+          post "taking_seat"
+        end
       end
     end
     resources :grades, only: [ :index ]
