@@ -7,10 +7,10 @@ Rails.application.routes.draw do
         resources :memos
         resources :grades, except: [ :show ]
         resources :attendances, except: [ :show ]
-        member do 
-          patch "leaving_seat"
-          post "taking_seat"
-        end
+      end
+      member do 
+        patch "leaving_seat"
+        post "taking_seat"
       end
     end
     resources :grades, only: [ :index ]
