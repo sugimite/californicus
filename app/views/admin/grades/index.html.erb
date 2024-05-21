@@ -1,77 +1,26 @@
-<%
-  if @student
-    name = @student.name
-    @title = "#{name}さんの成績"
-  else
-    @title = "生徒の成績"
-  end
-%>
+<% @title = "生徒の成績" %>
+
 <h1><%= @title %></h1>
 
 <div class="table-wrapper">
   <div class="links">
     <%= link_to "生徒一覧", :admin_students %>
-    <%= 
-      if @student
-        link_to "成績入力", [ :new_admin, :student, :grade ]
-      end
-    %>
   </div>
 
   <table class="listing">
-    <% unless @student %> 
-      <tr>
-        <th>氏名</th>
-        <th>年度</th>
-        <th>テスト種別</th>
-        <th>科目</th>
-        <th>得点</th>
-        <th>修正</th>
-        <th>削除</th>
-      </tr>
-      <%= render partial: "grade", collection: @grades, as: "grade" %>
-    <% end %>
-
     <tr>
+      <th>氏名</th>
       <th>年度</th>
-      <th>種別</th>
-      <% Grade::SUBJECT_TYPES.each do |subject_type| %>
-        <th><%= subject_type %></th>
-      <% end %>
+      <th>テスト種別</th>
+      <th>科目</th>
+      <th>得点</th>
+      <th>アクション</th>
     </tr>
-
-    <% if @test_results %>
-      <% @test_results.each do |(year, test_type), results|  %>
-        <% results_by_subject_type = results.group_by(&:subject_type) %>
-        <% max_subject_count = results_by_subject_type.values.map(&:size).max || 0 %>
-        <% max_subject_count.times do |index| %>
-          <tr>
-            <% if index == 0 %>
-              <td rowspan="<%= max_subject_count %>"><%= year %></td>
-              <td rowspan="<%= max_subject_count %>"><%= test_type %></td>
-            <% end %>
-
-            <% Grade::SUBJECT_TYPES.each do |subject_type| %>
-              <% subject_results = results_by_subject_type[subject_type] || [] %>
-              <td><%= subject_results[index]&.score %>
-
-              <% if subject_results[index] %>
-                <%= link_to "修正",
-                 edit_admin_student_grade_path(subject_results[index].student_id, subject_results[index].id) %>
-                <%= link_to "削除",
-                 admin_student_grade_path(subject_results[index].student_id, subject_results[index].id), 
-                 data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %> 
-              <% end %>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render partial: "grade", collection: @grades, as: "grade" %>
 
     <% if @grades.empty? %>
       <tr>
-        <%= content_tag(:td, "記録がありません", colspan: @student ? 4 : 5, style: "text-align: center") %>
+        <%= content_tag(:td, "記録がありません", colspan: 5, style: "text-align: center") %>
       </tr>
     <% end %>
 

@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: memos
+#
+#  id               :bigint           not null, primary key
+#  administrator_id :bigint           not null
+#  student_id       :bigint           not null
+#  input_date       :date             not null
+#  content          :text             not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+# Indexes
+#
+#  index_memos_on_administrator_id           (administrator_id)
+#  index_memos_on_input_date                 (input_date)
+#  index_memos_on_student_id_and_input_date  (student_id,input_date)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (administrator_id => administrators.id)
+#  fk_rails_...  (student_id => students.id)
+#
 class Memo < ApplicationRecord
   belongs_to :administrator
   belongs_to :student

@@ -9,8 +9,5 @@ class CreateMemos < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :memos, :input_date
-    add_index :memos, :administrator_id
-    add_index :memos, [ :student_id, :input_date ]
   end
 end

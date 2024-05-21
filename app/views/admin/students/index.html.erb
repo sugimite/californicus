@@ -1,5 +1,4 @@
-<% @title = "生徒一覧" %>
-<h1><%= @title %>
+<h1><%= @title %></h1>
 
 <div class="table-wrapper">
   <div class="links">
@@ -12,10 +11,10 @@
       <th>フリガナ</th>
       <th>年齢</th>
       <th>メモ</th>
+      <th>出席</th>
       <th>成績</th>
       <th>メールアドレス</th>
       <th>入会日</th>
-      <th>退会日</th>
       <th>アクション</th>
     </tr>
     <% @students.each do |student| %>
@@ -24,10 +23,19 @@
         <td><%= student.name_kana %></td>
         <td><%= student.age %></td>
         <td><%= link_to "メモ", [ :admin, student, :memos ] %></td>
+        <td>
+          <label class="switch">
+            <% attendance_checked = student.attendances.where(out_at: nil).exists? %>
+            <% if attendance_checked %>
+              <%= link_to "着席中", [:leaving_seat, :admin, student],  data: { "turbo-method": :patch }, class: attendance_checked ? 'link active' : 'link inactive' %>
+            <% else %>
+              <%= link_to "着席する", [:taking_seat, :admin, student], data: { "turbo-method": :post }, class: attendance_checked ? 'link active' : 'link inactive' %>
+            <% end %>
+          </label>        
+        </td>
         <td><%= link_to "成績", [ :admin, student, :grades ] %> 
         <td><%= student.email %></td>
         <td><%= student.registration_date.strftime("%Y/%m/%d") %></td>
-        <td><%= student.cancellation_date&.strftime("%Y/%m/%d") %></td>
         <td class="actions">
           <%= link_to "編集", [ :edit, :admin, student ] %> |
           <%= link_to "削除", [ :admin, student ],

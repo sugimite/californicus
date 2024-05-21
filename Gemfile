@@ -12,6 +12,7 @@ gem "date_validator"
 gem "nokogiri"
 gem "importmap-rails"
 gem "sassc-rails"
+gem "faker"
 
 gem "jbuilder"
 gem "pg", "~> 1.1"
@@ -26,6 +27,7 @@ end
 
 group :development do
   gem "web-console"
+  gem "annotate"
 end
 
 group :test do

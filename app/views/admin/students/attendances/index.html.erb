@@ -1,0 +1,34 @@
+<% name = @student.name
+    @title = "#{name}さんの出席記録"
+%>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+    <%= link_to "出席入力", [ :new_admin, :student, :attendance ] %>
+  </div>
+
+  <table class="listing">
+    <tr>
+      <th>日付</th>
+      <th>入室時間</th>
+      <th>退室時間</th>
+      <th>滞在時間</th>
+      <th>スマホ預かり</th>
+      <th>アクション</th>
+    </tr>
+    <%= render partial: "attendance", collection: @attendances, as: "attendance" %>
+
+    <% if @attendances.empty? %>
+      <tr>
+        <%= content_tag(:td, "記録がありません", colspan: @student ? 6 : 7, style: "text-align: center") %>
+      </tr>
+    <% end %>
+
+  </table>
+
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+  </div>
+</div>
