@@ -1,40 +1,53 @@
-div.table-wrapper {
+.table-wrapper {
   width: 90%;
   margin: 0 auto;
 
-  div.links{
+  .links {
     text-align: right;
     padding: 20px;
   }
 
-  table {
-    margin: 20px auto 0;
-    border: solid 10px #000000;
-    tr {
-      th {
-        background-color: #5b5656;
-        color: #9c9696;
-      }
-      th, td { padding: 5px;
-               text-align: center; }
-      td.actions {
-        text-align: center;
-        color: #5b5656;
-      }
-    }
-  }
-
   table.listing {
     width: 100%;
-    tr:nth-child(even) { background-color: #9c9696; }
-    tr:nth-child(odd) { background-color: #9c9696;;}
-  }
-  td{
-    background-color:#ded7d7; 
+    border-collapse: collapse;
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border: 1px solid #1a1919;
+    }
+
+    th {
+      background-color: #5b5656;
+      color: #9c9696;
+    }
+
+    tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #a19a9a;
+    }
   }
 }
 
-textarea {
-  width: 100%; 
-  max-width: 500px; 
+.link {
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+
+  &.active {
+    background-color: #4caf50;
+    color: #ffffff;
+  }
+
+  &.inactive {
+    background-color: #f44336;
+    color: #ffffff;
+  }
 }

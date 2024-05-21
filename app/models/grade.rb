@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: grades
+#
+#  id           :bigint           not null, primary key
+#  student_id   :bigint           not null
+#  year         :integer          not null
+#  score        :integer          not null
+#  subject_type :string           not null
+#  test_type    :string           not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+# Indexes
+#
+#  index_grades_on_student_id_and_year  (student_id,year)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (student_id => students.id)
+#
 class Grade < ApplicationRecord
   belongs_to :student
 

@@ -1,6 +1,6 @@
 class Admin::StudentsController < Admin::Base
   def index
-    @students = Student.order(:name_kana)
+    @students = Student.order(:name_kana).where(cancellation_date: nil)
   end
 
   def new
@@ -36,6 +36,23 @@ class Admin::StudentsController < Admin::Base
   def destroy
     Student.find(params[:id]).destroy!
     redirect_to :admin_students, notice: "生徒情報を削除しました。"
+  end
+
+  def leaving_seat
+    Student.find(params[:id]).attendances.find_by!(out_at: nil).update!(out_at: Time.current)
+    flash.notice = "離席しました。"
+    redirect_to :admin_students
+  end
+
+  def taking_seat
+    @attendance = Student.find(params[:id]).attendances.new(
+      attended_date: Date.today,
+      in_at: Time.current,
+      out_at: nil,
+      administrator_id: current_administrator.id
+      )
+    flash.notice = "出席しました。" if @attendance.save
+    redirect_to :admin_students
   end
 
   private def students_params

@@ -1,7 +1,7 @@
-class Admin::MemosController < Admin::Base
+class Admin::Students::MemosController < Admin::Students::Base
   def index
     @student = Student.find(params[:student_id])
-    @memos = @student.memos.order(input_date: :desc)
+    @memos = @student.memos.order(input_date: :desc).includes(:administrator)
   end
 
   def show
@@ -11,14 +11,12 @@ class Admin::MemosController < Admin::Base
 
   def new 
     @student = Student.find(params[:student_id])
-    @memo = Memo.new
-    @default_administrator_id = Administrator.first.id 
+    @memo = current_administrator.memos.new
   end
 
   def edit
     @student = Student.find(params[:student_id])
     @memo = Memo.find(params[:id])
-    @default_administrator_id = @memo.administrator_id
   end
 
   def create
