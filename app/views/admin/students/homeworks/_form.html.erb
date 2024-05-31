@@ -1,0 +1,44 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+<div>
+  <%= f.label :homework_type, "宿題内容", class: "required" %>
+  <%= f.select :homework_type, Homework::HOMEWORK_TYPES, { include_blank: "選択してください"}, required: true  %>
+</div>
+<div>
+  <%= f.label :page, "ページ", class: "required" %>
+  <%= f.text_field :page, required: true %>
+</div>
+<div>
+  <%= f.label :assigned_date, "宿題を課す日", class: "required" %>
+  <%= f.date_field :assigned_date, value: (f.object.assigned_date || Date.current), required: true %>
+</div>
+<div>
+  <%= f.label :deadline, "期限" %>
+  <%= f.date_field :deadline %>
+</div>
+<% if action_name == "new" %>
+  <div>
+    <%= f.label :administrator_id, "管理者", class: "required" %>
+    <div class="radio-group">
+    <% Administrator.all.each do |admin| %>
+      <label class="radio-button">
+      <%= radio_button_tag "homework[administrator_id]", admin.id, admin == @homework.administrator, required: true %>
+      <%= admin.code %>
+      </label>
+    <% end %>
+    </div>
+  </div>
+<% else %>
+  <div>
+    <%= f.label :is_submitted, "提出状況" %>
+    <div class="radio-group">
+      <label class="radio-button">
+        <%= f.radio_button :is_submitted, true %> 提出済み
+    </label>
+    <label class="radio-button">
+      <%= f.radio_button :is_submitted, false %> 未提出
+    </label>
+    </div>
+  </div>
+<% end %>
