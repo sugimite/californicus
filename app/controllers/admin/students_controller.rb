@@ -55,6 +55,12 @@ class Admin::StudentsController < Admin::Base
     redirect_to :admin_students
   end
 
+  def submit_homework
+    Homework.find(params[:homework_id]).update!(is_submitted: true)
+    flash.notice = "提出しました。"
+    redirect_to :admin_students
+  end
+
   private def students_params
     params.require(:student).permit(
       :name, :name_kana, :email, :password, :birthday, :registration_date, :cancellation_date

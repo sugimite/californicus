@@ -11,10 +11,6 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
-# Indexes
-#
-#  index_grades_on_student_id_and_year  (student_id,year)
-#
 # Foreign Keys
 #
 #  fk_rails_...  (student_id => students.id)

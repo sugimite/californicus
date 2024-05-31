@@ -12,6 +12,7 @@
       <th>年齢</th>
       <th>メモ</th>
       <th>出席</th>
+      <th>宿題</th>
       <th>成績</th>
       <th>メールアドレス</th>
       <th>入会日</th>
@@ -33,7 +34,16 @@
             <% end %>
           </label>        
         </td>
-        <td><%= link_to "成績", [ :admin, student, :grades ] %> 
+        <td>
+          <% homeworks_checked = student.homeworks.where(is_submitted: false).exists? %>
+          <% if homeworks_checked %>
+            <%= "！" %>
+          <% else %>
+            <%= "　" %>
+          <% end %>
+          <%= link_to "宿題一覧", [ :admin, student, :homeworks ] %> 
+        </td>
+        <td><%= link_to "成績", [ :admin, student, :grades ] %></td> 
         <td><%= student.email %></td>
         <td><%= student.registration_date.strftime("%Y/%m/%d") %></td>
         <td class="actions">

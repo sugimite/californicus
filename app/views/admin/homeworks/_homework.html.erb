@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= link_to( homework.student.name, [ :admin, homework.student, :homeworks ]) %>
+  </td>
+  <td><%= homework.student.age %></td>
+  <td><%= homework.homework_type %></td>
+  <td><%= homework.page  %></td>
+  <td><%= homework.assigned_date.strftime("%Y年%m月%d日") %></td>
+  <td><%= homework.deadline&.strftime("%Y年%m月%d日") %></td>  
+  <td><%= homework.administrator.code %></td>
+  <td><%= link_to "修正", edit_admin_student_homework_path(homework.student_id, homework.id) %>　　|　　
+  <%= link_to "削除", admin_student_homework_path(homework.student_id, homework.id), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+  </td>
+</tr>

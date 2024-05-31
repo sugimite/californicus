@@ -20,6 +20,7 @@ class Student < ApplicationRecord
   has_many :memos, dependent: :destroy
   has_many :grades, dependent: :destroy
   has_many :attendances, dependent: :destroy
+  has_many :homeworks, dependent: :destroy
 
   
   include StringNormalizer

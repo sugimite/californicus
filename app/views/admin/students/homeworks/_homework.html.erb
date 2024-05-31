@@ -1,0 +1,18 @@
+<tr>
+  <td><%= homework.assigned_date.strftime("%Y年%m月%d日") %></td>
+  <td><%= homework.deadline&.strftime("%Y年%m月%d日") %></td>
+  <td><%= homework.homework_type %></td>
+  <td><%= homework.page  %></td>
+  <td>
+    <% if homework.is_submitted %>
+      <span class="label label-success">提出済み</span>
+    <% else %>
+      <span class="label label-warning">未提出</span>
+      <%= link_to "提出する", submit_homework_admin_student_path(@student, homework_id: homework.id), data: { turbo_method: :patch } %>
+    <% end %>
+  </td>
+  <td><%= homework.administrator.code %></td>
+  <td><%= link_to "修正", edit_admin_student_homework_path(homework.student_id, homework.id) %>　　|　　
+  <%= link_to "削除", admin_student_homework_path(homework.student_id, homework.id), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+  </td>
+</tr>

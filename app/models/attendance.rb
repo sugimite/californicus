@@ -15,10 +15,8 @@
 #
 # Indexes
 #
-#  index_attendances_on_attended_date         (attended_date)
-#  index_attendances_on_in_at                 (in_at)
-#  index_attendances_on_new_administrator_id  (administrator_id)
-#  index_attendances_on_new_student_id        (student_id)
+#  index_attendances_on_administrator_id  (administrator_id)
+#  index_attendances_on_student_id        (student_id)
 #
 # Foreign Keys
 #
