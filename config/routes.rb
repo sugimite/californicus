@@ -9,6 +9,10 @@ Rails.application.routes.draw do
         resources :grades, except: [ :show ]
         resources :attendances, except: [ :show ]
       end
+      collection do
+        get "assign_homeworks"
+        post "create_homeworks"
+      end
       member do 
         patch "submit_homework"
         patch "leaving_seat"

@@ -61,6 +61,27 @@ class Admin::StudentsController < Admin::Base
     redirect_to :admin_students
   end
 
+  def assign_homeworks
+    @student_ids = params[:student_ids]
+    
+    if @student_ids.nil? 
+      redirect_to :admin_students
+    end
+  end
+
+  def create_homeworks
+    @student_ids = params[:student_ids]
+    homework_params = params.require(:homework).permit(:homework_type, :page, :assigned_date, :deadline)
+  
+    @student_ids.each do |id|
+      student = Student.find(id)
+      homework = student.homeworks.create(homework_params.merge(administrator_id: current_administrator.id))
+    end
+    
+    flash[:notice] = "宿題を課しました。"
+    redirect_to admin_students_path
+  end
+  
   private def students_params
     params.require(:student).permit(
       :name, :name_kana, :email, :password, :birthday, :registration_date, :cancellation_date
