@@ -84,7 +84,7 @@ class Admin::StudentsController < Admin::Base
   
   private def students_params
     params.require(:student).permit(
-      :name, :name_kana, :email, :password, :birthday, :registration_date, :cancellation_date
+      :name, :name_kana, :email, :password, :birthday, :registration_date, :cancellation_date, :has_deposited_phone
     )
   end
 end
