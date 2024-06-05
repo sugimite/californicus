@@ -23,7 +23,20 @@ div#wrapper {
             color: #eb1313;
           }
         }
-      
+        label {
+          display: block;
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+        input,
+        select,
+        textarea {
+          width: 100%;
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+        }
         div.notes {
           text-align: right;
           font-size: 10px;
@@ -34,6 +47,14 @@ div#wrapper {
           input[type="submit"] {
             padding: 10px 20px;
           }
+        }
+        input[type="submit"] {
+          background-color: #007bff;
+          color: white;
+          border: none;
+          padding: 10px 15px;
+          border-radius: 5px;
+          cursor: pointer;
         }
       }
 
