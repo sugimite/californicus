@@ -32,8 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_121154) do
     t.boolean "is_with_no_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["administrator_id"], name: "index_attendances_on_administrator_id"
-    t.index ["student_id"], name: "index_attendances_on_student_id"
   end
 
   create_table "grades", force: :cascade do |t|
@@ -56,8 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_121154) do
     t.boolean "is_submitted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["administrator_id"], name: "index_homeworks_on_administrator_id"
-    t.index ["student_id"], name: "index_homeworks_on_student_id"
   end
 
   create_table "memos", force: :cascade do |t|
@@ -67,7 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_121154) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["administrator_id"], name: "index_memos_on_administrator_id"
   end
 
   create_table "students", force: :cascade do |t|

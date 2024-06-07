@@ -13,11 +13,6 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
-# Indexes
-#
-#  index_attendances_on_administrator_id  (administrator_id)
-#  index_attendances_on_student_id        (student_id)
-#
 # Foreign Keys
 #
 #  fk_rails_...  (administrator_id => administrators.id)
