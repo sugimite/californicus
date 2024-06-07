@@ -7,7 +7,7 @@ administrators = Administrator.all
 # Fakerを使ってシードデータを生成
 homeworks_data = 10.times.map do
   assigned_date = Faker::Time.between(from: 30.days.ago, to: DateTime.now)
-  deadline = Faker::Time.between(from: assigned_date, to: assigned_date + 14.days)
+  deadline = Faker::Time.between(from: assigned_date + 1.days, to: assigned_date + 14.days)
   {
     homework_type: Homework::HOMEWORK_TYPES.sample,
     page: Faker::Number.between(from: 1, to: 100).to_s,

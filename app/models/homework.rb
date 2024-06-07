@@ -9,14 +9,9 @@
 #  page             :string           not null
 #  assigned_date    :date             not null
 #  deadline         :date
-#  is_submitted     :boolean
+#  is_submitted     :boolean          default(FALSE)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#
-# Indexes
-#
-#  index_homeworks_on_administrator_id  (administrator_id)
-#  index_homeworks_on_student_id        (student_id)
 #
 # Foreign Keys
 #

@@ -10,10 +10,6 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
-# Indexes
-#
-#  index_memos_on_administrator_id  (administrator_id)
-#
 # Foreign Keys
 #
 #  fk_rails_...  (administrator_id => administrators.id)
