@@ -17,6 +17,7 @@
         <th>メモ</th>
         <th>出席</th>
         <th>宿題</th>
+        <th>宿題忘れ</th>
         <th>スマホ設定</th>
         <th>成績</th>
         <th>メールアドレス</th>
@@ -48,6 +49,11 @@
               <%= "　" %>
             <% end %>
             <%= link_to "宿題一覧", [ :admin, student, :homeworks ] %> 
+          </td>
+          <td>
+            <%= "#{student.forgetting_hw_count}回" %>
+            <%= link_to "+", [:increase_number, :admin, student], class: "btn btn-increase", data: { "turbo-method": :patch} %>
+            <%= link_to "-", [:decrease_number, :admin, student], class: "btn btn-decrease", data: { "turbo-method": :patch} %>
           </td>
           <td><%= student.has_deposited_phone ? "有" : "無" %></td>
           <td><%= link_to "成績", [ :admin, student, :grades ] %></td> 

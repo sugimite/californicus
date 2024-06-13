@@ -45,14 +45,32 @@ class Admin::StudentsController < Admin::Base
   end
 
   def taking_seat
-    @attendance = Student.find(params[:id]).attendances.new(
+    student = Student.find(params[:id])
+    @attendance = student.attendances.new(
       attended_date: Date.today,
       in_at: Time.current,
       out_at: nil,
-      administrator_id: current_administrator.id
+      administrator_id: current_administrator.id,
+      is_with_no_phone: student.has_deposited_phone? 
       )
     flash.notice = "出席しました。" if @attendance.save
     redirect_to :admin_students
+  end
+
+  def increase_number
+    student = Student.find(params[:id])
+    forgetting_hw_count = student.forgetting_hw_count || 0 
+    student.update!(forgetting_hw_count: forgetting_hw_count + 1)
+    flash[:notice] = "宿題忘れ回数を増やしました。"
+    redirect_to admin_students_path
+  end
+
+  def decrease_number
+    student = Student.find(params[:id])
+    forgetting_hw_count = student.forgetting_hw_count || 0 
+    student.update!(forgetting_hw_count: forgetting_hw_count - 1)
+    flash[:notice] = "宿題忘れ回数を減らしました。"
+    redirect_to admin_students_path
   end
 
   def submit_homework
