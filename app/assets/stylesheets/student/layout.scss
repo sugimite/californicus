@@ -3,14 +3,17 @@ html, body {
   padding: 0;
   height: 100%;
 }
-div#wrapper{
+
+div#wrapper {
   position: relative;
   box-sizing: border-box;
   min-height: 100%;
   margin: 0 auto;
   padding-bottom: 48px;
-  background-color: #0F1733;
+  color: #fafafa;
+  background-color: #2abad3; /* デフォルトの背景色 */
 }
+
 header {
   padding: 5px;
   background-color: #0F1733;
@@ -25,15 +28,108 @@ header {
     color: #fafafa;
   }
 }
+
 footer {
   bottom: 0;
   position: absolute;
   width: 100%;
   background-color: #666666;
-  color: #fafafafa;
+  color: #fafafa;
   p {
     text-align: center;
     padding: 5px;
     margin: 0;
+  }
+}
+
+.menu {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+
+  li {
+    margin: 0 10px;
+  }
+
+  li a {
+    display: block;
+    padding: 10px 20px;
+    color: #fafafa;
+    text-decoration: none;
+    border: 1px solid #fafafa;
+    border-radius: 4px;
+    background-color: #0F1733;
+    transition: background-color 0.3s, color 0.3s;
+  }
+}
+
+.horizontal, .horizontal-hw, .horizontal-hw-contents {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.horizontal-item, .horizontal-item-hw, .horizontal-item-hw-contents {
+  flex: 1;
+  margin: 0 10px;
+  padding: 10px;
+  border: 1px solid #fafafa;
+  border-radius: 10px;
+  background-color: #080808;
+  text-align: center;
+  color: #fafafa;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontal {
+  height: 100px;
+}
+
+.horizontal-hw {
+  height: 50px;
+}
+
+.horizontal-hw-contents {
+  height: 150px;
+  flex-direction: column;
+}
+
+.in_at-section {
+  background-color: #0F1733; /* スマホ預かり設定セクションの背景色 */
+  color: #fafafa; /* スマホ預かり設定セクションの文字色 */
+}
+
+.homework-status-section {
+  background-color: #2b2b2b; /* 宿題状況セクションの背景色 */
+  color: #fafafa; /* 宿題状況セクションの文字色 */
+}
+
+.homework-deadline {
+  font-weight: bold;
+  color: #ffcc00;
+}
+
+.homework-type, .homework-page {
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+  }
+
+  .horizontal, .horizontal-hw, .horizontal-hw-contents {
+    flex-direction: column;
+  }
+
+  .horizontal-item, .horizontal-item-hw, .horizontal-item-hw-contents {
+    margin: 10px 0;
+    width: 100%;
   }
 }

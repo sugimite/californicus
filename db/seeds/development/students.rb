@@ -9,6 +9,7 @@ students.each_with_index do |s, index|
   birthday = [*12..18].sample.years.ago.to_date.advance(days: -[*1..365].sample).to_date
   registration_date = (100 - index).days.ago.to_date
   cancellation_date = index.zero? ? registration_date.advance(months: 1) : nil 
+  has_deposited_phone = [true, false].sample
 
   Student.create!(
     name: s[:name],
@@ -17,6 +18,7 @@ students.each_with_index do |s, index|
     registration_date: registration_date,
     cancellation_date: cancellation_date,
     password: "password",
-    email: "test#{index + 1}@example.com" 
+    email: "test#{index + 1}@example.com",
+    has_deposited_phone: has_deposited_phone
   )
 end
