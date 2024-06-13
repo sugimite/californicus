@@ -1,10 +1,64 @@
-<% @title = "ダッシュボード" %>
+<% @title = "#{current_student.name} さん" %>
 <h1><%= @title %></h1>
 
 <ul class="menu">
   <li><%= link_to "本日", :admin_students %></li>
-  <li><%= link_to  "累計", :new_admin_student %></li>
+  <li><%= link_to "累計", :new_admin_student %></li>
   <li><%= link_to "成績", :admin_root %></li>
   <li><%= link_to "問い合わせ", :admin_root %></li>
   <li><%= link_to "お知らせ", :admin_root %></li>
 </ul>
+
+<div class="horizontal">
+  <div class="horizontal-item in_at-section">
+    <%= current_student.has_deposited_phone ? "スマホ預かり設定:　有" : "スマホ預かり設定：　無" %>
+  </div>
+</div>
+
+<div class="horizontal">
+  <div class="horizontal-item in_at-section">
+    <% last_attendance = current_student.attendances.last %>
+    <% if last_attendance.present? && last_attendance.in_at.present? && last_attendance.out_at.present? %>
+      <%= "退室時間：　#{last_attendance.out_at.strftime("%H時%M分")}" %>
+    <% else %>
+      <%= "入室中" %>
+    <% end %>
+  </div>
+  <div class="horizontal-item in_at-section">
+    <% if last_attendance.present? && last_attendance.in_at.present? && last_attendance.out_at.blank? %>
+      <%= "入室時間：　#{last_attendance.in_at.strftime("%H時%M分")}" %>
+    <% else %>
+      <%= "退席中" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="horizontal">
+  <div class="horizontal-item in_at-section">
+    <%= "宿題" %>
+  </div>
+  <div class="horizontal-item in_at-section">
+    <% if last_attendance.present? && last_attendance.in_at.present? && last_attendance.out_at.blank? %>
+      <%= last_attendance.is_with_no_phone? ? "スマホ預かり中" : "スマホは預かっていません" %>
+    <% else %>
+      <%= "" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="horizontal-hw">
+  <div class="horizontal-item-hw homework-status-section">
+    <%= "宿題状況" %>
+  </div>
+</div>
+
+<% not_submitted = current_student.homeworks.where(is_submitted: false) %>
+<div class="horizontal-hw-contents">
+  <% not_submitted.each do |homework| %>
+    <div class="horizontal-item-hw-contents">
+      <p class="homework-deadline"><%= "#{homework.deadline.strftime("%-m/%d")}までの宿題" %></p>
+      <p class="homework-type"><%= homework.homework_type %></p>
+      <p class="homework-page"><%= "#{homework.page}ページ" %></p>
+    </div>
+  <% end %>
+</div>
