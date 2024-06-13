@@ -67,3 +67,30 @@
 .label-warning {
   background-color: #dc1010;
 }
+
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 2px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+
+  &.btn-increase {
+    background-color: #4caf50;
+    color: #ffffff;
+  }
+
+  &.btn-decrease {
+    background-color: #f44336;
+    color: #ffffff;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

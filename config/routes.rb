@@ -16,6 +16,8 @@ Rails.application.routes.draw do
       member do 
         patch "submit_homework"
         patch "leaving_seat"
+        patch "increase_number"
+        patch "decrease_number"
         post "taking_seat"
       end
     end
