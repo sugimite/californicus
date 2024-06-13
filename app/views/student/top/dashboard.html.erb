@@ -35,7 +35,7 @@
 
 <div class="horizontal">
   <div class="horizontal-item in_at-section">
-    <%= "宿題" %>
+    <%= "今年度の宿題忘れ：　#{current_student.forgetting_hw_count}回" %>
   </div>
   <div class="horizontal-item in_at-section">
     <% if last_attendance.present? && last_attendance.in_at.present? && last_attendance.out_at.blank? %>
