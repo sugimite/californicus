@@ -1,21 +1,17 @@
 class Admin::Students::AttendancesController < Admin::Students::Base
   def index
-    @student = Student.find(params[:student_id])
     @attendances = @student.attendances.order(attended_date: :desc)
   end
 
   def new
-    @student = Student.find(params[:student_id])
     @attendance = current_administrator.attendances.new
   end
 
   def edit
-    @student = Student.find(params[:student_id])
     @attendance = Attendance.find(params[:id])
   end
 
   def create
-    @student = Student.find(params[:student_id])
     @attendance = @student.attendances.new(attendances_params)
     
     if @attendance.save

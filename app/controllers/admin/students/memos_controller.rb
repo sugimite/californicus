@@ -1,26 +1,21 @@
 class Admin::Students::MemosController < Admin::Students::Base
   def index
-    @student = Student.find(params[:student_id])
     @memos = @student.memos.order(input_date: :desc).includes(:administrator)
   end
 
   def show
-    @student = Student.find(params[:student_id])
     @memo = Memo.find(params[:id])
   end 
 
   def new 
-    @student = Student.find(params[:student_id])
     @memo = current_administrator.memos.new
   end
 
   def edit
-    @student = Student.find(params[:student_id])
     @memo = Memo.find(params[:id])
   end
 
   def create
-    @student = Student.find(params[:student_id])
     @memo = @student.memos.new(memos_params)
     @memo.input_date = Date.current
     

@@ -59,16 +59,14 @@ class Admin::StudentsController < Admin::Base
 
   def increase_number
     student = Student.find(params[:id])
-    forgetting_hw_count = student.forgetting_hw_count || 0 
-    student.update!(forgetting_hw_count: forgetting_hw_count + 1)
+    student.increment!(:forgetting_hw_count)
     flash[:notice] = "宿題忘れ回数を増やしました。"
     redirect_to admin_students_path
   end
 
   def decrease_number
     student = Student.find(params[:id])
-    forgetting_hw_count = student.forgetting_hw_count || 0 
-    student.update!(forgetting_hw_count: forgetting_hw_count - 1)
+    student.decrement!(:forgetting_hw_count)
     flash[:notice] = "宿題忘れ回数を減らしました。"
     redirect_to admin_students_path
   end
@@ -90,14 +88,26 @@ class Admin::StudentsController < Admin::Base
   def create_homeworks
     @student_ids = params[:student_ids]
     homework_params = params.require(:homework).permit(:homework_type, :page, :assigned_date, :deadline)
+    error_occured = false 
   
     @student_ids.each do |id|
       student = Student.find(id)
       homework = student.homeworks.create(homework_params.merge(administrator_id: current_administrator.id))
+
+      unless homework.save
+        error_occured = true
+        break
+      end
     end
     
-    flash[:notice] = "宿題を課しました。"
-    redirect_to admin_students_path
+    if error_occured
+      flash.now[:alert] = "入力に誤りがあります。"
+      @homework = Homework.new(homework_params)
+      render action: "assign_homeworks", status: :unprocessable_entity
+    else
+      flash[:notice] = "宿題を課しました。"
+      redirect_to admin_students_path
+    end
   end
   
   private def students_params
