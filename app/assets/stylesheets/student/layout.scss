@@ -11,7 +11,7 @@ div#wrapper {
   margin: 0 auto;
   padding-bottom: 48px;
   color: #fafafa;
-  background-color: #2abad3; /* デフォルトの背景色 */
+  background-color: #2abad3; 
 }
 
 header {
@@ -96,18 +96,26 @@ footer {
 }
 
 .horizontal-hw-contents {
-  height: 150px;
   flex-direction: column;
+  padding: 10px; 
+  box-sizing: border-box; 
+}
+
+.horizontal-item-hw-contents {
+  margin-bottom: 10px; 
+  padding: 10px; 
+  box-sizing: border-box; 
+  width: 100%; 
 }
 
 .in_at-section {
-  background-color: #0F1733; /* スマホ預かり設定セクションの背景色 */
-  color: #fafafa; /* スマホ預かり設定セクションの文字色 */
+  background-color: #0F1733; 
+  color: #fafafa; 
 }
 
 .homework-status-section {
-  background-color: #2b2b2b; /* 宿題状況セクションの背景色 */
-  color: #fafafa; /* 宿題状況セクションの文字色 */
+  background-color: #2b2b2b; 
+  color: #fafafa; 
 }
 
 .homework-deadline {
