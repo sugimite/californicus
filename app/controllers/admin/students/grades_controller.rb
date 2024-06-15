@@ -1,27 +1,22 @@
 class Admin::Students::GradesController < Admin::Students::Base
   def index
-      @student = Student.find(params[:student_id])
       @grades = @student.grades.order(year: :desc)
       @test_results = @grades&.group_by { |result| [result.year, result.test_type] }
   end
 
   def new
-    @student = Student.find(params[:student_id])
     @grade = Grade.new
   end
 
   def show
-    @student = Student.find(params[:student_id])
     @grade = Grade.find(params[:id])
   end
 
   def edit
-    @student = Student.find(params[:student_id])
     @grade = Grade.find(params[:id])
   end
 
   def create
-    student = Student.find(params[:student_id])
     student.grades.new(grades_params)
     
     if student.save

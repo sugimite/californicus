@@ -4,32 +4,15 @@ require 'faker'
 students = Student.all
 administrators = Administrator.all
 
-# Fakerを使ってシードデータを生成
-homeworks_data = 10.times.map do
+10.times do
   assigned_date = Faker::Time.between(from: 30.days.ago, to: DateTime.now)
-  deadline = Faker::Time.between(from: assigned_date + 1.days, to: assigned_date + 14.days)
-  {
+  Homework.create!(
     homework_type: Homework::HOMEWORK_TYPES.sample,
     page: Faker::Number.between(from: 1, to: 100).to_s,
     assigned_date: assigned_date,
-    deadline: deadline,
+    deadline: Faker::Time.between(from: assigned_date + 1.days, to: assigned_date + 14.days),
     is_submitted: Faker::Boolean.boolean,
     student_id: students.sample.id,
     administrator_id: administrators.sample.id
-  }
-end
-
-# Homeworksテーブルにシードデータを挿入
-homeworks_data.each do |homework_data|
-  Homework.create!(
-    homework_type: homework_data[:homework_type],
-    page: homework_data[:page],
-    assigned_date: homework_data[:assigned_date],
-    deadline: homework_data[:deadline],
-    is_submitted: homework_data[:is_submitted],
-    student_id: homework_data[:student_id],
-    administrator_id: homework_data[:administrator_id]
   )
 end
-
-puts "Homework seeding completed!"
