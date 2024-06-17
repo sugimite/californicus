@@ -4,11 +4,11 @@ class Admin::Students::AttendancesController < Admin::Students::Base
   end
 
   def new
-    @attendance = current_administrator.attendances.new
+    @attendance = @student.attendances.new(administrator: current_administrator)
   end
 
   def edit
-    @attendance = Attendance.find(params[:id])
+    @attendance = @student.attendances.find(params[:id])
   end
 
   def create
@@ -25,7 +25,7 @@ class Admin::Students::AttendancesController < Admin::Students::Base
   end
 
   def update
-    @attendance = Attendance.find(params[:id])
+    @attendance = Atendance.find(params[:id])
     @attendance.assign_attributes(attendances_params)
 
     if @attendance.save

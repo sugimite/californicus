@@ -4,15 +4,15 @@ class Admin::Students::MemosController < Admin::Students::Base
   end
 
   def show
-    @memo = Memo.find(params[:id])
+    @memo = @student.memos.find(params[:id])
   end 
 
   def new 
-    @memo = current_administrator.memos.new
+    @memo = @student.memos.new(administrator: current_administrator)
   end
 
   def edit
-    @memo = Memo.find(params[:id])
+    @memo = @student.memos.find(params[:id])
   end
 
   def create

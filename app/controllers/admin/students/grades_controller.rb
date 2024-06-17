@@ -5,21 +5,21 @@ class Admin::Students::GradesController < Admin::Students::Base
   end
 
   def new
-    @grade = Grade.new
+    @grade = @student.grades.new
   end
 
   def show
-    @grade = Grade.find(params[:id])
+    @grade = @student.grades.find(params[:id])
   end
 
   def edit
-    @grade = Grade.find(params[:id])
+    @grade = @student.grades.find(params[:id])
   end
 
   def create
-    student.grades.new(grades_params)
+    @student.grades.new(grades_params)
     
-    if student.save
+    if @student.save
       flash.notice = "成績を登録しました。"
       redirect_to :admin_grades
     else

@@ -1,11 +1,10 @@
 class Admin::Students::HomeworksController < Admin::Students::Base
   def index
-    @student = Student.find(params[:student_id])
     @homeworks = @student.homeworks.order(assigned_date: :desc).includes(:administrator)
   end
 
   def new
-    @homework = current_administrator.homeworks.new
+    @homework = @student.homeworks.new(administrator: current_administrator)
   end
 
   def edit
