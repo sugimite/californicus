@@ -29,8 +29,8 @@ class Admin::Students::MemosController < Admin::Students::Base
   end
 
   def update
-    memo = @student.memos.find(params[:id])
-    memo.assign_attributes(memos_params)
+    @memo = @student.memos.find(params[:id])
+    @memo.assign_attributes(memos_params)
 
     if memo.save
       flash.notice = "修正を完了しました。"
