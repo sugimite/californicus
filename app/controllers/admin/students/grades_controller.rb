@@ -29,8 +29,8 @@ class Admin::Students::GradesController < Admin::Students::Base
   end
 
   def update
-    grade = @student.grades.find(params[:id])
-    grade.assign_attributes(grades_params)
+    @grade = @student.grades.find(params[:id])
+    @grade.assign_attributes(grades_params)
     
     if grade.save
       flash.notice = "修正を完了しました。"
