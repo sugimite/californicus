@@ -25,7 +25,7 @@ class Admin::Students::AttendancesController < Admin::Students::Base
   end
 
   def update
-    @attendance = Atendance.find(params[:id])
+    @attendance = @student.atendances.find(params[:id])
     @attendance.assign_attributes(attendances_params)
 
     if @attendance.save
@@ -37,7 +37,7 @@ class Admin::Students::AttendancesController < Admin::Students::Base
   end
 
   def destroy
-    attendance = Attendance.find(params[:id])
+    attendance = @student.attendances.find(params[:id])
     attendance.destroy!
     flash.notice = "出欠を削除しました。"
     redirect_to :admin_attendances

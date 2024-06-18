@@ -29,7 +29,7 @@ class Admin::Students::MemosController < Admin::Students::Base
   end
 
   def update
-    memo = Memo.find(params[:id])
+    memo = @student.memos.find(params[:id])
     memo.assign_attributes(memos_params)
 
     if memo.save
@@ -41,7 +41,7 @@ class Admin::Students::MemosController < Admin::Students::Base
   end
 
   def destroy
-    memo = Memo.find(params[:id])
+    memo = @student.memos.find(params[:id])
     memo.destroy!
     flash.notice = "メモを削除しました。"
     redirect_to :admin_students

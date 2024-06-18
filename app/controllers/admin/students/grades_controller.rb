@@ -29,7 +29,7 @@ class Admin::Students::GradesController < Admin::Students::Base
   end
 
   def update
-    grade = Grade.find(params[:id])
+    grade = @student.grades.find(params[:id])
     grade.assign_attributes(grades_params)
     
     if grade.save
@@ -42,7 +42,7 @@ class Admin::Students::GradesController < Admin::Students::Base
   end
 
   def destroy
-    grade = Grade.find(params[:id])
+    grade = @student.grades.find(params[:id])
     grade.destroy!
     flash.notice = "成績を削除しました。"
     redirect_to :admin_grades
