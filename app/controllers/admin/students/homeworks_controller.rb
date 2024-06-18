@@ -13,6 +13,7 @@ class Admin::Students::HomeworksController < Admin::Students::Base
 
   def create
     @homework = @student.homeworks.new(homework_params)
+    
     if @homework.save
       flash.notice = "宿題を課しました。"
       redirect_to :admin_homeworks
