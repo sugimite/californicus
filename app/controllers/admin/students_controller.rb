@@ -45,19 +45,74 @@ class Admin::StudentsController < Admin::Base
   end
 
   def taking_seat
-    @attendance = Student.find(params[:id]).attendances.new(
+    student = Student.find(params[:id])
+    @attendance = student.attendances.new(
       attended_date: Date.today,
       in_at: Time.current,
       out_at: nil,
-      administrator_id: current_administrator.id
+      administrator_id: current_administrator.id,
+      is_with_no_phone: student.has_deposited_phone? 
       )
     flash.notice = "出席しました。" if @attendance.save
     redirect_to :admin_students
   end
 
+  def increase_number
+    student = Student.find(params[:id])
+    student.increment!(:forgetting_hw_count)
+    flash[:notice] = "宿題忘れ回数を増やしました。"
+    redirect_to admin_students_path
+  end
+
+  def decrease_number
+    student = Student.find(params[:id])
+    student.decrement!(:forgetting_hw_count)
+    flash[:notice] = "宿題忘れ回数を減らしました。"
+    redirect_to admin_students_path
+  end
+
+  def submit_homework
+    Homework.find(params[:homework_id]).update!(is_submitted: true)
+    flash.notice = "提出しました。"
+    redirect_to :admin_students
+  end
+
+  def assign_homeworks
+    @student_ids = params[:student_ids]
+    
+    if @student_ids.nil? 
+      redirect_to :admin_students
+    end
+  end
+
+  def create_homeworks
+    @student_ids = params[:student_ids]
+    homework_params = params.require(:homework).permit(:homework_type, :page, :assigned_date, :deadline)
+    error_occured = false 
+  
+    @student_ids.each do |id|
+      student = Student.find(id)
+      homework = student.homeworks.create(homework_params.merge(administrator_id: current_administrator.id))
+
+      unless homework.save
+        error_occured = true
+        break
+      end
+    end
+    
+    if error_occured
+      flash.now[:alert] = "入力に誤りがあります。"
+      @homework = Homework.new(homework_params)
+      render action: "assign_homeworks", status: :unprocessable_entity
+    else
+      flash[:notice] = "宿題を課しました。"
+      redirect_to admin_students_path
+    end
+  end
+  
   private def students_params
     params.require(:student).permit(
-      :name, :name_kana, :email, :password, :birthday, :registration_date, :cancellation_date
+      :name, :name_kana, :email, :password, :birthday, :registration_date, :cancellation_date, :has_deposited_phone
     )
   end
 end

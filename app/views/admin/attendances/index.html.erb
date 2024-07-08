@@ -4,11 +4,6 @@
 <div class="table-wrapper">
   <div class="links">
     <%= link_to "生徒一覧", :admin_students %>
-    <%= 
-      if @student
-        link_to "出席入力", [ :new_admin, :student, :attendance ]
-      end
-    %>
   </div>
 
   <table class="listing">
@@ -25,7 +20,7 @@
 
     <% if @attendances.empty? %>
       <tr>
-        <%= content_tag(:td, "記録がありません", colspan: @student ? 6 : 7, style: "text-align: center") %>
+        <%= content_tag(:td, "記録がありません", colspan: 7, style: "text-align: center") %>
       </tr>
     <% end %>
 

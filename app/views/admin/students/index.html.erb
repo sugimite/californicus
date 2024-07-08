@@ -4,46 +4,70 @@
   <div class="links">
     <%= link_to "生徒登録", :new_admin_student %>
   </div>
-
-  <table class="listing">
-    <tr>
-      <th>氏名</th>
-      <th>フリガナ</th>
-      <th>年齢</th>
-      <th>メモ</th>
-      <th>出席</th>
-      <th>成績</th>
-      <th>メールアドレス</th>
-      <th>入会日</th>
-      <th>アクション</th>
-    </tr>
-    <% @students.each do |student| %>
+  <%= form_with url: assign_homeworks_admin_students_path, method: :get do |form| %>
+    <div>
+      <%= form.submit "宿題を課す" %>
+    </div>
+    <table class="listing">
       <tr>
-        <td><%= student.name %></td>
-        <td><%= student.name_kana %></td>
-        <td><%= student.age %></td>
-        <td><%= link_to "メモ", [ :admin, student, :memos ] %></td>
-        <td>
-          <label class="switch">
-            <% attendance_checked = student.attendances.where(out_at: nil).exists? %>
-            <% if attendance_checked %>
-              <%= link_to "着席中", [:leaving_seat, :admin, student],  data: { "turbo-method": :patch }, class: attendance_checked ? 'link active' : 'link inactive' %>
-            <% else %>
-              <%= link_to "着席する", [:taking_seat, :admin, student], data: { "turbo-method": :post }, class: attendance_checked ? 'link active' : 'link inactive' %>
-            <% end %>
-          </label>        
-        </td>
-        <td><%= link_to "成績", [ :admin, student, :grades ] %> 
-        <td><%= student.email %></td>
-        <td><%= student.registration_date.strftime("%Y/%m/%d") %></td>
-        <td class="actions">
-          <%= link_to "編集", [ :edit, :admin, student ] %> |
-          <%= link_to "削除", [ :admin, student ],
-            data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
-        </td>
+        <th>選択</th>
+        <th>氏名</th>
+        <th>フリガナ</th>
+        <th>年齢</th>
+        <th>メモ</th>
+        <th>出席</th>
+        <th>宿題</th>
+        <th>宿題忘れ</th>
+        <th>スマホ設定</th>
+        <th>成績</th>
+        <th>メールアドレス</th>
+        <th>入会日</th>
+        <th>アクション</th>
       </tr>
-    <% end %>
-  </table>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= check_box_tag "student_ids[]", student.id %></td>
+          <td><%= student.name %></td>
+          <td><%= student.name_kana %></td>
+          <td><%= student.age %></td>
+          <td><%= link_to "メモ", [ :admin, student, :memos ] %></td>
+          <td>
+            <label class="switch">
+              <% attendance_checked = student.attendances.where(out_at: nil).exists? %>
+              <% if attendance_checked %>
+                <%= link_to "着席中", [:leaving_seat, :admin, student],  data: { "turbo-method": :patch }, class: attendance_checked ? 'link active' : 'link inactive' %>
+              <% else %>
+                <%= link_to "着席する", [:taking_seat, :admin, student], data: { "turbo-method": :post }, class: attendance_checked ? 'link active' : 'link inactive' %>
+              <% end %>
+            </label>        
+          </td>
+          <td>
+            <% homeworks_checked = student.homeworks.where(is_submitted: false).exists? %>
+            <% if homeworks_checked %>
+              <%= "！" %>
+            <% else %>
+              <%= "　" %>
+            <% end %>
+            <%= link_to "宿題一覧", [ :admin, student, :homeworks ] %> 
+          </td>
+          <td>
+            <%= "#{student.forgetting_hw_count}回" %>
+            <%= link_to "+", [:increase_number, :admin, student], class: "btn btn-increase", data: { "turbo-method": :patch} %>
+            <%= link_to "-", [:decrease_number, :admin, student], class: "btn btn-decrease", data: { "turbo-method": :patch} %>
+          </td>
+          <td><%= student.has_deposited_phone ? "有" : "無" %></td>
+          <td><%= link_to "成績", [ :admin, student, :grades ] %></td> 
+          <td><%= student.email %></td>
+          <td><%= student.registration_date.strftime("%Y/%m/%d") %></td>
+          <td class="actions">
+            <%= link_to "編集", [ :edit, :admin, student ] %> |
+            <%= link_to "削除", [ :admin, student ],
+              data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
 
   <div class="links">
     <%= link_to "生徒登録", :new_admin_student %>
