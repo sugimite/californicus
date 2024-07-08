@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_09_124301) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_21_121154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,10 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_124301) do
     t.boolean "is_with_no_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["administrator_id"], name: "index_attendances_on_new_administrator_id"
-    t.index ["attended_date"], name: "index_attendances_on_attended_date"
-    t.index ["in_at"], name: "index_attendances_on_in_at"
-    t.index ["student_id"], name: "index_attendances_on_new_student_id"
   end
 
   create_table "grades", force: :cascade do |t|
@@ -46,7 +42,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_124301) do
     t.string "test_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["student_id", "year"], name: "index_grades_on_student_id_and_year"
+  end
+
+  create_table "homeworks", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "administrator_id", null: false
+    t.string "homework_type", null: false
+    t.string "page", null: false
+    t.date "assigned_date", null: false
+    t.date "deadline"
+    t.boolean "is_submitted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "memos", force: :cascade do |t|
@@ -56,9 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_124301) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["administrator_id"], name: "index_memos_on_administrator_id"
-    t.index ["input_date"], name: "index_memos_on_input_date"
-    t.index ["student_id", "input_date"], name: "index_memos_on_student_id_and_input_date"
   end
 
   create_table "students", force: :cascade do |t|
@@ -69,7 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_124301) do
     t.string "password_digest"
     t.date "registration_date", null: false
     t.date "cancellation_date"
-    t.integer "forgetting_hw_count"
+    t.integer "forgetting_hw_count", default: 0, null: false
     t.boolean "has_deposited_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,6 +82,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_124301) do
   add_foreign_key "attendances", "administrators"
   add_foreign_key "attendances", "students"
   add_foreign_key "grades", "students"
+  add_foreign_key "homeworks", "administrators"
+  add_foreign_key "homeworks", "students"
   add_foreign_key "memos", "administrators"
   add_foreign_key "memos", "students"
 end

@@ -1,30 +1,25 @@
 class Admin::Students::GradesController < Admin::Students::Base
   def index
-      @student = Student.find(params[:student_id])
       @grades = @student.grades.order(year: :desc)
       @test_results = @grades&.group_by { |result| [result.year, result.test_type] }
   end
 
   def new
-    @student = Student.find(params[:student_id])
-    @grade = Grade.new
+    @grade = @student.grades.new
   end
 
   def show
-    @student = Student.find(params[:student_id])
-    @grade = Grade.find(params[:id])
+    @grade = @student.grades.find(params[:id])
   end
 
   def edit
-    @student = Student.find(params[:student_id])
-    @grade = Grade.find(params[:id])
+    @grade = @student.grades.find(params[:id])
   end
 
   def create
-    student = Student.find(params[:student_id])
-    student.grades.new(grades_params)
+    @student.grades.new(grades_params)
     
-    if student.save
+    if @student.save
       flash.notice = "成績を登録しました。"
       redirect_to :admin_grades
     else
@@ -34,8 +29,8 @@ class Admin::Students::GradesController < Admin::Students::Base
   end
 
   def update
-    grade = Grade.find(params[:id])
-    grade.assign_attributes(grades_params)
+    @grade = @student.grades.find(params[:id])
+    @grade.assign_attributes(grades_params)
     
     if grade.save
       flash.notice = "修正を完了しました。"
@@ -47,7 +42,7 @@ class Admin::Students::GradesController < Admin::Students::Base
   end
 
   def destroy
-    grade = Grade.find(params[:id])
+    grade = @student.grades.find(params[:id])
     grade.destroy!
     flash.notice = "成績を削除しました。"
     redirect_to :admin_grades

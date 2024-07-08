@@ -27,6 +27,19 @@
   <%= f.label :registration_date, "入会日", class: "required" %>
   <%= f.date_field :registration_date, required: true %>
 </div>
+<div>
+  <%= f.label :has_deposited_phone, "スマホ預かり設定" %>
+  <div class="radio-group" >
+    <div class="radio-item">
+      <%= f.radio_button :has_deposited_phone, true, id: "has_deposited_phone_true" %>
+      <%= f.label "has_deposited_phone_true", "はい" %>
+    </div>
+    <div class="radio-item">
+      <%= f.radio_button :has_deposited_phone, false, id: "has_deposited_phone_false" %>
+      <%= f.label "has_deposited_phone_false", "いいえ" %>
+    </div>
+  </div>
+</div>
 <% if @student.persisted? %>
   <div>
     <%= f.label :cancellation_date, "退会日"%>

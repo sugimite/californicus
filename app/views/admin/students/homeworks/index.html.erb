@@ -1,0 +1,35 @@
+<% name = @student.name
+    @title = "#{name}さんの宿題状況"
+%>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+    <%= link_to "宿題入力", [ :new_admin, :student, :homework ] %>
+  </div>
+
+  <table class="listing">
+    <tr>
+      <th>宿題を課した日</th>
+      <th>提出期限</th>
+      <th>未提出の宿題</th>
+      <th>ページ数</th>
+      <th>提出状況</th>
+      <th>担当</th>
+      <th>アクション</th>
+    </tr>
+    <%= render partial: "homework", collection: @homeworks, as: "homework" %>
+
+    <% if @homeworks.empty? %>
+      <tr>
+        <%= content_tag(:td, "現在未提出の宿題はありません", colspan: 8, style: "text-align: center") %>
+      </tr>
+    <% end %>
+
+  </table>
+
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+  </div>
+</div>

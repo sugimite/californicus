@@ -6,6 +6,5 @@
   "license": "MIT",
   "dependencies": {
     "@hotwired/turbo-rails": "^7.3.0",
-    "jquery": "^3.7.1"
   }
 }

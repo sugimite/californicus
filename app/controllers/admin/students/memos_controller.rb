@@ -1,26 +1,21 @@
 class Admin::Students::MemosController < Admin::Students::Base
   def index
-    @student = Student.find(params[:student_id])
     @memos = @student.memos.order(input_date: :desc).includes(:administrator)
   end
 
   def show
-    @student = Student.find(params[:student_id])
-    @memo = Memo.find(params[:id])
+    @memo = @student.memos.find(params[:id])
   end 
 
   def new 
-    @student = Student.find(params[:student_id])
-    @memo = current_administrator.memos.new
+    @memo = @student.memos.new(administrator: current_administrator)
   end
 
   def edit
-    @student = Student.find(params[:student_id])
-    @memo = Memo.find(params[:id])
+    @memo = @student.memos.find(params[:id])
   end
 
   def create
-    @student = Student.find(params[:student_id])
     @memo = @student.memos.new(memos_params)
     @memo.input_date = Date.current
     
@@ -34,8 +29,8 @@ class Admin::Students::MemosController < Admin::Students::Base
   end
 
   def update
-    memo = Memo.find(params[:id])
-    memo.assign_attributes(memos_params)
+    @memo = @student.memos.find(params[:id])
+    @memo.assign_attributes(memos_params)
 
     if memo.save
       flash.notice = "修正を完了しました。"
@@ -46,7 +41,7 @@ class Admin::Students::MemosController < Admin::Students::Base
   end
 
   def destroy
-    memo = Memo.find(params[:id])
+    memo = @student.memos.find(params[:id])
     memo.destroy!
     flash.notice = "メモを削除しました。"
     redirect_to :admin_students
