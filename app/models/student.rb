@@ -10,7 +10,7 @@
 #  password_digest     :string
 #  registration_date   :date             not null
 #  cancellation_date   :date
-#  forgetting_hw_count :integer
+#  forgetting_hw_count :integer          default(0), not null
 #  has_deposited_phone :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -20,6 +20,7 @@ class Student < ApplicationRecord
   has_many :memos, dependent: :destroy
   has_many :grades, dependent: :destroy
   has_many :attendances, dependent: :destroy
+  has_many :contacts, dependent: :destroy
 
   
   include StringNormalizer

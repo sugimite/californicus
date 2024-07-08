@@ -1,0 +1,15 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+
+<div>
+  <label for="contact_title" class="required">件名</label>
+  <div><%= @contact.title %></div>
+  <%= f.hidden_field :title %>
+</div>
+
+<div>
+  <label for="contact_messages" class="required">内容</label>
+  <div><%= simple_format(@contact.messages) %></div>
+  <%= f.hidden_field :messages %>
+</div>

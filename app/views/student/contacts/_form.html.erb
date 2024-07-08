@@ -1,0 +1,11 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+<div>
+  <%= f.label :title, "件名", class: "required" %>
+  <%= f.text_field :title, required: true %>
+</div>
+<div>
+  <%= f.label :messages, "内容", class: "required" %>
+  <%= f.text_area :messages, rows: 5, required: true %>
+</div>
