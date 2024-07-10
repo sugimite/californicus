@@ -1,8 +1,9 @@
-<% @title = "新規問い合わせ" %>
-<h1><%= @title %></h1>
+<div id="title">
+  <h1>新規問い合わせ</h1>
+</div>
 
 <div id="generic-form">
-  <%= form_with model: @contact, url: confirm_student_contacts_path do |f| %>
+  <%= form_with model: @contact, url: confirm_student_contacts_path, local: true do |f| %>
     <%= render "form", f: f %>
     <div class="buttons">
       <%= f.submit "確認画面へ進む" %>

@@ -32,11 +32,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_26_092705) do
     t.boolean "is_with_no_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["administrator_id"], name: "index_attendances_on_administrator_id"
+    t.index ["student_id"], name: "index_attendances_on_student_id"
   end
 
   create_table "contacts", force: :cascade do |t|
     t.bigint "student_id", null: false
-    t.integer "contact_id", null: false
+    t.integer "contact_id"
     t.text "messages", null: false
     t.string "title", null: false
     t.datetime "date", null: false
@@ -56,18 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_26_092705) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "homeworks", force: :cascade do |t|
-    t.bigint "student_id", null: false
-    t.bigint "administrator_id", null: false
-    t.string "homework_type", null: false
-    t.string "page", null: false
-    t.date "assigned_date", null: false
-    t.date "deadline"
-    t.boolean "is_submitted", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "memos", force: :cascade do |t|
     t.bigint "administrator_id", null: false
     t.bigint "student_id", null: false
@@ -75,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_26_092705) do
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["administrator_id"], name: "index_memos_on_administrator_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -85,7 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_26_092705) do
     t.string "password_digest"
     t.date "registration_date", null: false
     t.date "cancellation_date"
-    t.integer "forgetting_hw_count", default: 0, null: false
+    t.integer "forgetting_hw_count"
     t.boolean "has_deposited_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,8 +86,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_26_092705) do
   add_foreign_key "attendances", "students"
   add_foreign_key "contacts", "students"
   add_foreign_key "grades", "students"
-  add_foreign_key "homeworks", "administrators"
-  add_foreign_key "homeworks", "students"
   add_foreign_key "memos", "administrators"
   add_foreign_key "memos", "students"
 end

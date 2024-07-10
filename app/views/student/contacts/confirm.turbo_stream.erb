@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "title" do %>
+  <h1>新規問い合わせ（確認）</h1>
+<% end %>
+
+<%= turbo_stream.replace "generic-form" do %>
+  <%= render partial: "confirm" %>
+<% end %>
