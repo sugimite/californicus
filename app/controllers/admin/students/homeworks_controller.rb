@@ -1,22 +1,19 @@
 class Admin::Students::HomeworksController < Admin::Students::Base
   def index
-    @student = Student.find(params[:student_id])
     @homeworks = @student.homeworks.order(assigned_date: :desc).includes(:administrator)
   end
 
   def new
-    @student = Student.find(params[:student_id])
-    @homework = current_administrator.homeworks.new
+    @homework = @student.homeworks.new(administrator: current_administrator)
   end
 
   def edit
-    @student = Student.find(params[:student_id])
     @homework = @student.homeworks.find(params[:id])
   end
 
   def create
-    @student = Student.find(params[:student_id])
     @homework = @student.homeworks.new(homework_params)
+    
     if @homework.save
       flash.notice = "宿題を課しました。"
       redirect_to :admin_homeworks
@@ -27,7 +24,7 @@ class Admin::Students::HomeworksController < Admin::Students::Base
   end
 
   def update
-    @homework = Homework.find(params[:id])
+    @homework = @student.homeworks.find(params[:id])
     @homework.assign_attributes(homework_params)
 
     if @homework.save
@@ -39,8 +36,7 @@ class Admin::Students::HomeworksController < Admin::Students::Base
   end
 
   def destroy
-    homework = Homework.find(params[:id])
-    homework.destroy!
+    @student.homeworks.find(params[:id]).destroy!
     flash.notice = "宿題を削除しました。"
     redirect_to :admin_homeworks
   end
@@ -50,5 +46,4 @@ class Admin::Students::HomeworksController < Admin::Students::Base
   def homework_params
     params.require(:homework).permit(:administrator_id, :student_id, :homework_type, :assigned_date, :deadline, :page, :is_submitted)
   end
-
 end

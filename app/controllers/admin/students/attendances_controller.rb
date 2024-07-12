@@ -1,21 +1,17 @@
 class Admin::Students::AttendancesController < Admin::Students::Base
   def index
-    @student = Student.find(params[:student_id])
     @attendances = @student.attendances.order(attended_date: :desc)
   end
 
   def new
-    @student = Student.find(params[:student_id])
-    @attendance = current_administrator.attendances.new
+    @attendance = @student.attendances.new(administrator: current_administrator)
   end
 
   def edit
-    @student = Student.find(params[:student_id])
-    @attendance = Attendance.find(params[:id])
+    @attendance = @student.attendances.find(params[:id])
   end
 
   def create
-    @student = Student.find(params[:student_id])
     @attendance = @student.attendances.new(attendances_params)
     
     if @attendance.save
@@ -29,7 +25,7 @@ class Admin::Students::AttendancesController < Admin::Students::Base
   end
 
   def update
-    @attendance = Attendance.find(params[:id])
+    @attendance = @student.atendances.find(params[:id])
     @attendance.assign_attributes(attendances_params)
 
     if @attendance.save
@@ -41,7 +37,7 @@ class Admin::Students::AttendancesController < Admin::Students::Base
   end
 
   def destroy
-    attendance = Attendance.find(params[:id])
+    attendance = @student.attendances.find(params[:id])
     attendance.destroy!
     flash.notice = "出欠を削除しました。"
     redirect_to :admin_attendances
