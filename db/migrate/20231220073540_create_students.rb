@@ -8,7 +8,7 @@ class CreateStudents < ActiveRecord::Migration[7.0]
       t.string :password_digest
       t.date :registration_date, null: false
       t.date :cancellation_date
-      t.integer :forgetting_hw_count
+      t.integer :forgetting_hw_count, default: 0, null: false
       t.boolean :has_deposited_phone
 
       t.timestamps
