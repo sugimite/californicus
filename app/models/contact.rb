@@ -25,4 +25,12 @@ class Contact < ApplicationRecord
 
   validates :messages, presence: true
   validates :title, presence: true
+
+  def sender
+    if is_from_parents
+      student.name
+    else
+      "管理者"
+    end
+  end
 end

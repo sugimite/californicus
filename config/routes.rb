@@ -16,6 +16,13 @@ Rails.application.routes.draw do
     resources :grades, only: [ :index ]
     resources :attendances, only: [ :index ]
     resource :session, only: [ :create, :destroy ]
+    resources :contacts do
+      collection do
+        get "inbound"
+        get "outbound"
+      end
+    end
+    get "contacts/count" => "ajax#contact_count"
   end
 
   namespace :student, path: "" do

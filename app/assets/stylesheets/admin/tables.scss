@@ -1,5 +1,6 @@
 .table-wrapper {
   width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
 
   .links {
@@ -30,6 +31,32 @@
       background-color: #a19a9a;
     }
   }
+
+  table.details {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border: 1px solid #1a1919;
+    }
+
+    th {
+      background-color: #5b5656;
+      color: #9c9696;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #ffffff;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #a19a9a;
+    }
+  }
 }
 
 .link {
@@ -50,4 +77,22 @@
     background-color: #f44336;
     color: #ffffff;
   }
+}
+
+.body {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  white-space: pre-wrap;
+  text-align: center; /* Center text */
+  width: calc(100% - 40px); /* Ensure it matches the .table-wrapper width */
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.center-text {
+  text-align: center;
 }

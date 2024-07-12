@@ -20,7 +20,7 @@ class Student::ContactsController < Student::Base
 
   def create
     @contact = Contact.new(student_contact_params)
-    @contact.date ||= Date.today
+    @contact.date ||= DateTime.now
 
     if params[:commit]
       @contact.student = current_student
