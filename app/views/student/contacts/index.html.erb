@@ -1,0 +1,18 @@
+<% @title = "メッセージ" %>
+<h1><%= @title %></h1>
+
+<div id="contacts">
+  <%= render @contacts %>
+</div>
+
+<% if defined?(@errors) && @errors.any? %>
+  <div class="alert alert-danger">
+    <% @errors.each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+  </div>
+<% end %>
+
+
+
+<%= render 'form', contact: @new_contact %>

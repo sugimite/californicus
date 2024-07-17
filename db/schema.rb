@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_21_121154) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_16_081854) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +32,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_21_121154) do
     t.boolean "is_with_no_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.bigint "administrator_id"
+    t.bigint "student_id", null: false
+    t.text "message", null: false
+    t.datetime "date", null: false
+    t.boolean "is_from_parents", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["administrator_id"], name: "index_contacts_on_administrator_id"
+    t.index ["student_id"], name: "index_contacts_on_student_id"
   end
 
   create_table "grades", force: :cascade do |t|
