@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         resources :homeworks, except: [ :show ]
         resources :grades, except: [ :show ]
         resources :attendances, except: [ :show ]
+        resources :contacts, except: [ :show, :destroy ]
       end
       collection do
         get "assign_homeworks"
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     resources :grades, only: [ :index ]
     resources :attendances, only: [ :index ]
     resource :session, only: [ :create, :destroy ]
+    resources :contacts, only: [ :index ]
   end
 
   namespace :student, path: "" do

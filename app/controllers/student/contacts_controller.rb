@@ -15,14 +15,9 @@ def create
   else
     @contacts = Contact.all
     @new_contact = @contact
-    @errors = @contact.errors.full_messages if @contact.errors.any?  # エラーがある場合のみエラーメッセージをセットする
-    flash.now[:alert] = "メッセージの送信に失敗しました。"
     render :index, status: :unprocessable_entity
   end
 end
-
-  
-  
 
   private
 
