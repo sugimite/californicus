@@ -16,6 +16,7 @@ class Administrator < ApplicationRecord
   has_many :memos, dependent: :destroy
   has_many :attendances, dependent: :destroy
   has_many :homeworks, dependent: :destroy
+  has_many :contacts, dependent: :destroy
   
   def password=(raw_password)
     if raw_password.kind_of?(String)
