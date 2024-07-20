@@ -1,8 +1,12 @@
 <% @title = "メッセージ" %>
 <h1><%= @title %></h1>
 
-<div id="contacts">
-  <%= render @contacts %>
+<div id="main-container">
+  <div id="message-container">
+    <div id="contacts">
+      <%= render @contacts %>
+    </div>
+  </div>
 </div>
 
 <%= render 'form', contact: @new_contact %>

@@ -1,11 +1,13 @@
-<div id="generic-form">
-  <%= form_with(model: contact, url: student_contacts_path, scope: :contact, local: true) do |f| %>
-    <div>
-      <%= f.label :message, "メッセージ", class: "required", for: "message" %>
-      <%= f.text_field :message, id: "message", required: true %>
-    </div>
-    <div class="buttons">
-      <%= f.submit "送信" %>
-    </div>
-  <% end %>
+<div id="form-container">
+  <div id="generic-form">
+    <%= form_with(model: contact, url: admin_student_contacts_path(@student), scope: :contact, local: true) do |f| %>
+      <div>
+        <%= f.label :message, "メッセージ", class: "required", for: "message" %>
+        <%= f.text_area :message, id: "message", required: true, rows: 4 %>
+      </div>
+      <div class="buttons">
+        <%= f.submit "送信" %>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,5 +1,13 @@
 class Student::Base < ApplicationController
-  private def current_student
+before_action :set_student
+
+  private
+  
+  def set_student
+    @student = current_student
+  end
+
+  def current_student
     if session[:student_id]
       @current_student ||=
         Student.find_by(id: session[:student_id])

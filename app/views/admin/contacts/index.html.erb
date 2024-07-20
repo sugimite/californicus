@@ -11,7 +11,6 @@
     <tr>
       <th>氏名</th>
       <th>受信時刻</th>
-      <th>アクション</th>
     </tr>
 
     <% @contacts.group_by(&:student_id).each do |student_id, contacts| %>
@@ -21,16 +20,12 @@
           <%= link_to latest_contact.student.name, [ :admin, latest_contact.student, :contacts ] %>
         </td>
         <td><%= latest_contact.date.strftime("%m/%d %H:%M") %></td> 
-        <td>
-          <%= link_to "修正", edit_admin_student_contact_path(student_id, latest_contact.id) %>　
-          <%= link_to "削除", admin_student_contact_path(student_id, latest_contact.id), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
-        </td>
       </tr>
     <% end %>
 
     <% if @contacts.empty? %>
       <tr>
-        <%= content_tag(:td, "記録がありません", colspan: 5, style: "text-align: center") %>
+        <%= content_tag(:td, "記録がありません", colspan: 2, style: "text-align: center") %>
       </tr>
     <% end %>
   </table>

@@ -1,26 +1,27 @@
 class Admin::Students::ContactsController < Admin::Students::Base
   def index
     @contacts = @student.contacts.order(date: :asc)
+    @new_contact = Contact.new
   end
 
   def create
-    @contact = current_administrator.contacts.build(contact_params.merge(date: Time.current, is_from_parents: false))
-    
+    @contact = current_administrator.contacts.build(contact_params.merge(date: Time.current, is_from_parents: false, student_id: @student.id))
+
     if @contact.save
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.append('contacts', partial: 'student/contacts/contact', locals: { contact: @contact }) }
+        format.turbo_stream
         format.html { redirect_to contacts_path, notice: 'メッセージが送信されました。' }
       end
     else
-      @contacts = Contact.all
-      @new_contact = @contact
+      @contacts = @student.contacts.order(date: :asc)
+      @new_contact = Contact.new
       render :index, status: :unprocessable_entity
     end
   end
 
-    private
-  
-    def contact_params
-      params.require(:contact).permit(:message, :student_id, :date, :is_from_parents, :administrator_id)
-    end
+  private
+
+  def contact_params
+    params.require(:contact).permit(:message, :administrator_id, :student_id, :date, :is_from_parents)
+  end
 end

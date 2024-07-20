@@ -3,7 +3,8 @@ html, body {
   padding: 0;
   height: 100%;
 }
-div#wrapper{
+
+div#wrapper {
   position: relative;
   box-sizing: border-box;
   min-height: 100%;
@@ -11,32 +12,67 @@ div#wrapper{
   padding-bottom: 48px;
   background-color: #EfAf47;
 }
+
 header {
   padding: 20px;
   background-color: #0F1733;
   color: #fafafa;
-  a.logo-mark {
-    float: none;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  a {
-    float: right;
-    color: #fafafa;
-  }
 }
+
+header a.logo-mark {
+  float: none;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header a {
+  float: right;
+  color: #fafafa;
+}
+
 footer {
   bottom: 0;
   position: absolute;
   width: 100%;
   background-color: #666666;
   color: #fafafafa;
-  p {
-    text-align: center;
-    padding: 5px;
-    margin: 0;
-  }
 }
+
+footer p {
+  text-align: center;
+  padding: 5px;
+  margin: 0;
+}
+
+#main-container {
+  width: 80%; // 適切な幅に調整
+  margin: 0 auto; // 中央寄せ
+  padding: 20px; // 内部余白（任意）
+  box-sizing: border-box; // パディングを含む幅計算
+  position: relative;
+}
+
+.links {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px; 
+  padding-right: 150px;
+}
+
+#message-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #17ee13;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 700px);
+  max-height: calc(100vh - 200px); /* フォームの高さを考慮して調整 */
+  overflow-y: auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
 .message {
   max-width: 60%;
   margin: 10px 0;
@@ -44,6 +80,8 @@ footer {
   border-radius: 10px;
   position: relative;
   clear: both;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .message.left {
@@ -66,7 +104,29 @@ footer {
 .message .time {
   display: block;
   font-size: 0.8em;
-  color: #666;
+  color: #0a0707;
   text-align: right;
   margin-top: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  #message-container {
+    width: 100%;
+    padding: 10px;
+    min-height: calc(100vh - 300px); /* スマホ画面での調整 */
+    max-height: calc(100vh - 100px); /* スマホ画面での調整 */
+  }
+
+  .message {
+    max-width: 90%;
+    margin: 10px auto;
+  }
+
+  .message.left {
+    margin-right: auto;
+  }
+
+  .message.right {
+    margin-left: auto;
+  }
 }

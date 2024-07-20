@@ -142,6 +142,20 @@ footer {
   }
 }
 
+#message-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #17ee13;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 700px);
+  max-height: calc(100vh - 200px); /* フォームの高さを考慮して調整 */
+  overflow-y: auto;
+  position: relative;
+  box-sizing: border-box;
+}
+
 .message {
   max-width: 60%;
   margin: 10px 0;
@@ -149,6 +163,8 @@ footer {
   border-radius: 10px;
   position: relative;
   clear: both;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .message.left {
@@ -159,7 +175,7 @@ footer {
 
 .message.right {
   background-color: #0084ff;
-  color: rgb(18, 17, 17);
+  color: white;
   float: right;
   margin-left: 40%;
 }
@@ -171,7 +187,29 @@ footer {
 .message .time {
   display: block;
   font-size: 0.8em;
-  color: #666;
+  color: #0a0707;
   text-align: right;
   margin-top: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  #message-container {
+    width: 100%;
+    padding: 10px;
+    min-height: calc(100vh - 300px); /* スマホ画面での調整 */
+    max-height: calc(100vh - 100px); /* スマホ画面での調整 */
+  }
+
+  .message {
+    max-width: 90%;
+    margin: 10px auto;
+  }
+
+  .message.left {
+    margin-right: auto;
+  }
+
+  .message.right {
+    margin-left: auto;
+  }
 }
