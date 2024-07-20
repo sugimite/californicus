@@ -3,8 +3,15 @@
 %>
 <h1><%= @title %></h1>
 
-<div id="contacts">
-  <%= render @contacts %>
+<div id="main-container">
+  <div class="links">
+    <%= link_to "メッセージ一覧", :admin_contacts %>
+  </div>
+  <div id="message-container">
+    <div id="contacts">
+      <%= render @contacts %>
+    </div>
+  </div>
 </div>
 
 <%= render 'form', contact: @new_contact %>

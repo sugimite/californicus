@@ -1,7 +1,7 @@
-<%= turbo_stream.prepend "messages" do %>
+<%= turbo_stream.append "contacts" do %>
   <%= render partial: "contact", locals: { contact: @contact } %>
 <% end %>
 
-<%= turbo_stream.replace "new_contact_form" do %>
-  <%= render partial: "form", locals: { contact: @new_contact } %>
+<%= turbo_stream.replace "form-container" do %>
+  <%= render "form", contact: Contact.new %>
 <% end %>

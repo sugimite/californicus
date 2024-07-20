@@ -10,24 +10,18 @@ div#wrapper {
       background-color: #dbcfcf;
 
       form {
+        display: flex;
+        flex-direction: column;
+
         div {
-          padding: 40px;
-          label {
-            display: inline-block;
-            padding-right: 10px;
-            vertical-align: middle; // ラジオボタンの整列を改善
-          }
-          label.required:after {
-            content: "*";
-            padding-left: 5px;
-            color: #eb1313;
-          }
+          padding: 20px; /* Adjust padding as needed */
         }
 
         label {
           display: block;
           margin-bottom: 5px;
           font-weight: bold;
+          vertical-align: middle;
         }
 
         input,
@@ -50,7 +44,7 @@ div#wrapper {
         .radio-item {
           display: flex;
           align-items: center;
-          margin-right: 10px; // 各要素間のスペース
+          margin-right: 10px;
         }
 
         .radio-group input[type="radio"] {
@@ -59,7 +53,7 @@ div#wrapper {
 
         input[type="radio"],
         input[type="checkbox"] {
-          width: auto; // ラジオボタンとチェックボックスの幅を自動に設定
+          width: auto;
         }
 
         div.notes {
