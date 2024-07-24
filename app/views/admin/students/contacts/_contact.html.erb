@@ -1,4 +1,5 @@
 <div class="message <%= contact.is_from_parents ? 'left' : 'right' %>">
-  <p><%= contact.message %></p>
+  <p><%= simple_format(contact.message) %></p>
   <span class="time"><%= contact.created_at.strftime('%Y-%m-%d %H:%M:%S') %></span>
+  <span class="links"><%= link_to "メッセージを削除する", student_contact_path(contact.id), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete }%></span>
 </div>

@@ -19,6 +19,11 @@ class Admin::Students::ContactsController < Admin::Students::Base
     end
   end
 
+  def destroy
+    Contact.find(params[:id]).destroy!
+    flash.notice = "削除しました。"
+  end
+
   private
 
   def contact_params
