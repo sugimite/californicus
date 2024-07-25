@@ -156,6 +156,17 @@ footer {
   box-sizing: border-box;
 }
 
+.from-label {
+  position: absolute;
+  top: -20px; /* メッセージ枠からの距離を調整 */
+  right: 0;
+  background-color: #090909; /* ラベルの背景色を設定 */
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: #e8e3e3;
+}
+
 .message {
   max-width: 60%;
   margin: 10px 0;
