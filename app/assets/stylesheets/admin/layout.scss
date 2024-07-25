@@ -14,20 +14,33 @@ div#wrapper {
 }
 
 header {
-  padding: 20px;
+  display: flex;
+  justify-content: space-between; /* ヘッダー内のアイテムを左右に配置 */
+  align-items: center; /* 縦方向に中央揃え */
   background-color: #0F1733;
   color: #fafafa;
+  padding: 10px 20px;
+}
+
+#header-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#new-contacts-notification {
+  margin-right: 20px; /* 右側に余白を追加 */
 }
 
 header a.logo-mark {
-  float: none;
+  color: #fafafa;
   text-decoration: none;
   font-weight: bold;
 }
 
 header a {
-  float: right;
   color: #fafafa;
+  text-decoration: none;
 }
 
 footer {
@@ -45,17 +58,17 @@ footer p {
 }
 
 #main-container {
-  width: 80%; // 適切な幅に調整
-  margin: 0 auto; // 中央寄せ
-  padding: 20px; // 内部余白（任意）
-  box-sizing: border-box; // パディングを含む幅計算
+  width: 80%; /* 適切な幅に調整 */
+  margin: 0 auto; /* 中央寄せ */
+  padding: 20px; /* 内部余白（任意） */
+  box-sizing: border-box; /* パディングを含む幅計算 */
   position: relative;
 }
 
 .links {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
   padding-right: 150px;
 }
 

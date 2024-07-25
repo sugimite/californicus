@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     resource :session, only: [ :create, :destroy ]
     resources :contacts, only: [ :index, :destroy ] do
       delete "destroy_all_by_student/:student_id", to: "contacts#destroy_all_by_student", as: "destroy_all_by_student", on: :collection
+      collection do
+        get "new_contact"
+      end
     end
   end
 
