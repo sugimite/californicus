@@ -15,20 +15,31 @@ div#wrapper {
 }
 
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 5px;
   background-color: #0F1733;
   color: #fafafa;
   a.logo-mark {
-    float: none;
     text-decoration: none;
     font-weight: bold;
   }
   a {
-    float: right;
+    text-decoration: none;
     color: #fafafa;
   }
 }
 
+#header-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#new-contacts-notification {
+  margin-right: 20px;
+ }
 footer {
   bottom: 0;
   position: absolute;
