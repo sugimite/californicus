@@ -2,6 +2,7 @@ class Admin::Students::ContactsController < Admin::Students::Base
   def index
     @contacts = @student.contacts.order(date: :asc)
     @new_contact = Contact.new
+    @contacts.where(read: false).update_all(read: true)
   end
 
   def create

@@ -22,9 +22,9 @@
         </td>
         <td><%= latest_contact.date.strftime("%m/%d %H:%M") %></td>
         <td>
-        <%= link_to "削除", destroy_all_by_student_admin_contacts_path(latest_contact.student_id), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+          <%= link_to "削除", destroy_all_by_student_admin_contacts_path(latest_contact.student_id), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
         </td>      
-      </tr>
+    </tr>
     <% end %> 
 
     <% if @contacts.empty? %>
