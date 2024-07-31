@@ -25,7 +25,7 @@ def destroy
   flash.notice = "削除しました。"
 end
 
-  private
+private
 
   def contact_params
     params.require(:contact).permit(:message, :student_id, :date, :is_from_parents)
