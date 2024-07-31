@@ -2,7 +2,7 @@ div.table-wrapper {
   width: 90%;
   margin: 0 auto;
 
-  div.links{
+  div.links {
     text-align: right;
     padding: 20px;
   }
@@ -15,8 +15,10 @@ div.table-wrapper {
         background-color: #5b5656;
         color: #9c9696;
       }
-      th, td { padding: 5px;
-               text-align: center; }
+      th, td {
+        padding: 5px;
+        text-align: center;
+      }
       td.actions {
         text-align: center;
         color: #5b5656;
@@ -27,6 +29,6 @@ div.table-wrapper {
   table.listing {
     width: 100%;
     tr:nth-child(even) { background-color: #9c9696; }
-    tr:nth-child(odd) { background-color: #d8cfcf;}
+    tr:nth-child(odd) { background-color: #d8cfcf; }
   }
 }

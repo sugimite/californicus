@@ -1,12 +1,22 @@
 <header>
   <%= link_to "学力増進研究会", :student_root, class: "logo-mark" %>
-  <%= content_tag(:span, flash.notice, class: "notice") if flash.notice %>
-  <%= content_tag(:span, flash.alert, class: "alert") if flash.alert %>
-  <%=
-    if current_student
-      link_to "ログアウト", :student_session, data: { turbo_method: :delete }
-    else
-      link_to "ログイン", :student_login
-    end
-  %>
+
+  <div id="header-content">
+    <div id="new-contacts-notification" class="new-contacts-notification">
+      <% if @unread_contacts_count.to_i > 0 %>
+        問い合わせの返信（<%= @unread_contacts_count %>）
+      <% end %>
+    </div>
+
+    <%= content_tag(:span, flash.notice, class: "notice") if flash.notice %>
+    <%= content_tag(:span, flash.alert, class: "alert") if flash.alert %>
+
+    <%=
+      if current_student
+        link_to "ログアウト", :student_session, data: { turbo_method: :delete }
+      else
+        link_to "ログイン", :student_login
+      end
+    %>
+  </div>
 </header>
