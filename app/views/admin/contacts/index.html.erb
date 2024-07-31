@@ -1,0 +1,40 @@
+<% @title = "メッセージ一覧" %>
+
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+  </div>
+
+  <table class="listing">
+    <tr>
+      <th>氏名</th>
+      <th>受信時刻</th>
+      <th>削除</th>
+    </tr>
+
+    <% @contacts.group_by(&:student_id).each do |student_id, contacts| %>
+      <% latest_contact = contacts.first %> 
+      <tr>
+        <td>
+          <%= link_to latest_contact.student.name, [:admin, latest_contact.student, :contacts] %>
+        </td>
+        <td><%= latest_contact.date.strftime("%m/%d %H:%M") %></td>
+        <td>
+          <%= link_to "削除", destroy_all_by_student_admin_contacts_path(latest_contact.student_id), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+        </td>      
+    </tr>
+    <% end %> 
+
+    <% if @contacts.empty? %>
+      <tr>
+        <%= content_tag(:td, "記録がありません", colspan: 3, style: "text-align: center") %>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+  </div>
+</div>

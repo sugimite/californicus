@@ -1,0 +1,7 @@
+<%= turbo_stream.append "contacts" do %>
+  <%= render partial: "contact", locals: { contact: @contact } %>
+<% end %>
+
+<%= turbo_stream.replace "form-container" do %>
+  <%= render "form", contact: Contact.new %>
+<% end %>
