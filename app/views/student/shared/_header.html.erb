@@ -13,9 +13,9 @@
 
     <%=
       if current_student
-        link_to "ログアウト", :admin_session, data: { turbo_method: :delete }
+        link_to "ログアウト", :student_session, data: { turbo_method: :delete }
       else
-        link_to "ログイン", :admin_login
+        link_to "ログイン", :student_login
       end
     %>
   </div>
