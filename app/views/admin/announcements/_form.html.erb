@@ -1,0 +1,30 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+<div>
+  <%= f.label :title, "件名", class: "required" %>
+  <%= f.text_field :title,  required: true %>
+</div>
+<div>
+  <%= f.label :content, "内容", class: "required" %>
+  <%= f.text_area :content, rows: 5, required: true %>
+</div>
+<div>
+  <%= f.label :start_date, "掲載開始日", class: "required" %>
+  <%= f.date_field :start_date, value: Date.today, required: true %>
+</div>
+<div>
+  <%= f.label :start_date, "掲載終了日" %>
+  <%= f.date_field :start_date %>
+</div>
+<div>
+  <%= f.label :administrator_id, "管理者", class: "required" %>
+  <div class="radio-group">
+  <% Administrator.all.each do |admin| %>
+    <label class="radio-button">
+    <%= radio_button_tag "annoucement[administrator_id]", admin.id, admin == @announcement.administrator, required: true %>
+    <%= admin.code %>
+    </label>
+  <% end %>
+  </div>
+</div>

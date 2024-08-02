@@ -1,0 +1,9 @@
+<tr>
+  <td><%= announcement.title %></td>
+  <td><%= announcement.start_date %></td>
+  <td><%= "公開範囲" %></td>
+  <td><%= truncate(announcement.content, length:40) %>
+      <%= link_to "詳細", [:admin, @student, announcement] %></td>
+  <td><%= link_to "修正", :admin_students %>　　|　　
+      <%= link_to "削除", :admin_root, data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+  </td>

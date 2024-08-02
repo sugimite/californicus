@@ -22,6 +22,8 @@ class Student < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :homeworks, dependent: :destroy
   has_many :contacts, dependent: :destroy
+  has_many :announcement_students
+  has_many :announcements, through: :announcement_students
 
   include StringNormalizer
 

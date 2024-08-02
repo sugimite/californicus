@@ -91,6 +91,11 @@ div#wrapper {
           background-color: pink;
         }
       }
+      
+      label.required::after {
+        content: " *";
+        color: red;
+      }
     }
   }
 }

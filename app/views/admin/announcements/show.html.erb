@@ -1,0 +1,44 @@
+<% @title = "お知らせ" %>
+
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "お知らせ一覧", :admin_announcements %>　　
+    <%= link_to "お知らせの編集", :admin_root %>
+  </div>
+
+  <table class="attributes">
+    <tr>
+      <th>件名</th>
+      <td>
+        <%= @announcement.title %>
+      </td>
+    </tr>
+    <tr>
+      <th>掲載開始日</th>
+      <td>
+        <%= @announcement.start_date %>
+      </td>
+    </tr>
+    <tr>
+      <th>掲載終了日</th>
+      <td>
+        <%= @announcement.end_date %>
+      </td>
+    </tr>
+
+    <tr>
+      <th>内容</th>
+      <td>
+        <%= @announcement.content %>
+      </td>
+    </tr>
+    <tr>
+      <th>登録者</th>
+      <td>
+        <%= @announcement.administrator.code %>
+      </td>
+    </tr>
+  </table>
+</div>

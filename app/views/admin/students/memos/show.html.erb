@@ -5,7 +5,7 @@
 
 <div class="table-wrapper">
   <div class="links">
-    <%= link_to "メモの編集", :admin_root %>
+    <%= link_to "メモの編集", edit_admin_student_memo_path(@memo.student_id, @memo.id) %>
   </div>
 
   <table class="attributes">
