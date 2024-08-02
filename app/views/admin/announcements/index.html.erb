@@ -1,0 +1,31 @@
+<% @title = "お知らせ一覧" %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "新規お知らせ作成", :new_admin_announcement %>　　
+    <%= link_to "生徒一覧", :admin_students %>
+  </div>
+
+  <table class="listing">
+    <tr>
+      <th>件名</th>
+      <th>日付</th>
+      <th>公開範囲</th>
+      <th>内容</th>
+      <th>アクション</th>
+    </tr>
+    <%= render partial: "announcement", collection: @announcements, as: "announcement" %>
+
+    <% if @announcements&.empty? %>
+      <tr>
+        <%= content_tag(:td, "記録がありません", colspan: 5, style: "text-align: center") %>
+      </tr>
+    <% end %>
+
+  </table>
+
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+  </div>
+</div>

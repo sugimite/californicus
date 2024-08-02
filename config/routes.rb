@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :contacts, only: [ :index, :destroy ] do
       delete "destroy_all_by_student/:student_id", to: "contacts#destroy_all_by_student", as: "destroy_all_by_student", on: :collection
     end
+    resources :announcements
   end
 
   namespace :student, path: "" do
@@ -36,5 +37,6 @@ Rails.application.routes.draw do
     get "login" => "sessions#new", as: :login
     resource :session, only: [ :create, :destroy ]
     resources :contacts, only: [ :index, :new, :create, :destroy ]
+    resources :announcements, only: [ :index ]
   end  
 end
