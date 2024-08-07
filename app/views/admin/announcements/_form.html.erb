@@ -14,17 +14,17 @@
   <%= f.date_field :start_date, value: Date.today, required: true %>
 </div>
 <div>
-  <%= f.label :start_date, "掲載終了日" %>
-  <%= f.date_field :start_date %>
+  <%= f.label :end_date, "掲載終了日" %>
+  <%= f.date_field :end_date %>
 </div>
 <div>
   <%= f.label :administrator_id, "管理者", class: "required" %>
   <div class="radio-group">
-  <% Administrator.all.each do |admin| %>
-    <label class="radio-button">
-    <%= radio_button_tag "annoucement[administrator_id]", admin.id, admin == @announcement.administrator, required: true %>
-    <%= admin.code %>
-    </label>
-  <% end %>
+    <% Administrator.all.each do |admin| %>
+      <label class="radio-button">
+        <%= f.radio_button :administrator_id, admin.id, required: true %>
+        <%= admin.code %>
+      </label>
+    <% end %>
   </div>
 </div>
