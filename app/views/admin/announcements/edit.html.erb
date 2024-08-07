@@ -1,0 +1,22 @@
+<% @title = "お知らせの編集" %>
+<h1><%= @title %></h1>
+
+<div id="generic-form">
+  <%= form_with model: @announcement, url: admin_announcement_path(@announcement), local: true do |f| %>
+    <%= render "form", f: f %>
+    <% if @announcement.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
+        <ul>
+          <% @announcement.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="buttons">
+      <%= f.submit "更新" %>
+      <%= link_to "キャンセル", admin_announcements_path %>
+    </div>
+  <% end %>
+</div>
