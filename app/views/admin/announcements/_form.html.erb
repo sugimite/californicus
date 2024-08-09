@@ -29,7 +29,7 @@
   </div>
 </div>
 <div>
-  <%= f.label :ages, "公開範囲 (年齢)" %>
+  <%= f.label :school_grades, "公開範囲 (学年)" %>
   <div class="checkbox-group">
     <% unique_selected_grades = @announcement.students.map(&:school_grade).uniq %>
     <% (7..18).each do |age| %>
