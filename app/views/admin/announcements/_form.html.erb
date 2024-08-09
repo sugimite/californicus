@@ -28,3 +28,19 @@
     <% end %>
   </div>
 </div>
+<div>
+  <%= f.label :ages, "公開範囲 (年齢)" %>
+  <div class="checkbox-group">
+    <% unique_selected_grades = @announcement.students.map(&:school_grade).uniq %>
+    <% (7..18).each do |age| %>
+      <label>
+        <%= check_box_tag "announcement[school_grades][]", age, unique_selected_grades.include?(Student.new(birthday: age.years.ago).school_grade) %>
+        <%= Student.new(birthday: age.years.ago).school_grade %>
+      </label>
+    <% end %>
+    <label>
+      <%= check_box_tag "announcement[school_grades][]", '', unique_selected_grades.empty? %>
+      全体公開
+    </label>
+  </div>
+</div>
