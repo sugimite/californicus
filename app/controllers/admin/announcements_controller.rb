@@ -51,12 +51,12 @@ class Admin::AnnouncementsController < Admin::Base
   def associate_students_with_announcement
     selected_grades = params[:announcement][:school_grades].reject(&:blank?).map(&:to_i)
 
-    students_to_associate = if selected_grades.empty?
-                              Student.all
-                            else
-                              Student.where(birthday: selected_grades.map { |grade| grade.years.ago.beginning_of_year..grade.years.ago.end_of_year })
-                            end
-    @announcement.announcement_students.create!(students_to_associate.map { |student| { student_id: student.id } })
+    if selected_grades.empty?
+      @announcement.announcement_students.clear
+    else
+      students_to_associate = Student.where(birthday: selected_grades.map { |grade| grade.years.ago.beginning_of_year..grade.years.ago.end_of_year })
+      @announcement.announcement_students.create!(students_to_associate.map { |student| { student_id: student.id } })
+    end
   end
 
   def announcement_params

@@ -3,7 +3,7 @@
   <td><%= announcement.start_date %></td>
   <td><%= announcement.end_date %></td>
   <td>
-    <% if announcement.students.count == Student.count %>
+    <% if announcement.students.count == 0 %>
       全体公開
     <% else %>
       <% unique_grades = announcement.students.map(&:school_grade).uniq %>

@@ -4,5 +4,5 @@ class AnnouncementStudent < ApplicationRecord
 
   validates :announcement_id, presence: true
   validates :student_id, presence: true
-  validates :announcement_id, uniqueness: { scope: :student_id, message: "この生徒いは既に通知しています。"}
+  validates :announcement_id, uniqueness: { scope: :student_id, message: "この生徒には既に通知しています。"}
 end
