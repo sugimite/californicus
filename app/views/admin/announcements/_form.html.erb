@@ -11,7 +11,7 @@
 </div>
 <div>
   <%= f.label :start_date, "掲載開始日", class: "required" %>
-  <%= f.date_field :start_date, value: Date.today, required: true %>
+  <%= f.date_field :start_date, value: @announcement.start_date || Date.today, required: true %>
 </div>
 <div>
   <%= f.label :end_date, "掲載終了日" %>
