@@ -37,6 +37,6 @@ Rails.application.routes.draw do
     get "login" => "sessions#new", as: :login
     resource :session, only: [ :create, :destroy ]
     resources :contacts, only: [ :index, :new, :create, :destroy ]
-    resources :announcements, only: [ :index ]
+    resources :announcements, only: [ :index, :show ]
   end  
 end

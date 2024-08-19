@@ -1,14 +1,6 @@
 <% @title = "#{current_student.name} さん" %>
 <h1><%= @title %></h1>
 
-<ul class="menu">
-  <li><%= link_to "本日", :admin_students %></li>
-  <li><%= link_to "累計", :new_admin_student %></li>
-  <li><%= link_to "成績", :admin_root %></li>
-  <li><%= link_to "問い合わせ", :student_contacts %></li>
-  <li><%= link_to "お知らせ", :student_announcements %></li>
-</ul>
-
 <div class="horizontal">
   <div class="horizontal-item in_at-section">
     <%= current_student.has_deposited_phone ? "スマホ預かり設定:　有" : "スマホ預かり設定：　無" %>
