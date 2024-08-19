@@ -9,4 +9,8 @@ class Student::AnnouncementsController < Student::Base
                                  .where("announcements.end_date IS NULL OR announcements.end_date >= ?", today)
                                  .distinct
   end
+
+  def show
+    @announcement = Announcement.find(params[:id])
+  end
 end
