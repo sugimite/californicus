@@ -1,6 +1,12 @@
 class Student::AnnouncementsController < Student::Base
   def index
     student = current_student
+
+    if student.nil?
+      redirect_to student_login_path, alert: "ログインしてください。"
+      return
+    end
+    
     today = Date.today
 
     # 生徒に関連するアナウンスメントと全体公開のアナウンスメントを取得
