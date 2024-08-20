@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_25_102738) do
+ActiveRecord::Schema[7.0].define(version: 2024_07_31_103848) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_25_102738) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_administrators_on_code", unique: true
+  end
+
+  create_table "announcement_students", force: :cascade do |t|
+    t.bigint "announcement_id", null: false
+    t.bigint "student_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "announcements", force: :cascade do |t|
+    t.bigint "administrator_id", null: false
+    t.string "title", null: false
+    t.text "content", null: false
+    t.date "start_date", null: false
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["administrator_id"], name: "index_announcements_on_administrator_id"
   end
 
   create_table "attendances", force: :cascade do |t|
@@ -92,6 +110,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_25_102738) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "announcement_students", "announcements"
+  add_foreign_key "announcement_students", "students"
+  add_foreign_key "announcements", "administrators"
   add_foreign_key "attendances", "administrators"
   add_foreign_key "attendances", "students"
   add_foreign_key "grades", "students"

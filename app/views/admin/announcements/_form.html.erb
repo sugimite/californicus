@@ -1,0 +1,46 @@
+<div class="notes">
+  <span class="mark">*</span> 印のついた項目は入力必須です。
+</div>
+<div>
+  <%= f.label :title, "件名", class: "required" %>
+  <%= f.text_field :title,  required: true %>
+</div>
+<div>
+  <%= f.label :content, "内容", class: "required" %>
+  <%= f.text_area :content, rows: 5, required: true %>
+</div>
+<div>
+  <%= f.label :start_date, "掲載開始日", class: "required" %>
+  <%= f.date_field :start_date, value: @announcement.start_date || Date.today, required: true %>
+</div>
+<div>
+  <%= f.label :end_date, "掲載終了日" %>
+  <%= f.date_field :end_date %>
+</div>
+<div>
+  <%= f.label :administrator_id, "管理者", class: "required" %>
+  <div class="radio-group">
+    <% Administrator.all.each do |admin| %>
+      <label class="radio-button">
+        <%= f.radio_button :administrator_id, admin.id, required: true %>
+        <%= admin.code %>
+      </label>
+    <% end %>
+  </div>
+</div>
+<div>
+  <%= f.label :school_grades, "公開範囲 (学年)" %>
+  <div class="checkbox-group">
+    <% unique_selected_grades = @announcement.students.map(&:school_grade).uniq %>
+    <% (7..18).each do |age| %>
+      <label>
+        <%= check_box_tag "announcement[school_grades][]", age, unique_selected_grades.include?(Student.new(birthday: age.years.ago).school_grade) %>
+        <%= Student.new(birthday: age.years.ago).school_grade %>
+      </label>
+    <% end %>
+    <label>
+      <%= check_box_tag "announcement[school_grades][]", '', unique_selected_grades.empty? %>
+      全体公開
+    </label>
+  </div>
+</div>

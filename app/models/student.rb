@@ -22,6 +22,8 @@ class Student < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :homeworks, dependent: :destroy
   has_many :contacts, dependent: :destroy
+  has_many :announcement_students, dependent: :destroy
+  has_many :announcements, through: :announcement_students
 
   include StringNormalizer
 
@@ -46,6 +48,37 @@ class Student < ApplicationRecord
       self.password_digest = nil
     end
 
+  end
+
+  def school_grade
+    case age
+    when 7
+      "小1"
+    when 8
+      "小2"
+    when 9
+      "小3"
+    when 10
+      "小4"
+    when 11
+      "小5"
+    when 12
+      "小6"
+    when 13
+      "中1"
+    when 14
+      "中2"
+    when 15
+      "中3"
+    when 16
+      "高1"
+    when 17
+      "高2"
+    when 18
+      "高3"
+    else
+      "#{age}歳"
+    end
   end
 
   def age

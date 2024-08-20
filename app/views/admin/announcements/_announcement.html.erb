@@ -1,0 +1,18 @@
+<tr>
+  <td><%= announcement.title %></td>
+  <td><%= announcement.start_date %></td>
+  <td><%= announcement.end_date %></td>
+  <td>
+    <% if announcement.students.count == 0 %>
+      全体公開
+    <% else %>
+      <% unique_grades = announcement.students.map(&:school_grade).uniq %>
+      <%= unique_grades.join(",") %>
+    <% end %>
+  </td>
+  <td><%= truncate(announcement.content, length:40) %>
+      <%= link_to "詳細", [:admin, announcement] %></td>
+  <td><%= link_to "修正", edit_admin_announcement_path(announcement) %>　　|　　
+      <%= link_to "削除", admin_announcement_path(announcement), data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %>
+  </td>
+</tr>
