@@ -34,7 +34,7 @@
     <% end %>
   </div>
   <div class="horizontal-item in_at-section">
-    <%= "今年度の宿題忘れ：　#{current_student.forgetting_hw_count}回" %>
+    <%= "今年度の宿題忘れ：　#{current_student.homework_forgets.sum(:count)}回" %>
   </div>
 </div>
 

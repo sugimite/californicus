@@ -1,5 +1,12 @@
 class Student::ContactsController < Student::Base
   def index
+    student = current_student
+
+    if student.nil?
+      redirect_to student_login_path, alert: "ログインしてください。"
+      return
+    end
+    
     @contacts = @student.contacts.order(date: :asc)
     @new_contact = Contact.new
     @contacts.where(read: false).update_all(read: true)
