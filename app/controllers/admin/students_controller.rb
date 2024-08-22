@@ -3,6 +3,12 @@ class Admin::StudentsController < Admin::Base
     @students = Student.order(:name_kana).where(cancellation_date: nil)
   end
 
+  def show
+    @student = Student.includes(:homeworks, :homework_forgets).find(params[:id])
+    @homeworks = @student.homeworks.where(is_submitted: false)
+    @homework_forgets_this_year = @student.homework_forgets_in_year(Date.today.year)
+  end
+
   def new
     @student = Student.new
   end
@@ -59,15 +65,28 @@ class Admin::StudentsController < Admin::Base
 
   def increase_number
     student = Student.find(params[:id])
-    student.increment!(:forgetting_hw_count)
+
+    HomeworkForget.create!(
+      student_id: student.id,
+      count: 1,
+      forgetted_on: Date.today
+    )
+  
     flash[:notice] = "宿題忘れ回数を増やしました。"
     redirect_to admin_students_path
   end
 
   def decrease_number
     student = Student.find(params[:id])
-    student.decrement!(:forgetting_hw_count)
-    flash[:notice] = "宿題忘れ回数を減らしました。"
+
+    last_forget = student.homework_forgets.order(:forgetted_on).last
+    if last_forget.present?
+      last_forget.destroy!
+      flash[:notice] = "宿題忘れ回数を減らしました。"
+    else
+      flash[:alert] = "宿題忘れの記録がありません。"
+    end
+
     redirect_to admin_students_path
   end
 

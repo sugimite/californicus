@@ -154,3 +154,28 @@ footer p {
     margin-left: auto;
   }
 }
+
+.monthly-forgets {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 10px; /* カラム間のスペース */
+}
+
+.month-column {
+  flex: 0 0 auto;
+  min-width: 80px; /* カラムの最小幅 */
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.month-column h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.month-column p {
+  margin: 5px 0 0;
+}

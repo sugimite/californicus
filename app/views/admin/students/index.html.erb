@@ -27,7 +27,7 @@
       <% @students.each do |student| %>
         <tr>
           <td><%= check_box_tag "student_ids[]", student.id %></td>
-          <td><%= student.name %></td>
+          <td><%= link_to "#{student.name}", [ :admin, student ] %></td>
           <td><%= student.name_kana %></td>
           <td><%= student.school_grade %></td>
           <td><%= link_to "メモ", [ :admin, student, :memos ] %></td>
@@ -51,7 +51,7 @@
             <%= link_to "宿題一覧", [ :admin, student, :homeworks ] %> 
           </td>
           <td>
-            <%= "#{student.forgetting_hw_count}回" %>
+            <%= "#{student.homework_forgets.sum(:count)}回" %>
             <%= link_to "+", [:increase_number, :admin, student], class: "btn btn-increase", data: { "turbo-method": :patch} %>
             <%= link_to "-", [:decrease_number, :admin, student], class: "btn btn-decrease", data: { "turbo-method": :patch} %>
           </td>
