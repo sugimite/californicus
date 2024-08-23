@@ -67,20 +67,28 @@
     <tr>
       <th>今年度の宿題忘れ</th>
       <td>
-        <%= @student.homework_forgets_in_year(Date.today.year) %>回
+        <%= @student.homework_forgets_in_year(@student.current_school_year) %>回
       </td>
     </tr>
-</table>
+  </table>
 
-<div class="monthly-forgets">
-  <% months = (3..12).to_a + (1..2).to_a %>
-  <% current_year = Date.today.year %>
-  <% months.each do |month| %>
-    <div class="month-column">
-      <h3><%= "#{month}月" %></h3>
-      <% year = current_year + (month <= 2 ? 1 : 0) %>
-      <p><%= @student.homework_forgets_in_month(year, month) %>回</p>
-    </div>
-  <% end %>
-</div>
+  <div class="monthly-forgets">
+    <% start_year = 2024 %>
+    <% end_year = Date.today.year %>
+
+    <% (start_year..end_year).each do |year| %>
+      <h2><%= "#{year}年度 (#{year}/03~#{year +1}/02)" %></h2>
+
+      <div class="yearly-forgets">
+        <% months = (3..12).to_a + (1..2).to_a %>
+        <% months.each do |month| %>
+          <div class="month-column">
+            <h3><%= "#{month}月" %></h3>
+            <% display_year = year + (month <= 2 ? 1 : 0) %>
+            <p><%= @student.homework_forgets_in_month(display_year, month) %>回</p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
