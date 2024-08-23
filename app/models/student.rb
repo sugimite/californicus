@@ -115,4 +115,9 @@ class Student < ApplicationRecord
     
     homework_forgets.where(forgetted_on: start_date..end_date).sum(:count)
   end  
+
+  def current_school_year
+    today = Date.today
+    today.year - (today.month < 3 ? 1 : 0)
+  end
 end
