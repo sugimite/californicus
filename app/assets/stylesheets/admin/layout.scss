@@ -154,3 +154,37 @@ footer p {
     margin-left: auto;
   }
 }
+
+.monthly-forgets {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* カラム間のスペース */
+}
+
+.yearly-forgets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.month-column {
+  flex: 1 1 80px;
+  background-color: #f5f5f5;
+  min-width: 80px; /* カラムの最小幅 */
+  border: 1px solid #0084ff;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.month-column h3 {
+  margin: 0;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.month-column p {
+  margin: 5px 0 0;
+  font-size: 1.2em;
+  color: #333;
+}

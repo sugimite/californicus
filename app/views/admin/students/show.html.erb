@@ -1,0 +1,94 @@
+<% name = @student.name
+   @title = "#{name}さん" %>
+
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+  <div class="links">
+    <%= link_to "生徒一覧", :admin_students %>
+  </div>
+
+  <table class="attributes">
+    <tr>
+      <th>名前</th>
+      <td>
+        <%= @student.name %>
+      </td>
+      </th>
+    </tr>
+    <tr>
+      <th>フリガナ</th>
+      <td>
+        <%= @student.name_kana %>
+      </td>
+    </tr>
+    <tr>
+      <th>学年</th>
+      <td>
+        <%= @student.school_grade %>
+      </td>
+    </tr>
+    <tr>
+      <th>誕生日</th>
+      <td>
+        <%= @student.birthday %>
+      </td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td>
+        <%= @student.email %>
+      </td>
+    </tr>
+    <tr>
+      <th>入会日</th>
+      <td>
+        <%= @student.registration_date %>
+      </td>
+    </tr>
+    <tr>
+      <th>退会日</th>
+      <td>
+        <%= @student.cancellation_date %>
+      </td>
+    </tr>
+    <tr>
+      <th>未提出宿題</th>
+      <td>
+        <% if @homeworks.any? %>
+          <% @homeworks.each do |homework| %>
+            <p>種類： <%= homework.homework_type %>, ページ： <%= homework.page %></p>
+          <% end %>
+        <% else %>
+          <p>未提出の宿題はありません。</p>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>今年度の宿題忘れ</th>
+      <td>
+        <%= @student.homework_forgets_in_year(@student.current_school_year) %>回
+      </td>
+    </tr>
+  </table>
+
+  <div class="monthly-forgets">
+    <% start_year = 2024 %>
+    <% end_year = Date.today.year %>
+
+    <% (start_year..end_year).each do |year| %>
+      <h2><%= "#{year}年度 (#{year}/03~#{year +1}/02)" %></h2>
+
+      <div class="yearly-forgets">
+        <% months = (3..12).to_a + (1..2).to_a %>
+        <% months.each do |month| %>
+          <div class="month-column">
+            <h3><%= "#{month}月" %></h3>
+            <% display_year = year + (month <= 2 ? 1 : 0) %>
+            <p><%= @student.homework_forgets_in_month(display_year, month) %>回</p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

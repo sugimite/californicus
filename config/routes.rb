@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root "top#index"
     get "login" => "sessions#new", as: :login
-    resources :students, except: [ :show ] do
+    resources :students do
       scope module: :students do
         resources :memos
         resources :homeworks, except: [ :show ]
