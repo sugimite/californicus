@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_31_103848) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_22_103208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,6 +75,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_31_103848) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "homework_forgets", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.date "forgetted_on", null: false
+    t.integer "count", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "school_year", default: 2024, null: false
+    t.index ["student_id"], name: "index_homework_forgets_on_student_id"
+  end
+
   create_table "homeworks", force: :cascade do |t|
     t.bigint "student_id", null: false
     t.bigint "administrator_id", null: false
@@ -104,7 +114,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_31_103848) do
     t.string "password_digest"
     t.date "registration_date", null: false
     t.date "cancellation_date"
-    t.integer "forgetting_hw_count", default: 0, null: false
     t.boolean "has_deposited_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -116,6 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_31_103848) do
   add_foreign_key "attendances", "administrators"
   add_foreign_key "attendances", "students"
   add_foreign_key "grades", "students"
+  add_foreign_key "homework_forgets", "students"
   add_foreign_key "homeworks", "administrators"
   add_foreign_key "homeworks", "students"
   add_foreign_key "memos", "administrators"

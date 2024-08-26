@@ -24,6 +24,7 @@ class Student < ApplicationRecord
   has_many :contacts, dependent: :destroy
   has_many :announcement_students, dependent: :destroy
   has_many :announcements, through: :announcement_students
+  has_many :homework_forgets, dependent: :destroy
 
   include StringNormalizer
 
@@ -100,5 +101,23 @@ class Student < ApplicationRecord
   
       age
     end
+  end
+
+  def homework_forgets_in_month(year, month)
+    start_date = Date.new(year, month, 1)
+    end_date = Date.new(year, month, -1)
+    homework_forgets.where(forgetted_on: start_date..end_date).sum(:count)
+  end  
+
+  def homework_forgets_in_year(year)
+    start_date = Date.new(year, 3, 1)
+    end_date = Date.new(year + 1, 2, Date.leap?(year + 1) ? 29 : 28)
+    
+    homework_forgets.where(forgetted_on: start_date..end_date).sum(:count)
+  end  
+
+  def current_school_year
+    today = Date.today
+    today.year - (today.month < 3 ? 1 : 0)
   end
 end
