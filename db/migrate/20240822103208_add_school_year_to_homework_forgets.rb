@@ -1,6 +1,6 @@
 class AddSchoolYearToHomeworkForgets < ActiveRecord::Migration[7.0]
   def change
-    add_column :homework_forgets, :school_year, :integer, null: false, default: 2024
+    add_column :homework_forgets, :school_year, :integer, null: false
   
     HomeworkForget.reset_column_information
   
