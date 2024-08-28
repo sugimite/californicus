@@ -34,7 +34,24 @@ class Attendance < ApplicationRecord
 
   before_save :caliculate_staying_time
 
+  def self.monthly_total_staying_time(student_id, year, month)
+    start_date = Date.new(year, month, 1)
+    end_date = start_date.end_of_month
+
+    attendances = where(student_id: student_id, attended_date: start_date..end_date)
+
+    total_seconds = attendances.sum do |attendance|
+      next 0 unless attendance.in_at.present? && attendance.out_at.present?
+      (attendance.out_at - attendance.in_at).to_i
+    end
+
+    hours = total_seconds / 3600
+    minutes = (total_seconds % 3600) / 60
+    "#{hours}時間 #{minutes}分"
+  end
+
   private 
+
   def caliculate_staying_time
     if in_at.present? && out_at.present?
       staying_time_seconds = (out_at - in_at).to_i
