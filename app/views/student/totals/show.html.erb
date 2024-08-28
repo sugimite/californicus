@@ -1,0 +1,31 @@
+<h1><%= @student.name %>さんの累計</h1>
+
+<div class="summary-container">
+  <div class="summary-item">
+    <h2>今年度の宿題忘れ</h2>
+    <p><%= @student.homework_forgets_in_year(@student.current_school_year) %>回</p>
+  </div>
+
+  <div class="summary-item">
+    <h2>今年度の累計勉強時間</h2>
+    <p><%= @total_staying_time %></p>
+  </div>
+</div>
+
+<h2>月ごとの累計勉強時間</h2>
+<div class="monthly-staying-times">
+  <% @monthly_total_staying_time.each do |month, staying_time| %>
+    <div class="month-column">
+      <% 
+        hours, minutes = staying_time.scan(/(\d+)時間\s*(\d*)分/).flatten.map(&:to_i)
+        total_minutes = (hours * 60) + minutes
+        height = total_minutes * 0.1
+      %>
+      <div class="bar-container">
+        <div class="bar" style="height: <%= height %>px;"></div>  
+      </div>
+      <div class="month-label"><%= "#{month}月" %></div>
+      <p class="staying-time"><%= staying_time %></p>
+    </div>
+  <% end %>
+</div>
