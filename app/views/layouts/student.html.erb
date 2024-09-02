@@ -12,13 +12,15 @@
   <body>
     <div id="wrapper">
       <%= render "student/shared/header" %>
+      <% if current_student %>
       <ul class="menu">
         <li><%= link_to "本日", :student_root %></li>
         <li><%= link_to "累計", :student_total %></li>
-        <li><%= link_to "成績", :admin_root %></li>
+        <li><%= link_to "成績", student_grade_path(current_student.id) %></li>
         <li><%= link_to "問い合わせ", :student_contacts %></li>
         <li><%= link_to "お知らせ", :student_announcements %></li>
       </ul>
+      <% end %>
       <div id="container">
         <%= yield %>
       </div>

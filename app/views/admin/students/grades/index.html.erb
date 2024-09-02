@@ -5,7 +5,7 @@
 
 <div class="table-wrapper">
   <div class="links">
-    <%= link_to "生徒一覧", :admin_students %>
+    <%= link_to "生徒一覧", :admin_students %>　
     <%= link_to "成績入力", [ :new_admin, :student, :grade ] %>
   </div>
 
@@ -19,7 +19,7 @@
     </tr>
 
     <% if @test_results %>
-      <% @test_results.each do |(year, test_type), results|  %>
+      <% @test_results.sort_by { |(year, test_type), _| [-year, Grade::TEST_TYPES.index(test_type)] }.each do |(year, test_type), results|  %>
         <% results_by_subject_type = results.group_by(&:subject_type) %>
         <% max_subject_count = results_by_subject_type.values.map(&:size).max || 0 %>
         <% max_subject_count.times do |index| %>
@@ -31,15 +31,15 @@
 
             <% Grade::SUBJECT_TYPES.each do |subject_type| %>
               <% subject_results = results_by_subject_type[subject_type] || [] %>
-              <td><%= subject_results[index]&.score %>
-
-              <% if subject_results[index] %>
-                ｜<%= link_to "修正",
-                 edit_admin_student_grade_path(subject_results[index].student_id, subject_results[index].id) %>｜
-                <%= link_to "削除",
-                 admin_student_grade_path(subject_results[index].student_id, subject_results[index].id), 
-                 data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %> 
-              <% end %>
+              <td>
+                <%= subject_results[index]&.score %>
+                <% if subject_results[index] %>
+                  ｜<%= link_to "修正",
+                    edit_admin_student_grade_path(subject_results[index].student_id, subject_results[index].id) %>｜
+                  <%= link_to "削除",
+                    admin_student_grade_path(subject_results[index].student_id, subject_results[index].id), 
+                    data: { turbo_confirm: "本当に削除しますか？", turbo_method: :delete } %> 
+                <% end %>
               </td>
             <% end %>
           </tr>
@@ -52,7 +52,6 @@
         <%= content_tag(:td, "記録がありません", colspan: 7, style: "text-align: center") %>
       </tr>
     <% end %>
-
   </table>
 
   <div class="links">

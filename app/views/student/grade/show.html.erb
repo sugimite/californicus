@@ -1,0 +1,73 @@
+<h1><%= @student.name %>さんの成績</h1>
+
+<% test_type_order = Grade::TEST_TYPES %>
+
+<% @grades_by_year.each do |year, grades| %>
+  <h2><%= year %>年度</h2>
+
+  <!-- グラフの表示 -->
+  <% series_data = grades.group_by(&:subject_type).map do |subject, subject_grades|
+    # 学年末までのデータポイント
+    first_half_data = test_type_order[0..4].map { |test_type| 
+      grade = subject_grades.find { |g| g.test_type == test_type }
+      [test_type, grade ? grade.score : nil]
+    }
+
+    # 実力テストのデータポイント
+    second_half_data = test_type_order[5..-1].map { |test_type| 
+      grade = subject_grades.find { |g| g.test_type == test_type }
+      [test_type, grade ? grade.score : nil]
+    }
+
+    # 実力テストのスコアが全てnilでないかチェック
+    has_actual_scores = second_half_data.any? { |_, score| score.present? }
+
+    # 実力テストのスコアが全てnilの場合、second_half_dataを空に
+    second_half_data = [] unless has_actual_scores
+
+    # データセットを学年末と実力テストで分ける
+    [
+      { name: "#{subject} - 定期テスト", data: first_half_data },
+      { name: "#{subject} - 実力テスト", data: second_half_data }
+    ]
+  end.flatten(1) %>
+
+  <%= line_chart series_data.reject { |data| data[:data].empty? }, curve: false, xtitle: 'テスト種別', ytitle: '得点', library: {
+      scales: { 
+        x: { title: { display: true, text: 'テスト種別' }, ticks: { autoSkip: false } } 
+      },
+      elements: {
+        line: { tension: 0 }
+      }
+  } %>
+
+  <!-- 表の表示 -->
+  <table class="listing">
+    <tr>
+      <th>年度</th>
+      <th>種別</th>
+      <% Grade::SUBJECT_TYPES.each do |subject_type| %>
+        <th><%= subject_type %></th>
+      <% end %>
+    </tr>
+
+    <% if grades.present? %>
+      <% grades.group_by(&:test_type).sort_by { |test_type, _| test_type_order.index(test_type) }.each do |test_type, results| %>
+        <tr>
+          <td><%= year %></td>
+          <td><%= test_type %></td>
+          <% Grade::SUBJECT_TYPES.each do |subject_type| %>
+            <% result = results.find { |g| g.subject_type == subject_type } %>
+            <td>
+              <%= result&.score %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <%= content_tag(:td, "記録がありません", colspan: Grade::SUBJECT_TYPES.size + 2, style: "text-align: center") %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
