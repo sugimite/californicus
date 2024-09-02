@@ -5,6 +5,6 @@
   "repository": "git@github.com:sugimite/californicus.git",
   "license": "MIT",
   "dependencies": {
-    "@hotwired/turbo-rails": "^7.3.0",
+    "@hotwired/turbo-rails": "^7.3.0"
   }
 }

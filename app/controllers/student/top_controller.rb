@@ -6,7 +6,8 @@ class Student::TopController < Student::Base
     if current_student
       render action: "dashboard"
     else
-      render action: "index"
+      redirect_to student_login_path, alert: "ログインしてください。"
+      return
     end
   end
 end

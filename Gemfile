@@ -13,6 +13,8 @@ gem "nokogiri"
 gem "importmap-rails"
 gem "sassc-rails"
 gem "faker"
+gem "chartkick"
+gem "groupdate"
 
 gem "jbuilder"
 gem "pg", "~> 1.1"
