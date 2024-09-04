@@ -5,62 +5,60 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .links {
-    text-align: right;
-    margin-bottom: 20px;
-    padding-right: 20px;
+.links {
+  text-align: right;
+  margin-bottom: 20px;
+  padding-right: 20px;
+}
 
-    a {
-      text-decoration: none;
-      color: #007bff;
-      font-weight: bold;
-      transition: color 0.3s ease-in-out;
+.links a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
 
-      &:hover {
-        color: #0056b3;
-      }
-    }
-  }
+.links a:hover {
+  color: #0056b3;
+}
 
-  table {
-    margin: 20px auto 0;
-    border: solid 10px #000000;
-    width: 100%;
-    border-collapse: collapse;
+table {
+  margin: 20px auto;
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-    th, td {
-      padding: 12px 15px;
-      text-align: center;
-      border: 2px solid #333; /* 境界線をくっきりさせる */
-    }
+table th, table td {
+  padding: 12px 15px;
+  text-align: center;
+  border: 2px solid #333; /* 境界線を濃くするために2px solid #333に変更 */
+}
 
-    th {
-      background-color: #007bff;
-      color: white;
-      font-weight: normal;
-    }
+table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: normal;
+}
 
-    td {
-      background-color: white;
-    }
+table tr:nth-child(even) td {
+  background-color: #f9f9f9;
+}
 
-    tr:nth-child(even) td {
-      background-color: #f9f9f9;
-    }
+table tr:nth-child(odd) td {
+  background-color: #ffffff;
+}
 
-    tr:nth-child(even) {
-      background-color: #9c9696;
-    }
+table tr:hover {
+  background-color: #f1f1f1;
+}
 
-    tr:nth-child(odd) {
-      background-color: #d8cfcf;
-    }
-  }
-
-  td.actions {
-    color: #5b5656;
-  }
+td.actions {
+  color: #5b5656;
 }
 
 h1 {
@@ -73,13 +71,14 @@ h1 {
   .table-wrapper {
     width: 100%;
     padding: 10px;
+  }
 
-    .links {
-      padding-right: 0;
-    }
+  .links {
+    padding-right: 0;
+  }
 
-    table th, table td {
-      padding: 8px 10px;
-    }
+  table th, table td {
+    padding: 8px 10px;
+    font-size: 14px;
   }
 }
