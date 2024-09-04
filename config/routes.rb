@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resource :session, only: [ :create, :destroy ]
     resources :contacts, only: [ :index, :new, :create, :destroy ]
     resources :announcements, only: [ :index, :show ]
+    resources :grade, only: [ :show ]
     resource :total, only: [ :show ]
   end  
 end

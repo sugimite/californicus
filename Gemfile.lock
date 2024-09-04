@@ -85,6 +85,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chartkick (5.1.0)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
@@ -106,6 +107,8 @@ GEM
     ffi (1.16.3)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    groupdate (6.4.0)
+      activesupport (>= 6.1)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.2.3)
@@ -269,10 +272,12 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   capybara
+  chartkick
   date_validator
   debug
   factory_bot_rails
   faker
+  groupdate
   importmap-rails
   jbuilder
   kaminari
