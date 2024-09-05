@@ -7,6 +7,8 @@
     <%= link_to "生徒一覧", :admin_students %>
   </div>
 
+  <%= paginate @grades %>
+
   <table class="listing">
     <tr>
       <th>氏名</th>
@@ -25,6 +27,8 @@
     <% end %>
 
   </table>
+
+  <%= paginate @grades %>
 
   <div class="links">
     <%= link_to "生徒一覧", :admin_students %>
