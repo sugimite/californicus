@@ -14,6 +14,7 @@ class Student::AnnouncementsController < Student::Base
                                  .where("announcement_students.student_id = ? OR announcement_students.id IS NULL", student.id)
                                  .where("announcements.end_date IS NULL OR announcements.end_date >= ?", today)
                                  .distinct
+    @announcements = @announcements.page(params[:page])
   end
 
   def show
