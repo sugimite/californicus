@@ -1,0 +1,25 @@
+nav.pagination {
+  margin: 5px;
+  padding: 5px;
+  display: inline-block;
+  border-top: solid #070707 1px;
+  border-bottom: solid #070707 1px;
+  span.page, span.first, span.prev, span.next, span.last {
+    display: inline-block;
+    background-color: rgb(34, 170, 244);
+    padding: 5px 10px;
+    a {
+      text-decoration: none;
+    }
+  }
+  span.current {
+    background-color: #EfAf47;
+    color: rgb(5, 5, 5);
+  }
+  span.disabled {
+    color: rgb(233, 226, 226);
+  }
+  span.gap {
+    background-color: transparent;
+  }
+}

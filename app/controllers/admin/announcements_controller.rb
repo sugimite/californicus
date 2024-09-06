@@ -1,6 +1,7 @@
 class Admin::AnnouncementsController < Admin::Base
   def index
     @announcements = Announcement.order(start_date: :desc)
+    @announcements = @announcements.page(params[:page])
   end  
 
   def show
