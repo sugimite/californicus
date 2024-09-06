@@ -3,19 +3,24 @@
 
 <div class="table-wrapper">
 
-  <table class="listing">
-    <tr>
-      <th>件名</th>
-      <th>掲載開始日</th>
-      <th>掲載終了日</th>
-      <th>内容</th>
-    </tr>
-    <%= render partial: "announcement", collection: @announcements, as: "announcement" %>
+<%= paginate @announcements %>
 
-    <% if @announcements&.empty? %>
-      <tr>
-        <%= content_tag(:td, "記録がありません", colspan: 4, style: "text-align: center") %>
-      </tr>
-    <% end %>
-  </table>
+<table class="listing">
+  <tr>
+    <th>件名</th>
+    <th>掲載開始日</th>
+    <th>掲載終了日</th>
+    <th>内容</th>
+  </tr>
+  <%= render partial: "announcement", collection: @announcements, as: "announcement" %>
+
+  <% if @announcements&.empty? %>
+    <tr>
+      <%= content_tag(:td, "記録がありません", colspan: 4, style: "text-align: center") %>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @announcements %>
+ 
 </div>

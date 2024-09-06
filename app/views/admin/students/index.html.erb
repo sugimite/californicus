@@ -8,6 +8,9 @@
     <div>
       <%= form.submit "宿題を課す" %>
     </div>
+
+    <%= paginate @students %>
+
     <table class="listing">
       <tr>
         <th>選択</th>
@@ -67,6 +70,9 @@
         </tr>
       <% end %>
     </table>
+
+    <%= paginate @students %>
+
   <% end %>
 
   <div class="links">

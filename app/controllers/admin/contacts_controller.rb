@@ -3,6 +3,7 @@ class Admin::ContactsController < Admin::Base
     @contacts = Contact.order(date: :desc).includes(:student)
     @unread_contacts_count = Contact.where(read: false).count
     @unread_contacts_count ||= 0
+    @contacts = @contacts.page(params[:page])
   end
 
   def destroy_all_by_student
