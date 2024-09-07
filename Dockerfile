@@ -13,8 +13,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-ARG UID=1001
-ARG GID=1001
+ARG UID=1000
+ARG GID=1000
 
 RUN groupadd -g $GID rails && \
     useradd -u $UID -g $GID -m rails
