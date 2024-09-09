@@ -15,3 +15,10 @@
 $ docker-compose build
 $ docker-compose run rails bundle exec rails db:migrate:reset db:seed
 ```
+
+## デプロイ方法
+```
+$ docker-compose run --rm rails bash
+$ eval $(ssh-agent -s)
+$ cap production deploy
+```
