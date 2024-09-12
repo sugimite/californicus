@@ -12,6 +12,7 @@ services:
       POSTGRES_PASSWORD: californicus888
     volumes:
       - "postgresql_data:/var/lib/postgresql/data"
+  
   rails:
     build: .
     command: /bin/bash -c "rm -f tmp/pids/server.pid; bin/rails server -p 3000 -b 0.0.0.0"
@@ -22,6 +23,9 @@ services:
       - db
     volumes:
       - .:/work
+      - ~/.ssh:/home/rails/.ssh:ro
+    env_file:
+      - .env
 
 volumes:
   postgresql_data:
