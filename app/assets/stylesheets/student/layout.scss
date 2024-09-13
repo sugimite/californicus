@@ -189,8 +189,9 @@ footer {
   overflow-wrap: break-word;
 }
 
-.message.left {
+.message.left  {
   background-color: #f1f1f1;
+  color: #080808;
   float: left;
   margin-right: 40%;
 }
@@ -202,8 +203,12 @@ footer {
   margin-left: 40%;
 }
 
-.message p {
-  margin: 0;
+.message.right a {
+  color: #e8e3e3;
+}
+
+.message.left p {
+  color: #080808;
 }
 
 .message .time {
@@ -225,14 +230,6 @@ footer {
   .message {
     max-width: 90%;
     margin: 10px auto;
-  }
-
-  .message.left {
-    margin-right: auto;
-  }
-
-  .message.right {
-    margin-left: auto;
   }
 }
 
