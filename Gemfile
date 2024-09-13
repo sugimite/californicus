@@ -15,13 +15,20 @@ gem "sassc-rails"
 gem "faker"
 gem "chartkick"
 gem "groupdate"
-
+gem "capistrano"
+gem "capistrano-bundler"
+gem "capistrano-rails"
+gem "capistrano-rbenv"
+gem "capistrano3-puma"
 gem "jbuilder"
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.5"
 gem "puma", "~> 5.0"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem "sprockets-rails"
 gem "turbo-rails"
+gem "ed25519"
+gem "bcrypt_pbkdf"
+gem 'dotenv-rails', '~> 2.8.1' 
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
