@@ -81,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_22_103208) do
     t.integer "count", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "school_year", default: 2024, null: false
+    t.integer "school_year", null: false
     t.index ["student_id"], name: "index_homework_forgets_on_student_id"
   end
 
