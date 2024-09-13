@@ -69,4 +69,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgry_protection = true
 
   config.web_console.whitelisted_ips = [ "172.16.0.0/12" ]
+
+  config.hosts << "os3-374-20139.vs.sakura.ne.jp"
 end

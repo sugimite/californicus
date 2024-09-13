@@ -24,8 +24,6 @@ services:
     volumes:
       - .:/work
       - ~/.ssh:/home/rails/.ssh:ro
-    env_file:
-      - .env
 
 volumes:
   postgresql_data:
