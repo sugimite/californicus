@@ -28,7 +28,7 @@ gem "sprockets-rails"
 gem "turbo-rails"
 gem "ed25519"
 gem "bcrypt_pbkdf"
-gem 'dotenv-rails', '~> 2.7' 
+gem 'dotenv-rails', '~> 2.8.1' 
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
