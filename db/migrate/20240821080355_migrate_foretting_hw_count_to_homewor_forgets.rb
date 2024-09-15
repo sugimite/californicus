@@ -5,7 +5,7 @@ class MigrateForettingHwCountToHomeworForgets < ActiveRecord::Migration[7.0]
         HomeworkForget.create!(
           student_id: student.id,
           count: student.forgetting_hw_count,
-          year: Date.current_year
+          year: Date.current.year
         )
       end
     end
