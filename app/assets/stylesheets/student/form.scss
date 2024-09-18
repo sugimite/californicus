@@ -8,6 +8,7 @@ div#wrapper {
       border-radius: 20px;
       border: solid 4px #5d4f4f;
       background-color: #dbcfcf;
+      box-sizing: border-box;
 
       form {
         display: flex;
@@ -92,5 +93,71 @@ div#wrapper {
         }
       }
     }
+  }
+}
+@media (max-width: 768px) {
+  div#generic-form {
+    padding: 15px;
+    border-radius: 15px;
+    max-width: 100%;
+    margin: 5px;
+  }
+
+  form {
+    padding: 0;
+  }
+
+  label {
+    font-size: 0.9em;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 10px; /* 内部パディングを調整 */
+  }
+
+  .radio-group {
+    flex-direction: column;
+  }
+
+  .radio-item {
+    margin-bottom: 10px;
+  }
+
+  div.notes {
+    font-size: 12px; /* フォントサイズを少し大きく */
+  }
+
+  input[type="submit"] {
+    padding: 12px 20px; /* ボタンのサイズ調整 */
+  }
+}
+
+@media (max-width: 480px) {
+  div#generic-form {
+    margin: 10px;
+    border-radius: 10px;
+    max-width: 100%;
+    margin: 5px;
+  }
+
+  form {
+    padding: 0; 
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 12px; /* 内部パディングを調整 */
+  }
+
+  input[type="submit"] {
+    padding: 15px 25px; /* ボタンのサイズ調整 */
+    font-size: 0.9em; /* フォントサイズ調整 */
+  }
+
+  div.notes {
+    font-size: 14px; /* フォントサイズを少し大きく */
   }
 }
