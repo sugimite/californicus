@@ -11,7 +11,6 @@ document.addEventListener("turbo:load", function () {
 
     // メニュー内でのクリックがトグルボタンを再度有効にする
     menu.addEventListener("click", function () {
-      console.log("Menu clicked");
       menuToggle.disabled = false; // トグルボタンを再度有効にする
     });
   }

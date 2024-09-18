@@ -2,25 +2,28 @@
 <h1><%= @title %></h1>
 
 <div class="table-wrapper">
+  <%= paginate @announcements %>
 
-<%= paginate @announcements %>
+  <div class="announcement-list">
+    <% @announcements.each do |announcement| %>
+      <div class="announcement-card">
+        <h2 class="announcement-title"><%= announcement.title %></h2>
+        <div class="announcement-dates">
+          <span>掲載開始日: <%= announcement.start_date %></span>
+          <span>掲載終了日: <%= announcement.end_date %></span>
+        </div>
+        <div class="announcement-content">
+          <%= link_to truncate(announcement.content, length: 40), [:student, announcement] %>
+        </div>
+      </div>
+    <% end %>
 
-<table class="listing">
-  <tr>
-    <th>件名</th>
-    <th>掲載開始日</th>
-    <th>掲載終了日</th>
-    <th>内容</th>
-  </tr>
-  <%= render partial: "announcement", collection: @announcements, as: "announcement" %>
+    <% if @announcements.empty? %>
+      <div class="no-announcements">
+        記録がありません
+      </div>
+    <% end %>
+  </div>
 
-  <% if @announcements&.empty? %>
-    <tr>
-      <%= content_tag(:td, "記録がありません", colspan: 4, style: "text-align: center") %>
-    </tr>
-  <% end %>
-</table>
-
-<%= paginate @announcements %>
- 
+  <%= paginate @announcements %>
 </div>
