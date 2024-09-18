@@ -3,7 +3,6 @@
   <td><%= announcement.start_date %></td>
   <td><%= announcement.end_date %></td>
   <td>
-    <%= truncate(announcement.content, length:40) %>
-    <%= link_to "詳細", [:student, announcement] %>
+  <%= link_to truncate(announcement.content, length: 40), [:student, announcement] %>
   </td>
 </tr>
