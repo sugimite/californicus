@@ -42,32 +42,34 @@
   } %>
 
   <!-- 表の表示 -->
-  <table class="listing">
-    <tr>
-      <th>年度</th>
-      <th>種別</th>
-      <% Grade::SUBJECT_TYPES.each do |subject_type| %>
-        <th><%= subject_type %></th>
-      <% end %>
-    </tr>
+  <div class="table-wrapper">
+    <table class="listing">
+      <tr>
+        <th>年度</th>
+        <th>種別</th>
+        <% Grade::SUBJECT_TYPES.each do |subject_type| %>
+          <th><%= subject_type %></th>
+        <% end %>
+      </tr>
 
-    <% if grades.present? %>
-      <% grades.group_by(&:test_type).sort_by { |test_type, _| test_type_order.index(test_type) }.each do |test_type, results| %>
+      <% if grades.present? %>
+        <% grades.group_by(&:test_type).sort_by { |test_type, _| test_type_order.index(test_type) }.each do |test_type, results| %>
+          <tr>
+            <td><%= year %></td>
+            <td><%= test_type %></td>
+            <% Grade::SUBJECT_TYPES.each do |subject_type| %>
+              <% result = results.find { |g| g.subject_type == subject_type } %>
+              <td>
+                <%= result&.score %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% else %>
         <tr>
-          <td><%= year %></td>
-          <td><%= test_type %></td>
-          <% Grade::SUBJECT_TYPES.each do |subject_type| %>
-            <% result = results.find { |g| g.subject_type == subject_type } %>
-            <td>
-              <%= result&.score %>
-            </td>
-          <% end %>
+          <%= content_tag(:td, "記録がありません", colspan: Grade::SUBJECT_TYPES.size + 2, style: "text-align: center") %>
         </tr>
       <% end %>
-    <% else %>
-      <tr>
-        <%= content_tag(:td, "記録がありません", colspan: Grade::SUBJECT_TYPES.size + 2, style: "text-align: center") %>
-      </tr>
-    <% end %>
-  </table>
+    </table>
+  </div>
 <% end %>
