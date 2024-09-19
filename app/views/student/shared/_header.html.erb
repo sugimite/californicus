@@ -11,12 +11,11 @@
     <%= content_tag(:span, flash.notice, class: "notice") if flash.notice %>
     <%= content_tag(:span, flash.alert, class: "alert") if flash.alert %>
 
-    <%=
-      if current_student
-        link_to "ログアウト", :student_session, data: { turbo_method: :delete }
-      else
-        link_to "ログイン", :student_login
-      end
-    %>
+    <% if current_student %>
+      <%= link_to "アカウント", :student_account %>　
+      <%= link_to "ログアウト", :student_session, data: { turbo_method: :delete } %>
+    <% else %>
+      <%= link_to "ログイン", :student_login %>
+    <% end %>
   </div>
 </header>
