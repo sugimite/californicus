@@ -12,23 +12,7 @@
 
   <body>
     <div id="wrapper">
-      <header>
-        <a href="/" class="logo-mark">学力増進研究会</a>
-        <div id="header-content">
-        <a id="menu-toggle" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
-        </div>
-        <% if current_student %>
-          <nav id="menu" class="hidden">
-            <ul class="menu">
-              <li><%= link_to "本日", :student_root %></li>
-              <li><%= link_to "累計", :student_total %></li>
-              <li><%= link_to "成績", student_grade_path(current_student.id) %></li>
-              <li><%= link_to "問い合わせ", :student_contacts %></li>
-              <li><%= link_to "お知らせ", :student_announcements %></li>
-            </ul>
-          </nav>
-        <% end %>
-      </header>
+      <%= render "student/shared/header" %>
       <div id="container">
         <%= yield %>
       </div>

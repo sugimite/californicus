@@ -39,13 +39,31 @@ a {
 
 #header-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  padding: 0 20px;
 }
 
 #new-contacts-notification {
-  margin-right: 20px;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px 15px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+  font-weight: bold;
+  display: inline-block;
+  flex: 1;
+  font-size: 0.5em;
+  margin-right: 15px;
+}
+
+.account-container {
+  display: flex;
+  flex-direction: row; /* 縦に並べる */
+  align-items: flex-end; /* 右寄せ */
+  flex: 1;
 }
 
 footer {
@@ -67,7 +85,6 @@ footer {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  justify-content: center;
 
   li {
     margin: 0 10px;
@@ -167,16 +184,16 @@ footer {
   box-sizing: border-box;
 }
 
-  .from-label {
-    position: absolute;
-    top: -20px; /* メッセージ枠からの距離を調整 */
-    right: 0;
-    background-color: #090909; /* ラベルの背景色を設定 */
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 0.9em;
-    color: #e8e3e3;
-  }
+.from-label {
+  position: absolute;
+  top: -20px; /* メッセージ枠からの距離を調整 */
+  right: 0;
+  background-color: #090909; /* ラベルの背景色を設定 */
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  color: #e8e3e3;
+}
 
 .message {
   max-width: 100%;
@@ -203,21 +220,21 @@ footer {
   margin-left: 0;
 }
 
-  .message.right a {
-    color: #e8e3e3;
-  }
+.message.right a {
+  color: #e8e3e3;
+}
 
-  .message.left p {
-    color: #080808;
-  }
+.message.left p {
+  color: #080808;
+}
 
-  .message .time {
-    display: block;
-    font-size: 0.8em;
-    color: #0a0707;
-    text-align: right;
-    margin-top: 5px;
-  }
+.message .time {
+  display: block;
+  font-size: 0.8em;
+  color: #0a0707;
+  text-align: right;
+  margin-top: 5px;
+}
 
 .summary-container {
   display: flex;
@@ -228,19 +245,19 @@ footer {
   margin-right: 10px;
 }
 
-  .summary-item {
-    flex: 1;
-    padding: 20px;
-    border: 2px solid #fbf5f5;
-    border-radius: 8px;
-    background-color: #0F1733;
-    text-align: center;
-  }
+.summary-item {
+  flex: 1;
+  padding: 20px;
+  border: 2px solid #fbf5f5;
+  border-radius: 8px;
+  background-color: #0F1733;
+  text-align: center;
+}
 
-  .summary-item h2, p {
-    margin-bottom: 10px;
-    color: #ede9e9;
-  }
+.summary-item h2, p {
+  margin-bottom: 10px;
+  color: #ede9e9;
+}
 
 .monthly-staying-times {
   display: flex;
@@ -277,12 +294,12 @@ footer {
   background: linear-gradient(180deg, #f1620f, #ffa500);
 }
 
-  .staying-time {
-    font-size: 12px;
-    margin-top: 5px;
-    color: #f1f1f1;
-    background-color: #0F1733;
-  }
+.staying-time {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #f1f1f1;
+  background-color: #0F1733;
+}
 
 .month-label {
   margin-top: 10px;
@@ -295,6 +312,27 @@ footer {
 
 #menu-toggle {
   display: none;
+}
+
+.account-link, .logout-link {
+  white-space: nowrap;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 中央揃え */
+  border: 1px solid #fafafa; /* 枠の色 */
+  border-radius: 4px; /* 角を丸くする */
+  background-color: #2b2b2b; /* 異なる背景色 */
+  color: #fafafa; /* 文字色 */
+  margin: 5px; /* 周囲のマージン */
+  font-size: 14px;
+  text-align: center; 
+}
+
+.account-link a, .logout-link a {
+  color: #fafafa; /* リンクの色 */
+  text-decoration: none; /* 下線を消す */
+  display: block;
 }
 
 /* スマートフォン対応 */
@@ -354,6 +392,8 @@ footer {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -380,6 +420,7 @@ footer {
   .message {
     font-size: 0.9em; /* メッセージのフォントサイズを調整 */
   }
+
   #menu {
     display: block; /* 初期状態ではメニューを隠す */
     position: fixed; /* 固定表示 */
@@ -417,5 +458,18 @@ footer {
 
   .month-column {
     width: 80px;
+  }
+
+  #header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* 中央揃え */
+  }
+
+  .account-link, .logout-link {
+    width: 100%; /* 幅を100%に */
+    text-align: center; /* テキストを中央揃え */
+    margin: 5px 0; /* 上下のマージン */
+    margin-right: 15px;
   }
 }
