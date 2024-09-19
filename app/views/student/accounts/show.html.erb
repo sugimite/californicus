@@ -1,0 +1,42 @@
+<% @title = "アカウント情報" %>
+<h1><%= @title %></h1>
+
+<div class="table-wrapper">
+    <div class="links">
+        <%= link_to "アカウント情報の変更", :edit_student_account %>
+    </div>
+
+    <table class="attributes">
+        <tr>
+            <th>氏名</th>
+            <td>
+                <%= @student.name %>
+            </td>
+        </tr>
+        <tr>
+            <th>フリガナ</th>
+            <td>
+                <%= @student.name_kana %>
+            </td>
+        </tr>
+        <tr>
+            <th>誕生日</th>
+            <td>
+                <%= @student.birthday.strftime('%Y年%m月%d日') if @student.birthday %>
+            </td>
+        </tr>
+        <tr>
+            <th>メールアドレス</th>
+            <td>
+                <%= @student.email %>
+            </td>
+        </tr>
+        <tr>
+            <th>スマホ預かり設定</th>
+            <td>
+                <%= @student.has_deposited_phone ? "設定中" : "未設定" %>
+            </td>
+        </tr>
+    </table>
+    <h4>スマホ預かり設定: 授業中にスマートフォンを預かります。（自習時間は預かりません。）</h4>
+</div>
