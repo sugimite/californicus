@@ -5,7 +5,6 @@
 <div class="table-wrapper">
   <div class="links">
     <%= link_to "お知らせ一覧", :student_announcements %>　　
-    <%= link_to "お知らせの編集", :student_root %>
   </div>
 
   <table class="attributes">
@@ -31,7 +30,7 @@
     <tr>
       <th>内容</th>
       <td>
-        <%= @announcement.content %>
+        <%= simple_format(@announcement.content) %>
       </td>
     </tr>
   </table>

@@ -2,4 +2,5 @@
 import "@hotwired/turbo-rails"
 import "chartkick"
 import "Chart.bundle"
+import "menu_toggle"
 //= require student
