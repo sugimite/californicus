@@ -2,32 +2,34 @@
   <%= link_to "学力増進研究会", :student_root, class: "logo-mark" %>
   
   <div id="header-content">
-    <div id="new-contacts-notification" class="new-contacts-notification">
-      <% if @unread_contacts_count.to_i > 0 %>
-        問い合わせの返信（<%= @unread_contacts_count %>）
-      <% end %>
-    </div>
-
-    <%= content_tag(:span, flash.notice, class: "notice") if flash.notice %>
-    <%= content_tag(:span, flash.alert, class: "alert") if flash.alert %>
 
     <% if current_student %>
-      <%= link_to "アカウント", :student_account %>　
-      <%= link_to "ログアウト", :student_session, data: { turbo_method: :delete } %>
-    <% else %>
-      <%= link_to "ログイン", :student_login %>
-    <% end %>
-  </div>
+      <% if @unread_contacts_count.to_i > 0 %>
+        <div id="new-contacts-notification" class="new-contacts-notification">
+          問い合わせの返信（<%= @unread_contacts_count %>）
+        </div>
+      <% end %>
+      <a id="menu-toggle" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+      <nav id="menu" class="hidden">
+        <ul class="menu">
+          <li><%= link_to "本日", :student_root %></li>
+          <li><%= link_to "累計", :student_total %></li>
+          <li><%= link_to "成績", student_grade_path(current_student.id) %></li>
+          <li><%= link_to "問い合わせ", :student_contacts %></li>
+          <li><%= link_to "お知らせ", :student_announcements %></li>
+        </ul>
+      </nav>
 
-  <% if current_student %>
-    <nav id="menu" class="hidden">
-      <ul class="menu">
-        <li><%= link_to "本日", :student_root %></li>
-        <li><%= link_to "累計", :student_total %></li>
-        <li><%= link_to "成績", student_grade_path(current_student.id) %></li>
-        <li><%= link_to "問い合わせ", :student_contacts %></li>
-        <li><%= link_to "お知らせ", :student_announcements %></li>
-      </ul>
-    </nav>
-  <% end %>
+      <div class="account-container">
+        <div class="account-link">
+          <%= link_to "アカウント", :student_account %>
+        </div>
+        <div class="logout-link">
+          <%= link_to "ログアウト", :student_session, data: { turbo_method: :delete } %>
+        </div>
+      </div>
+      <% else %>
+        <%= link_to "ログイン", :student_login %>
+      <% end %>
+    </div>
 </header>
