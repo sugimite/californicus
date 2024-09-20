@@ -41,5 +41,6 @@ Rails.application.routes.draw do
     resources :grade, only: [ :show ]
     resource :total, only: [ :show ]
     resource :account, only: [ :show, :edit, :update ]
+    resource :password, only: [ :show, :edit, :update ]
   end  
 end
