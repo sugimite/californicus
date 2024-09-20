@@ -17,13 +17,13 @@
     <tr>
       <th>掲載開始日</th>
       <td>
-        <%= @announcement.start_date %>
+        <%= @announcement.start_date.strftime("%Y/%m/%d") %>
       </td>
     </tr>
     <tr>
       <th>掲載終了日</th>
       <td>
-        <%= @announcement.end_date %>
+        <%= @announcement.end_date.strftime("%Y/%m/%d") %>
       </td>
     </tr>
 
