@@ -46,7 +46,7 @@
 }
 
 .announcement-dates {
-  font-size: 14px;
+  font-size: 10px;
   color: #777;
   margin-bottom: 10px; /* 日付の下に隙間 */
 }
@@ -76,15 +76,17 @@ table {
   border-collapse: collapse;
   background-color: #ffffff;
   border-radius: 8px;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 table th, table td {
-  padding: 12px 15px;
+  padding: 20px 25px;
   text-align: left;
   border: 2px solid #333; /* 境界線を濃くするために2px solid #333に変更 */
   white-space: nowrap;
   color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 table td p {
@@ -142,8 +144,16 @@ table.attributes {
   }
 
   table th, table td {
-    padding: 8px 5px;
-    font-size: 12px;
+    padding: 12px 10px;
+    font-size: 10px;
     white-space: normal;
+  }
+
+  table th {
+    &:nth-child(1) { width: 150px; } /* 氏名 */
+    &:nth-child(2) { width: 250px; } /* フリガナ */
+    &:nth-child(3) { width: 150px; } /* 誕生日 */
+    &:nth-child(4) { width: 250px; } /* メールアドレス */
+    &:nth-child(5) { width: 200px; } /* スマホ預かり設定 */
   }
 }

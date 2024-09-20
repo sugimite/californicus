@@ -9,8 +9,8 @@
       <div class="announcement-card">
         <h2 class="announcement-title"><%= announcement.title %></h2>
         <div class="announcement-dates">
-          <span>掲載開始日: <%= announcement.start_date %></span>
-          <span>掲載終了日: <%= announcement.end_date %></span>
+          <span>掲載開始日: <%= announcement.start_date.strftime("%Y/%m/%d") %></span>
+          <span>掲載終了日: <%= announcement.end_date.strftime("%Y/%m/%d") %></span>
         </div>
         <div class="announcement-content">
           <%= link_to truncate(announcement.content, length: 40), [:student, announcement] %>
