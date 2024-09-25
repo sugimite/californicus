@@ -6,7 +6,7 @@
   <%= form_with model: @form, url: :student_session do |f| %>
     <div>
       <%= f.label :email, "メールアドレス" %>
-      <%= f.text_field :email %>
+      <%= f.text_field :email, id: "student_login_form_email" %>
     </div>
     <div>
       <%= f.label :password, "パスワード" %>
