@@ -53,6 +53,12 @@
       </td>
     </tr>
     <tr>
+      <th>スマホ預かり設定</th>
+      <td>
+        <%= @student.has_deposited_phone ? "設定中" : "未設定" %>
+      </td>
+    </tr>
+    <tr>
       <th>未提出宿題</th>
       <td>
         <% if @homeworks.any? %>
