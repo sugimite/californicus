@@ -83,25 +83,20 @@ class Student < ApplicationRecord
   end
 
   def age
-
     if birthday
       today = Date.today
-      current_year_start = Date.new(today.year, 1, 1)
       school_year_start = Date.new(today.year, 4, 1)
-      
-      age = today.year - birthday.year
-      
-      if today < school_year_start
-        school_year_start = Date.new(today.year - 1, 4, 1)
-      end
 
-      if birthday >= school_year_start
-        age -= 1
-      end
+      school_year_start = Date.new(today.year - 1, 4, 1) if today < school_year_start
+  
+      age = school_year_start.year - birthday.year
+  
+      age += 1 if birthday.month <= 3
   
       age
     end
   end
+  
 
   def homework_forgets_in_month(year, month)
     start_date = Date.new(year, month, 1)
