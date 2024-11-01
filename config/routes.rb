@@ -19,6 +19,8 @@ Rails.application.routes.draw do
         patch "leaving_seat"
         patch "increase_number"
         patch "decrease_number"
+        patch "increase_number_absence"
+        patch "decrease_number_absence"
         post "taking_seat"
       end
     end

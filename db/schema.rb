@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_08_22_103208) do
+ActiveRecord::Schema[7.0].define(version: 2024_11_01_084346) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "absences", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.integer "count"
+    t.date "absent_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_absences_on_student_id"
+  end
 
   create_table "administrators", force: :cascade do |t|
     t.string "password_digest"
@@ -117,8 +126,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_08_22_103208) do
     t.boolean "has_deposited_phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "absences"
   end
 
+  add_foreign_key "absences", "students"
   add_foreign_key "announcement_students", "announcements"
   add_foreign_key "announcement_students", "students"
   add_foreign_key "announcements", "administrators"

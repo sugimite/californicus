@@ -25,6 +25,7 @@ class Student < ApplicationRecord
   has_many :announcement_students, dependent: :destroy
   has_many :announcements, through: :announcement_students
   has_many :homework_forgets, dependent: :destroy
+  has_many :absences, dependent: :destroy
 
   include StringNormalizer
 
@@ -110,6 +111,19 @@ class Student < ApplicationRecord
     
     homework_forgets.where(forgetted_on: start_date..end_date).sum(:count)
   end  
+
+  def absences_in_month(year, month)
+    start_date = Date.new(year, month, 1)
+    end_date = Date.new(year, month, -1)
+    absences.where(absent_on: start_date..end_date).sum(:count)
+  end
+
+  def absences_for_year(year)
+    start_date = Date.new(year, 3, 1)
+    end_date = Date.new(year + 1, 2, Date.leap?(year + 1) ? 29 : 28)
+    
+    absences.where(absent_on: start_date..end_date).sum(:count)
+  end
 
   def current_school_year
     today = Date.today

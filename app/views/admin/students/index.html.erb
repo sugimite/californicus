@@ -18,6 +18,7 @@
           <th>学年</th>
           <th>メモ</th>
           <th>出席</th>
+          <th>欠席</th>
           <th>宿題</th>
           <th>宿題忘れ</th>
           <th>スマホ設定</th>
@@ -42,6 +43,11 @@
                   <%= link_to "着席する", [:taking_seat, :admin, student], data: { "turbo-method": :post }, class: attendance_checked ? 'link active' : 'link inactive' %>
                 <% end %>
               </label>        
+            </td>
+            <td>
+              <%= "#{student.absences.count}回" %>
+              <%= link_to "+", [:increase_number_absence, :admin, student], class: "btn btn-increase", data: { "turbo-method": :patch} %>
+              <%= link_to "-", [:decrease_number_absence, :admin, student], class: "btn btn-decrease", data: { "turbo-method": :patch} %>
             </td>
             <td>
               <% homeworks_checked = student.homeworks.where(is_submitted: false).exists? %>

@@ -19,6 +19,7 @@ students.each_with_index do |s, index|
     cancellation_date: cancellation_date,
     password: "password",
     email: "test#{index + 1}@example.com",
-    has_deposited_phone: has_deposited_phone
+    has_deposited_phone: has_deposited_phone,
   )
+
 end

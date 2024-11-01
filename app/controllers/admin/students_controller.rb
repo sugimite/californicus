@@ -91,6 +91,33 @@ class Admin::StudentsController < Admin::Base
     redirect_to admin_students_path
   end
 
+  def increase_number_absence
+    student = Student.find(params[:id])
+
+    Absence.create!(
+      student_id: student.id,
+      count: 1,
+      absent_on: Date.today
+    )
+  
+    flash[:notice] = "欠席を記録しました。"
+    redirect_to admin_students_path
+  end
+
+  def decrease_number_absence
+    student = Student.find(params[:id])
+
+    last_absence = student.absences.order(:absent_on).last
+    if last_absence.present?
+      last_absence.destroy!
+      flash[:notice] = "欠席を取り消しました。"
+    else
+      flash[:alert] = "欠席の記録がありません。"
+    end
+
+    redirect_to admin_students_path
+  end
+
   def submit_homework
     Homework.find(params[:homework_id]).update!(is_submitted: true)
     flash.notice = "提出しました。"
