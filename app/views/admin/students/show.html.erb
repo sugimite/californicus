@@ -97,4 +97,64 @@
       </div>
     <% end %>
   </div>
+
+  <table class="listing">
+    <tr>
+      <th>日付</th>
+      <th>入室時間</th>
+      <th>退室時間</th>
+      <th>滞在時間</th>
+      <th>前回宿題</th>
+      <th>宿題</th>
+      <th>メモ</th>
+    </tr>
+  
+    <% @attendances_and_absences.each do |date, attendance| %>
+      <tr>
+        <td><%= date %></td>
+        
+        <% if attendance %>
+          <td><%= attendance.in_at.strftime("%H:%M:%S") %></td>
+          <td><%= attendance.out_at&.strftime("%H:%M:%S") %></td>
+          <td><%= attendance.staying_time %></td>
+          <td>
+            <% if attendance.previous_week_homework_submitted? == true %>
+              <span class="label label-success">提出済み</span>
+            <% elsif attendance.previous_week_homework_submitted? == false %>
+              <span class="label label-warning">未提出</span>
+            <% else %>
+              <span class="label label-default">宿題なし</span>
+            <% end %>
+          </td>
+          <td>
+            <% if @homeworks_past[date] %>
+              <% @homeworks_past[date].each do |homework| %>
+              <p>内容: <%= homework.homework_type %>, 　p: <%= homework.page %></p>
+            <% end %>
+            <% else %>
+              <p>宿題なし</p>
+            <% end %>
+          </td>
+          <td>
+            <% if @memos[date] %>
+              <% @memos[date].each do |memo| %>
+              <p>内容: <%= memo.content %>
+            <% end %>
+            <% else %>
+              <p>特記事項なし</p>
+            <% end %>
+          </td>
+        <% else %>
+          <!-- 欠席の日 -->
+          <td colspan="6" style="text-align: center; color: red;">欠席</td>
+        <% end %>
+      </tr>
+    <% end %>
+  
+    <% if @attendances_and_absences.empty? %>
+      <tr>
+        <%= content_tag(:td, "記録がありません", colspan: 7, style: "text-align: center") %>
+      </tr>
+    <% end %>
+  </table>
 </div>
