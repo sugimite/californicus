@@ -5,9 +5,22 @@ class Admin::StudentsController < Admin::Base
   end
 
   def show
-    @student = Student.includes(:homeworks, :homework_forgets).find(params[:id])
+    @student = Student.includes(
+      :homeworks, 
+      :homework_forgets,
+      :attendances,
+      :absences,
+      :memos
+    ).find(params[:id])
     @homeworks = @student.homeworks.where(is_submitted: false)
+    @homeworks_past = @student.homeworks.group_by(&:assigned_date)
     @homework_forgets_this_year = @student.homework_forgets_in_year(Date.today.year)
+    @homeworks_past = @student.homeworks.group_by(&:assigned_date)
+    @attendances_and_absences = (
+      @student.attendances.map { |attendance| [attendance.attended_date, attendance] } +
+      @student.absences.map { |absence| [absence.absent_on, nil] })
+      .sort_by { |date, _| date }.reverse
+    @memos = @student.memos.group_by(&:input_date)
   end
 
   def new

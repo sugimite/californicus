@@ -50,6 +50,17 @@ class Attendance < ApplicationRecord
     "#{hours}時間 #{minutes}分"
   end
 
+ # Attendanceモデルの修正
+  def previous_week_homework_submitted?
+    previous_week_date = attended_date - 7.days
+    homework = student.homeworks.find_by(assigned_date: previous_week_date)
+
+    # 宿題が見つからない場合はnilを返し、見つかった場合はis_submittedの値を返す
+    homework ? homework.is_submitted : nil
+  end
+
+
+
   private 
 
   def caliculate_staying_time
