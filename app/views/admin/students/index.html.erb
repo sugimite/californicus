@@ -35,7 +35,7 @@
             <td><%= student.school_grade %></td>
             <td><%= link_to "メモ", [ :admin, student, :memos ] %></td>
             <td>
-              <label class="switch">
+              <label>
                 <% attendance_checked = student.attendances.where(out_at: nil).exists? %>
                 <% if attendance_checked %>
                   <%= link_to "着席中", [:leaving_seat, :admin, student],  data: { "turbo-method": :patch }, class: attendance_checked ? 'link active' : 'link inactive' %>

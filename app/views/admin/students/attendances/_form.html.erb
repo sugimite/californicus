@@ -11,7 +11,7 @@
 </div>
 <div>
   <%= f.label :out_at, "退室時間" %>
-  <%= f.time_select :out_at, ampm: false %>
+  <%= f.datetime_local_field :out_at, value: @attendance.out_at %>
 </div>
 <div>
   <%= f.label :is_with_no_phone, "スマホ預かり" %>
