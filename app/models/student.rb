@@ -86,10 +86,13 @@ class Student < ApplicationRecord
     school_year_start = Date.new(today.year - 1, 4, 1) if today < school_year_start
 
     # 年齢計算（SQL）
-    birth_year_lower = school_year_start.year - grade.to_i - 1 # 学年の下限
-    birth_year_upper = school_year_start.year - grade.to_i    # 学年の上限
+    birth_year_lower = school_year_start.year - grade.to_i    # 学年の下限
+    birth_year_upper = school_year_start.year - grade.to_i + 1   # 学年の上限
 
-    where("EXTRACT(YEAR FROM birthday) BETWEEN ? AND ?", birth_year_lower, birth_year_upper)
+    where("EXTRACT(MONTH FROM birthday) BETWEEN 1 AND 3") \
+    .where("EXTRACT(YEAR FROM birthday) = ?", birth_year_upper)
+    .or(where("EXTRACT(MONTH FROM birthday) NOT BETWEEN 1 AND 3")
+          .where("EXTRACT(YEAR FROM birthday) = ?", birth_year_lower))
   }
 
   def age
