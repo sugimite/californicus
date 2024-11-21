@@ -41,12 +41,6 @@ class Student < ApplicationRecord
   validates :name_kana, presence: true,
     format: { with: KATAKANA_REGEXP, allow_blank: true } 
   validates :email, presence: true, format: {with: URI::MailTo::EMAIL_REGEXP}, uniqueness: { case_sensitive: false }
-
-  before_save do
-    if birthday
-      self.birth_year = birthday.year
-    end
-  end
   
   def password=(raw_password)
 
