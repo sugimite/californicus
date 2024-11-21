@@ -41,7 +41,7 @@ class Student < ApplicationRecord
   validates :name_kana, presence: true,
     format: { with: KATAKANA_REGEXP, allow_blank: true } 
   validates :email, presence: true, format: {with: URI::MailTo::EMAIL_REGEXP}, uniqueness: { case_sensitive: false }
-
+  
   def password=(raw_password)
 
     if raw_password.kind_of?(String)
@@ -52,36 +52,45 @@ class Student < ApplicationRecord
 
   end
 
+  GRADES = [
+    ["小1", 7],
+    ["小2", 8],
+    ["小3", 9],
+    ["小4", 10],
+    ["小5", 11],
+    ["小6", 12],
+    ["中1", 13],
+    ["中2", 14],
+    ["中3", 15],
+    ["高1", 16],
+    ["高2", 17],
+    ["高3", 18]
+  ].freeze
+  
   def school_grade
-    case age
-    when 7
-      "小1"
-    when 8
-      "小2"
-    when 9
-      "小3"
-    when 10
-      "小4"
-    when 11
-      "小5"
-    when 12
-      "小6"
-    when 13
-      "中1"
-    when 14
-      "中2"
-    when 15
-      "中3"
-    when 16
-      "高1"
-    when 17
-      "高2"
-    when 18
-      "高3"
-    else
-      "#{age}歳"
-    end
+    grade = GRADES.find { |_, age_value| age_value == age }
+    grade ? grade[0] : "#{age}歳"
   end
+  
+  scope :search_by_name, ->(name) { where('name LIKE ?', "%#{name}%") if name.present? }
+
+  # 仮名で部分一致検索
+  scope :search_by_name_kana, ->(name_kana) { where('name_kana LIKE ?', "%#{name_kana}%") if name_kana.present? }
+
+  # 学年で検索
+  scope :search_by_school_grade, ->(grade) {
+    return if grade.blank?
+
+    today = Date.today
+    school_year_start = Date.new(today.year, 4, 1)
+    school_year_start = Date.new(today.year - 1, 4, 1) if today < school_year_start
+
+    # 年齢計算（SQL）
+    birth_year_lower = school_year_start.year - grade.to_i - 1 # 学年の下限
+    birth_year_upper = school_year_start.year - grade.to_i    # 学年の上限
+
+    where("EXTRACT(YEAR FROM birthday) BETWEEN ? AND ?", birth_year_lower, birth_year_upper)
+  }
 
   def age
     if birthday
