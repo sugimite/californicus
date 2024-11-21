@@ -1,9 +1,16 @@
 class Admin::StudentsController < Admin::Base
   def index
-    @students = Student.order(birthday: :desc).where(cancellation_date: nil)
+    @search_form = Admin::StudentSearchForm.new(search_params)
+    @students = @search_form.search(Student.order(birthday: :desc).where(cancellation_date: nil))
     @students = @students.page(params[:page])
   end
-
+  
+  private
+  
+  def search_params
+    params.fetch(:search, {}).permit(:name, :school_grade, :name_kana)
+  end
+ 
   def show
     @student = Student.includes(
       :homeworks, 
@@ -11,7 +18,7 @@ class Admin::StudentsController < Admin::Base
       :attendances,
       :absences,
       :memos
-    ).find(params[:id])
+    ).find_by(id: params[:id])
     @homeworks = @student.homeworks.where(is_submitted: false)
     @homeworks_past = @student.homeworks.group_by(&:assigned_date)
     @homework_forgets_this_year = @student.homework_forgets_in_year(Date.today.year)

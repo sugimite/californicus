@@ -2,6 +2,9 @@
   <div class="links">
     <%= link_to "生徒登録", :new_admin_student %>
   </div>
+
+  <%= render "search_form" %>
+  
   <%= form_with url: assign_homeworks_admin_students_path, method: :get do |form| %>
     <div>
       <%= form.submit "宿題を課す" %>

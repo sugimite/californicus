@@ -1,0 +1,19 @@
+<%= form_with model: @search_form, scope: "search", url: :admin_students,
+    html: { method: :get, class: "search" } do |f| %>
+  <div class="form-group">
+    <%= f.label :name, "名前:" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :school_grade, "学年:" %>
+    <%= f.select :school_grade, Student::GRADES, { include_blank: "すべて" }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name_kana, "フリガナ:" %>
+    <%= f.text_field :name_kana, class: "form-control" %>
+  </div>
+
+  <%= f.submit "検索", class: "btn btn-primary" %>
+<% end %>
