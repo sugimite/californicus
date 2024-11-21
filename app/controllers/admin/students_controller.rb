@@ -4,12 +4,6 @@ class Admin::StudentsController < Admin::Base
     @students = @search_form.search(Student.order(birthday: :desc).where(cancellation_date: nil))
     @students = @students.page(params[:page])
   end
-  
-  private
-  
-  def search_params
-    params.fetch(:search, {}).permit(:name, :school_grade, :name_kana)
-  end
  
   def show
     @student = Student.includes(
@@ -181,5 +175,9 @@ class Admin::StudentsController < Admin::Base
     params.require(:student).permit(
       :name, :name_kana, :email, :password, :birthday, :registration_date, :cancellation_date, :has_deposited_phone
     )
+  end
+  
+  def search_params
+    params.fetch(:search, {}).permit(:name, :school_grade, :name_kana)
   end
 end
