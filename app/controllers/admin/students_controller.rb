@@ -12,7 +12,7 @@ class Admin::StudentsController < Admin::Base
       :attendances,
       :absences,
       :memos
-    ).find_by(id: params[:id])
+    ).find(params[:id])
     @homeworks = @student.homeworks.where(is_submitted: false)
     @homeworks_past = @student.homeworks.group_by(&:assigned_date)
     @homework_forgets_this_year = @student.homework_forgets_in_year(Date.today.year)
