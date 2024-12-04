@@ -40,6 +40,11 @@
     </div>
   </div>
 </div>
+<div>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.submit "変更" %>
+</div>
 <% if @student.persisted? %>
   <div>
     <%= f.label :cancellation_date, "退会日"%>
