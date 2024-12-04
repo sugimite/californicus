@@ -22,7 +22,7 @@ class Homework < ApplicationRecord
   belongs_to :administrator
   belongs_to :student
 
-  HOMEWORK_TYPES = %w[ 英語精選 英語ワーク 数学精選 数学ワーク 国語ワーク 社会ワーク 理科ワーク 算数コア 国語コア 算数ワーク 国語ワーク].freeze
+  HOMEWORK_TYPES = %w[ 英語精選 英語ワーク 数学精選 数学ワーク 国語ワーク 社会ワーク 理科ワーク 算数コア 国語コア 算数ワーク 国語ワーク その他].freeze
 
   validates :administrator_id, presence: true
   validates :student_id, presence: true
