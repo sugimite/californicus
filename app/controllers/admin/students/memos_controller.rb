@@ -32,7 +32,7 @@ class Admin::Students::MemosController < Admin::Students::Base
     @memo = @student.memos.find(params[:id])
     @memo.assign_attributes(memos_params)
 
-    if memo.save
+    if @memo.save
       flash.notice = "修正を完了しました。"
       redirect_to :admin_students
     else
