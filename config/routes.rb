@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       collection do
         get "assign_homeworks"
         post "create_homeworks"
+        get "canceled"
       end
       member do 
         patch "submit_homework"
