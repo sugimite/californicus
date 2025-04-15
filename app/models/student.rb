@@ -141,4 +141,6 @@ class Student < ApplicationRecord
     today = Date.today
     today.year - (today.month < 3 ? 1 : 0)
   end
+
+  scope :canceled, -> { where.not(cancellation_date: nil) }
 end

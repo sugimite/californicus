@@ -59,6 +59,12 @@ class Admin::StudentsController < Admin::Base
     redirect_to :admin_students, notice: "生徒情報を削除しました。"
   end
 
+  def canceled
+    @search_form = Admin::StudentSearchForm.new(search_params)
+    @students = @search_form.search(Student.order(birthday: :desc).canceled)
+    @students = @students.page(params[:page])
+  end
+
   def leaving_seat
     Student.find(params[:id]).attendances.find_by!(out_at: nil).update!(out_at: Time.current)
     flash.notice = "離席しました。"
